@@ -94,12 +94,13 @@ export function initHeader() {
 	const update = () => {
 		ticking = false;
 		const y = window.scrollY;
-		header.classList.toggle('is-scrolled', y > 12);
+		header.classList.toggle('is-top', y <= 12);
 		if (cfg.hideHeader !== false) {
 			const delta = y - lastY;
 			if (y > 320 && delta > 6) header.classList.add('is-hidden');
 			else if (delta < -6 || y < 120) header.classList.remove('is-hidden');
 		}
+		document.documentElement.classList.toggle('header-hidden', header.classList.contains('is-hidden'));
 		lastY = y;
 	};
 	window.addEventListener('scroll', () => {
@@ -129,17 +130,18 @@ export function initMegaMenu() {
 	if (!mega || !header || !cfg.shopUrl) return;
 
 	const shop = normalise(cfg.shopUrl);
-	const link = Array.from(document.querySelectorAll('.primary-nav .menu > li > a')).find((a) => normalise(a.href) === shop);
+	const link = Array.from(document.querySelectorAll('.nav-links .menu > li > a')).find((a) => normalise(a.href) === shop);
 	if (!link) return;
 
 	const item = link.parentElement;
+	item.classList.add('has-mega');
 	const toggle = document.createElement('button');
 	toggle.type = 'button';
 	toggle.className = 'mega-toggle';
 	toggle.setAttribute('aria-expanded', 'false');
 	toggle.setAttribute('aria-controls', 'mega-shop');
 	toggle.setAttribute('aria-label', link.textContent.trim());
-	toggle.innerHTML = '<svg class="icon icon--plus" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>';
+	toggle.innerHTML = '<svg class="icon icon--chevron" viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>';
 	item.appendChild(toggle);
 
 	let closeTimer = null;
@@ -156,7 +158,7 @@ export function initMegaMenu() {
 		item.classList.remove('is-open');
 		header.classList.remove('mega-open');
 		toggle.setAttribute('aria-expanded', 'false');
-		closeTimer = window.setTimeout(() => { mega.hidden = true; }, 320);
+		closeTimer = window.setTimeout(() => { mega.hidden = true; }, 580);
 	};
 	const scheduleClose = () => {
 		window.clearTimeout(closeTimer);
@@ -198,8 +200,11 @@ export function initRotator() {
 
 	window.setInterval(() => {
 		if (paused || document.hidden) return;
-		items[index].classList.remove('is-active');
-		items[index].setAttribute('aria-hidden', 'true');
+		const previous = items[index];
+		previous.classList.remove('is-active');
+		previous.classList.add('is-past');
+		previous.setAttribute('aria-hidden', 'true');
+		window.setTimeout(() => previous.classList.remove('is-past'), 650);
 		index = (index + 1) % items.length;
 		items[index].classList.add('is-active');
 		items[index].removeAttribute('aria-hidden');

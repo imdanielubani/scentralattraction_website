@@ -101,7 +101,7 @@ ul.products::before, ul.products::after { display: none; }
 .shop-body { padding-bottom: var(--space-section); }
 .shop-toolbar {
 	position: sticky;
-	top: 0;
+	top: var(--sticky-top);
 	z-index: 20;
 	display: flex;
 	flex-wrap: wrap;
@@ -113,7 +113,7 @@ ul.products::before, ul.products::after { display: none; }
 	border-bottom: 1px solid var(--sa-mist);
 	background: var(--sa-white);
 }
-.site-header:not(.is-hidden) ~ * .shop-toolbar { top: var(--header-h); }
+.header-hidden .shop-toolbar { top: 0; }
 .shop-toolbar__filter { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 2.75rem; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; }
 .shop-toolbar__count { display: inline-grid; place-items: center; min-width: 1.25rem; height: 1.25rem; border-radius: 999px; background: var(--sa-red); color: #fff; font-size: 0.65rem; }
 .woocommerce-result-count { margin: 0 auto 0 0; font-size: 0.85rem; color: var(--sa-grey); }
@@ -182,7 +182,7 @@ ul.products::before, ul.products::after { display: none; }
 		align-items: start;
 	}
 	.single-product div.product > .woocommerce-product-gallery { grid-column: 1; grid-row: 1 / span 2; }
-	.single-product div.product > .summary { grid-column: 2; position: sticky; top: calc(var(--header-h) + 1.5rem); }
+	.single-product div.product > .summary { grid-column: 2; position: sticky; top: calc(var(--sticky-top) + 1.5rem); }
 	.single-product div.product > .woocommerce-tabs,
 	.single-product div.product > .related,
 	.single-product div.product > .upsells { grid-column: 1 / -1; }
@@ -369,7 +369,7 @@ form.checkout { display: grid; gap: var(--space-7); }
 	form.checkout #customer_details { grid-column: 1; }
 	form.checkout #order_review_heading, form.checkout #order_review { grid-column: 2; }
 	form.checkout #order_review_heading { grid-row: 1; }
-	form.checkout #order_review { grid-row: 1; margin-top: 3.5rem; position: sticky; top: calc(var(--header-h) + 1rem); }
+	form.checkout #order_review { grid-row: 1; margin-top: 3.5rem; position: sticky; top: calc(var(--sticky-top) + 1rem); }
 }
 .woocommerce-billing-fields h3, .woocommerce-shipping-fields h3, .woocommerce-additional-fields h3, #order_review_heading { font-size: 1.9rem; margin-bottom: var(--space-5); }
 .form-row { margin: 0 0 var(--space-4); padding: 0; }

@@ -25,6 +25,5 @@ if ( scentral_should_show_preloader() ) {
 <div class="page-shell">
 	<?php
 	do_action( 'scentral_before_header' );
-	get_template_part( 'template-parts/header/announcement' );
 	get_template_part( 'template-parts/header/site-header' );
 	?>

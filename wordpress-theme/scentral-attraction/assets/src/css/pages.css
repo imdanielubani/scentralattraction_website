@@ -6,7 +6,7 @@
 .about-story { display: grid; gap: var(--space-7); padding-bottom: var(--space-section); }
 @media (min-width: 900px) {
 	.about-story { grid-template-columns: 5fr 6fr; align-items: start; gap: clamp(3rem, 6vw, 7rem); }
-	.about-story__media { position: sticky; top: calc(var(--header-h) + 2rem); }
+	.about-story__media { position: sticky; top: calc(var(--sticky-top) + 2rem); }
 }
 .about-story__media { overflow: hidden; aspect-ratio: 4 / 5; background: var(--sa-surface); }
 .about-story__media > div { height: 110%; margin-top: -5%; }
@@ -71,7 +71,7 @@ a.contact__value:hover { color: var(--sa-red); }
    FAQ & policies
    ========================================================================== */
 .faq-layout { display: grid; gap: var(--space-7); padding-bottom: var(--space-section); }
-@media (min-width: 1000px) { .faq-layout { grid-template-columns: minmax(0, 1fr) 20rem; align-items: start; } .faq-help { position: sticky; top: calc(var(--header-h) + 2rem); } }
+@media (min-width: 1000px) { .faq-layout { grid-template-columns: minmax(0, 1fr) 20rem; align-items: start; } .faq-help { position: sticky; top: calc(var(--sticky-top) + 2rem); } }
 .faq.prose { padding-bottom: 0; }
 .faq details { padding: 0; }
 .faq summary {
@@ -90,7 +90,7 @@ a.contact__value:hover { color: var(--sa-red); }
 .faq-help__title { font-family: var(--font-display); font-size: 1.6rem; line-height: 1.2; }
 
 .policy { display: grid; gap: var(--space-7); padding-bottom: var(--space-section); }
-@media (min-width: 1000px) { .policy { grid-template-columns: 16rem minmax(0, 1fr); align-items: start; } .policy__toc { position: sticky; top: calc(var(--header-h) + 2rem); } }
+@media (min-width: 1000px) { .policy { grid-template-columns: 16rem minmax(0, 1fr); align-items: start; } .policy__toc { position: sticky; top: calc(var(--sticky-top) + 2rem); } }
 .policy__updated { margin-top: var(--space-4); font-size: 0.8rem; letter-spacing: 0.08em; color: var(--sa-grey); }
 .policy__toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; font-size: 0.9rem; }
 .policy__toc a { text-decoration: none; color: var(--sa-grey); }
