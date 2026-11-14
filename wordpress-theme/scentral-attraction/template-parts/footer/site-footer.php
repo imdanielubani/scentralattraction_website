@@ -98,24 +98,42 @@ $payments = scentral_option( 'footer_payments_note' );
 	</div>
 
 	<div class="site-footer__legal container">
-		<p>&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php echo esc_html( scentral_option( 'footer_copyright' ) ); ?></p>
-		<?php
-		if ( has_nav_menu( 'legal' ) ) {
-			wp_nav_menu(
-				array(
-					'theme_location' => 'legal',
-					'container'      => 'nav',
-					'container_class' => 'legal-nav',
-					'menu_class'     => 'legal-nav__list',
-					'depth'          => 1,
-				)
-			);
-		} elseif ( get_privacy_policy_url() ) {
-			echo '<nav class="legal-nav"><ul class="legal-nav__list"><li>' . get_the_privacy_policy_link() . '</li></ul></nav>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- core output.
-		}
-		?>
-		<?php if ( $payments ) : ?>
-			<p class="site-footer__payments"><?php echo scentral_icon( 'shield' ); // phpcs:ignore ?><?php echo esc_html( $payments ); ?></p>
+		<div class="site-footer__legal-start">
+			<p class="site-footer__copy">&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php echo esc_html( scentral_option( 'footer_copyright' ) ); ?></p>
+			<?php
+			if ( has_nav_menu( 'legal' ) ) {
+				wp_nav_menu(
+					array(
+						'theme_location'  => 'legal',
+						'container'       => 'nav',
+						'container_class' => 'legal-nav',
+						'menu_class'      => 'legal-nav__list',
+						'depth'           => 1,
+					)
+				);
+			} else {
+				$legal_links = scentral_legal_links();
+				if ( $legal_links ) {
+					echo '<nav class="legal-nav" aria-label="' . esc_attr__( 'Legal', 'scentral' ) . '"><ul class="legal-nav__list">';
+					foreach ( $legal_links as $legal ) {
+						printf( '<li><a href="%1$s">%2$s</a></li>', esc_url( $legal['url'] ), esc_html( $legal['label'] ) );
+					}
+					echo '</ul></nav>';
+				}
+			}
+			?>
+		</div>
+		<?php if ( $payments || scentral_option( 'footer_payment_logos' ) ) : ?>
+			<div class="site-footer__payments">
+				<?php if ( $payments ) : ?>
+					<p class="site-footer__payments-note"><?php echo scentral_icon( 'shield' ); // phpcs:ignore ?><?php echo esc_html( $payments ); ?></p>
+				<?php endif; ?>
+				<?php
+				if ( scentral_option( 'footer_payment_logos' ) ) {
+					scentral_payment_logos();
+				}
+				?>
+			</div>
 		<?php endif; ?>
 	</div>
 </footer>

@@ -205,7 +205,11 @@ body.has-dialog { overflow: hidden; }
 	color: var(--sa-on-dark-muted);
 	font-size: 0.8rem;
 }
-.legal-nav__list { display: flex; flex-wrap: wrap; gap: var(--space-5); }
+.site-footer__legal-start { display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-3) var(--space-6); }
+.site-footer__copy { margin: 0; }
+.legal-nav__list { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); }
+.legal-nav__list a { color: var(--sa-on-dark-muted); text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size var(--dur) var(--ease-out), color var(--dur-fast); }
+.legal-nav__list a:hover { color: var(--sa-on-dark); background-size: 100% 1px; }
 .legal-nav__list a { text-decoration: none; }
 .legal-nav__list a:hover { color: var(--sa-on-dark); }
 .site-footer__payments { display: inline-flex; align-items: center; gap: 0.5rem; }

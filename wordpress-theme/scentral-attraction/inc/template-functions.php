@@ -507,3 +507,45 @@ function scentral_icon_paths() {
 		'whatsapp'  => '<path ' . $s . ' d="M4.5 19.5l1.2-3.6A8 8 0 1112 20a8 8 0 01-3.9-1z"/><path ' . $s . ' d="M9 9.5c.3 2 2.2 4.1 4.5 4.6l1-1.2 1.8.9c-.3 1.2-1.3 1.7-2.3 1.6-3-.4-5.8-3.1-6-6.1 0-1 .5-1.9 1.6-2.2l.9 1.7z"/>',
 	);
 }
+
+/**
+ * Legal links for the footer bottom row: Privacy Policy and Terms & Conditions.
+ * A link appears only when its page is published, so visitors never land on a 404.
+ *
+ * @return array<int,array{url:string,label:string}>
+ */
+function scentral_legal_links() {
+	$links = array();
+
+	$privacy_id = (int) get_option( 'wp_page_for_privacy_policy' );
+	if ( ! $privacy_id || 'publish' !== get_post_status( $privacy_id ) ) {
+		$privacy    = scentral_find_page( 'privacy-policy' );
+		$privacy_id = $privacy ? (int) $privacy->ID : 0;
+	}
+	if ( $privacy_id && 'publish' === get_post_status( $privacy_id ) ) {
+		$links[] = array(
+			'url'   => get_permalink( $privacy_id ),
+			'label' => __( 'Privacy Policy', 'scentral' ),
+		);
+	}
+
+	$terms_id = function_exists( 'wc_terms_and_conditions_page_id' ) ? (int) wc_terms_and_conditions_page_id() : 0;
+	if ( ! $terms_id || 'publish' !== get_post_status( $terms_id ) ) {
+		$terms    = scentral_find_page( 'terms-and-conditions' );
+		$terms_id = $terms ? (int) $terms->ID : 0;
+	}
+	if ( $terms_id && 'publish' === get_post_status( $terms_id ) ) {
+		$links[] = array(
+			'url'   => get_permalink( $terms_id ),
+			'label' => __( 'Terms & Conditions', 'scentral' ),
+		);
+	}
+
+	return apply_filters( 'scentral_legal_links', $links );
+}
+
+/**
+ * Accepted payment logos for the footer (implemented in the next release step).
+ */
+function scentral_payment_logos() {
+}
