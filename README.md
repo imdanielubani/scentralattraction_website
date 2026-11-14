@@ -41,12 +41,19 @@ Editorial luxury fragrance design in the logo colours (white, red, black), a bra
 | [WooCommerce setup guide](documentation/WOOCOMMERCE_SETUP_GUIDE.md) | Store settings, product conventions, audit clean-up |
 | [Testing report](documentation/TESTING_REPORT.md) | What was tested, how, and what remains |
 
+## Brand files
+
+`design-assets/logos/`: verified emblem (original PNG and vector redraw), wordmark (dark and white), horizontal lockup, PNG exports. `design-assets/banners/`: campaign images (desktop and 4:5 mobile crops, WebP).
+
 ## Quick start (development)
 
 ```bash
 npm install          # build tools only
 npm run build        # compile assets/src -> assets/dist
 npm run package      # build and create releases/scentral-attraction-theme.zip
+npm test             # static theme checks (12)
+npm run images       # regenerate WebP + AVIF campaign images from design-assets
+npm run test:e2e     # browser tests against a running site (see tests/e2e/run.mjs for env vars)
 ```
 
 The theme itself is plain PHP, CSS and JavaScript. It does **not** need Node.js on the server.

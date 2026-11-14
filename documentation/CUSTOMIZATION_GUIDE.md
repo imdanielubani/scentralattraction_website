@@ -10,7 +10,7 @@ Everything here is done in **WordPress Admin → Appearance → Customize → Sc
 | Accent / Dark / Background / Surface | The logo colours: red #E3151C, black, white and a light grey behind product photos. The whole site follows them. |
 | Typography | Editorial (Cormorant Garamond + Manrope, self-hosted) or System fonts (fastest). |
 
-**Uploading your own logo:** Customize → **Site Identity → Logo**. A transparent PNG or SVG about 320px wide works best. The site icon (favicon) is set in the same panel.
+**Uploading your own logo:** Customize → **Site Identity → Logo**. Ready-made files are in `design-assets/logos/`: `scentral-lockup.svg` (emblem + wordmark), `scentral-wordmark.svg` / `scentral-wordmark-white.svg`, `scentral-emblem.svg`, plus PNG exports. The lettering is outlined, so the files look identical in any app. A transparent PNG or SVG about 320px wide works best. The site icon (favicon) is set in the same panel.
 
 ## Announcement Bar
 - Show or hide the black bar above the header.
@@ -75,7 +75,9 @@ Heading, text and image. To use **Mailchimp for WP** (already installed on the l
 Products per row and per page, quick view on/off, a free-delivery threshold for the bag progress bar (0 hides it), delivery and returns text shown on product pages (blank hides them), and recently viewed on/off.
 
 ## Footer
-Brand text, copyright name and the payments note ("Secure payments by Paystack").
+- Brand text, copyright name and the payments note ("Secure payments by Paystack").
+- **Accepted payment logos** (Visa, Mastercard, Verve, Paystack) beside the note: on by default, switch off with "Show accepted payment logos".
+- **Privacy Policy and Terms & Conditions** links sit beside the © line. They point to WordPress's privacy page (Settings → Privacy) and WooCommerce's terms page (WooCommerce → Settings → Advanced), or to pages with the slugs `privacy-policy` / `terms-and-conditions`. Each link appears only once its page is **published**, so visitors never land on an empty or missing page. Assigning a menu to the **Legal** location replaces these links with your menu.
 
 ## Menus
 **Appearance → Menus → Manage Locations**: Primary, Utility (top bar), Footer — Shop, Footer — Help, Legal.
@@ -87,6 +89,7 @@ Brand text, copyright name and the payments note ("Secure payments by Paystack")
 - The same sections work in any editor with the shortcode `[scentral_section name="new_arrivals"]`.
 - **Homepage**: Customize → Scentral Theme → Homepage — Sections → **Homepage layout** → "My Home page content" shows your Elementor-built Home page instead of the theme homepage.
 - **Elementor Pro**: Theme Builder header/footer templates replace the theme's header/footer automatically.
+- **Make Elementor follow the theme's colours and fonts**: Elementor → Settings → General → tick **Disable Default Colors** and **Disable Default Fonts**. Otherwise Elementor's own defaults (for example a light-blue heading colour) are applied to new widgets.
 - **Appearance → Scentral Setup** lists every page (Home, Shop, Cart, Checkout, My account, About, Contact, FAQ, policies, Journal, Wishlist) with Edit, Edit with Elementor and View links.
 
 ## Page templates

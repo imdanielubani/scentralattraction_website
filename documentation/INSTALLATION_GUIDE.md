@@ -4,8 +4,8 @@
 
 | Component | Minimum | Tested |
 |---|---|---|
-| WordPress | 6.4 | 6.8 |
-| WooCommerce | 8.0 | 9.x |
+| WordPress | 6.4 | 7.1 |
+| WooCommerce | 8.0 | 11.3 |
 | PHP | 7.4 | 8.3 |
 
 No Node.js, build step or extra plugin is required on the server.

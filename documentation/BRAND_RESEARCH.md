@@ -63,7 +63,7 @@ Implications for the design:
 **Decision:**
 - The verified emblem is kept as the official mark (`design-assets/logos/scentral-emblem-original.png`).
 - A faithful **vector redraw of the emblem** is supplied as SVG. It keeps the same bottle, monogram and flourish composition, in single-colour and two-colour versions, so it scales crisply and can be stroke-animated in the preloader.
-- A **typographic wordmark** ("SCENTRAL ATTRACTION" with "Perfume & More") is supplied as SVG to pair with the emblem. It is a lockup built around the existing mark, not a rebrand.
+- A **typographic wordmark** ("SCENTRAL ATTRACTION" with "Perfume & More") is supplied as SVG (`scentral-wordmark.svg`, `scentral-wordmark-white.svg`) together with a horizontal lockup (`scentral-lockup.svg`). The lettering is converted to outlines. It is a lockup built around the existing mark, not a rebrand.
 - All logo slots are replaceable in **Appearance → Customize → Site Identity** (custom logo) and **Customize → Scentral: Brand**.
 
 ## 4. Brand colours (observed)

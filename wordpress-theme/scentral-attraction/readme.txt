@@ -1,9 +1,9 @@
 === Scentral Attraction ===
 Contributors: scentralattraction
 Requires at least: 6.4
-Tested up to: 6.8
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -30,6 +30,9 @@ Bundled resources:
 * Campaign photography (assets/images/campaign) — original works created for Scentral Attraction.
 
 == Changelog ==
+
+= 1.2.0 =
+* Footer legal links and payment logos; wordmark files; AVIF images; browser-tested fixes (shop menu, bag drawer, account pages, tablet rows); e2e test suite.
 
 = 1.1.0 =
 * Navbar rebuilt to the reference design; palette switched to the logo colours (white, red, black).

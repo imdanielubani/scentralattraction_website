@@ -111,7 +111,7 @@ Type scale (fluid, 360 → 1440px):
 **Rules:**
 - **Unbranded bottles only.** No labels, no third-party logos, no recognisable designer bottle shapes.
 - No text baked into images. All headlines are HTML overlays.
-- Desktop crop 16:9 plus mobile crop 4:5, delivered as WebP, with meaningful filenames and alt text.
+- Desktop crop 16:9 plus mobile crop 4:5, delivered as AVIF (served first, about 30% smaller) with WebP fallback, meaningful filenames and alt text. The hero preload is art-directed so each device downloads exactly one hero file.
 
 | Asset | Subject | Palette |
 |---|---|---|

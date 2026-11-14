@@ -3,6 +3,22 @@
 All notable changes to the Scentral Attraction theme are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
 
+## [1.2.0] — 2026-11-14
+
+### Added
+- Privacy Policy and Terms & Conditions links beside the footer copyright (shown once the pages are published).
+- Visa, Mastercard, Verve and Paystack logos in the footer (inline SVG, toggle in the Customizer).
+- Wordmark (dark and white) and horizontal lockup logo files with outlined lettering, plus PNG exports.
+- AVIF campaign images with WebP fallback; art-directed, format-aware hero preload.
+- Browser end-to-end test suite (`npm run test:e2e`), including Elementor editing.
+
+### Fixed
+- Shop mega menu attaches to the Shop item however the menu link is stored.
+- Bag drawer rebuilt to the reference design; closed drawers no longer render after the footer.
+- My account layout, order view and mobile orders list.
+- Product rows on tablets (first cards collapsed to zero width).
+- Clip-reveal images that never appeared; search results page emptying its own query; headline punctuation spacing.
+
 ## [1.1.0] — 2026-11-14
 
 ### Changed

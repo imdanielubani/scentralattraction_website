@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'SCENTRAL_VERSION', '1.1.0' );
+define( 'SCENTRAL_VERSION', '1.2.0' );
 define( 'SCENTRAL_DIR', get_template_directory() );
 define( 'SCENTRAL_URI', get_template_directory_uri() );
 
