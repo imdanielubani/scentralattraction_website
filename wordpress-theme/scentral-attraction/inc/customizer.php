@@ -152,7 +152,7 @@ function scentral_option_registry() {
 		'footer_about'         => array( 'scentral_footer', 'textarea', __( 'Luxurious perfumes that inspire confidence, elegance, and individuality. Where elegance meets scent.', 'scentral' ), __( 'Footer brand text', 'scentral' ) ),
 		'footer_copyright'     => array( 'scentral_footer', 'text', __( 'Scentral Attraction — Perfume & More', 'scentral' ), __( 'Copyright name', 'scentral' ) ),
 		'footer_payments_note' => array( 'scentral_footer', 'text', __( 'Secure payments by Paystack', 'scentral' ), __( 'Payments note (blank = hide)', 'scentral' ) ),
-		'footer_payment_logos' => array( 'scentral_footer', 'checkbox', false, __( 'Show accepted payment logos', 'scentral' ) ),
+		'footer_payment_logos' => array( 'scentral_footer', 'checkbox', true, __( 'Show accepted payment logos', 'scentral' ) ),
 	);
 }
 

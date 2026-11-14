@@ -545,7 +545,38 @@ function scentral_legal_links() {
 }
 
 /**
- * Accepted payment logos for the footer (implemented in the next release step).
+ * Accepted payment methods as compact inline SVG badges (no extra requests).
+ * Shown in the footer bottom row; toggle in Customize -> Scentral Theme -> Footer.
  */
 function scentral_payment_logos() {
+	$badge = '<svg class="payment-logo" viewBox="0 0 52 34" role="img" aria-label="%1$s"><title>%1$s</title><rect width="52" height="34" rx="5" fill="#fff"/>%2$s</svg>';
+	$logos = array(
+		'visa'       => array(
+			'Visa',
+			'<text x="26" y="22.5" text-anchor="middle" font-family="Arial Black, Arial, Helvetica, sans-serif" font-size="14" font-weight="900" font-style="italic" fill="#1A1F71" letter-spacing="-0.5">VISA</text>',
+		),
+		'mastercard' => array(
+			'Mastercard',
+			'<circle cx="21" cy="17" r="9.5" fill="#EB001B"/><circle cx="31" cy="17" r="9.5" fill="#F79E1B"/><path d="M26 8.9a9.5 9.5 0 0 1 0 16.2 9.5 9.5 0 0 1 0-16.2z" fill="#FF5F00"/>',
+		),
+		'verve'      => array(
+			'Verve',
+			'<circle cx="10" cy="17" r="5" fill="#E5262E"/><text x="32" y="21.3" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="12" font-weight="700" fill="#00425F">verve</text>',
+		),
+		'paystack'   => array(
+			'Paystack',
+			'<g fill="#09A5DB"><rect x="5" y="11" width="9" height="2.2" rx="1"/><rect x="5" y="14.6" width="9" height="2.2" rx="1"/><rect x="5" y="18.2" width="7" height="2.2" rx="1"/><rect x="5" y="21.8" width="9" height="2.2" rx="1"/></g><text x="32.5" y="20.6" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="8.6" font-weight="700" fill="#011B33">paystack</text>',
+		),
+	);
+	$logos = apply_filters( 'scentral_payment_logos', $logos );
+
+	echo '<ul class="payment-logos" aria-label="' . esc_attr__( 'Accepted payment methods', 'scentral' ) . '">';
+	foreach ( $logos as $key => $logo ) {
+		printf(
+			'<li class="payment-logos__item payment-logos__item--%1$s">%2$s</li>',
+			esc_attr( $key ),
+			sprintf( $badge, esc_attr( $logo[0] ), $logo[1] ) // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG markup.
+		);
+	}
+	echo '</ul>';
 }
