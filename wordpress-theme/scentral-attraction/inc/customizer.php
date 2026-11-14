@@ -112,8 +112,8 @@ function scentral_option_registry() {
 
 		// Preloader & motion.
 		'preloader_enabled'    => array( 'scentral_preloader', $yes_no, true, __( 'Enable the branded preloader', 'scentral' ) ),
-		'preloader_scope'      => array( 'scentral_preloader', 'select', 'home', __( 'Show preloader on', 'scentral' ), array( 'home' => __( 'Homepage only', 'scentral' ), 'all' => __( 'Every page', 'scentral' ) ) ),
-		'preloader_once'       => array( 'scentral_preloader', $yes_no, true, __( 'Only once per visit (session)', 'scentral' ) ),
+		'preloader_scope'      => array( 'scentral_preloader', 'select', 'all', __( 'Show preloader on', 'scentral' ), array( 'home' => __( 'Homepage only', 'scentral' ), 'all' => __( 'Every page', 'scentral' ) ) ),
+		'preloader_once'       => array( 'scentral_preloader', $yes_no, true, __( 'Only once per browser tab (shows again when a page is opened in a new tab)', 'scentral' ) ),
 		'preloader_words'      => array( 'scentral_preloader', 'text', 'Oud, Rose, Lavender, Amber, Your signature', __( 'Rotating words (comma separated)', 'scentral' ) ),
 		'preloader_caption'    => array( 'scentral_preloader', 'text', __( 'Eau de Parfum · 50 — 100 ML', 'scentral' ), __( 'Caption under the bottle', 'scentral' ) ),
 		'motion_enabled'       => array( 'scentral_preloader', $yes_no, true, __( 'Enable scroll animations', 'scentral' ) ),

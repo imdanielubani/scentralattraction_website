@@ -57,8 +57,8 @@ To find an image ID: Media → click the image → the URL shows `item=123`.
 | Setting | Default |
 |---|---|
 | Enable the branded preloader | On |
-| Show on | Homepage only (or every page) |
-| Once per visit | On (the preloader plays once per browser session) |
+| Show on | Every page (or homepage only) |
+| Once per browser tab | On (the preloader plays when the site is opened in a new tab, including links opened in a new tab, and not again while browsing within that tab) |
 | Rotating words | Oud, Rose, Lavender, Amber, Your signature |
 | Caption under the bottle | Eau de Parfum · 50 — 100 ML |
 | Scroll animations / parallax / page transitions | On |

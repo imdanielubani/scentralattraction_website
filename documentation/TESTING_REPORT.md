@@ -37,7 +37,8 @@ Everything below was actually run. Items not tested are listed in section 6.
 
 | Area | Verified | Result |
 |---|---|---|
-| Preloader | Plays once per session, about 2–3s, never on second visit, never in the Elementor editor | ✅ |
+| Preloader | Plays once per browser tab on any page (fresh tab ✅, Ctrl+click new tab ✅), not again when navigating within the tab ✅, never in the Elementor editor | ✅ |
+| Page transition | Doors close with the destination name, next page opens; bag drawer and anchors unaffected (Chrome 1440px) | ✅ |
 | Navbar | Announcement roll and collapse, hide on scroll, Shop mega panel by hover **and keyboard** on home and shop, burger and bag taps on phones | ✅ |
 | Bag drawer | Empty state with 3 suggestions, quick add, quantity +/−, "Bag (n)", subtotal, Checkout | ✅ |
 | Footer | Legal links beside ©, 4 payment logos, social gap, no emblem in wordmark, no stray drawers | ✅ |

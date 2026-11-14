@@ -9,13 +9,15 @@
 const MIN_MS = 1400;
 const MAX_MS = 3800;
 const WORD_MS = 560;
-const STORAGE_KEY = 'sa-loaded';
+// Per-tab marker. window.name survives navigation inside a tab but starts empty in every
+// new tab (unlike sessionStorage, which browsers copy into tabs opened from a link), so the
+// preloader shows once in each new tab and not again while browsing within it.
+const TAB_MARK = 'sa-tab';
 
 function markSeen() {
-	try {
-		sessionStorage.setItem(STORAGE_KEY, '1');
-	} catch (e) {
-		/* Storage unavailable (private mode): the preloader simply shows again next visit. */
+	const name = window.name || '';
+	if (!/(^|\s)sa-tab(\s|$)/.test(name)) {
+		window.name = name ? `${name} ${TAB_MARK}` : TAB_MARK;
 	}
 }
 

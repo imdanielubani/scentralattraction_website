@@ -19,7 +19,7 @@ The reference is a furniture-store site template. It was studied for **philosoph
 | Reference pattern | What we learned | Scentral reinterpretation |
 |---|---|---|
 | **Loader**: two "doors" each mirroring the face. A line drawing of a sofa draws itself with `stroke-dashoffset` tied to progress. A dimension rule grows. Words cycle (Sofas → Tables → Lighting → Your room). A giant 0–100% counter. On completion an accent seam grows, a dot pings and the doors part. Once per session, skipped for reduced motion, CSS failsafe at 6s. | Progress is *narrated*, not just shown. The drawing ties loading to the product. A single accent colour carries the climax. | **"The First Spray"**: the Scentral emblem bottle draws itself in a red hairline. Juice rises inside it with progress. Fragrance notes cycle (Oud → Rose → Lavender → Amber → *Your signature*). A volume rule reads "EAU DE PARFUM · 50 — 100 ML". At 100% the **cap lifts**: a horizontal red seam opens at the bottle's neck, a mist of particles escapes, and the screen splits **top/bottom** (a cap lifting and a base dropping) to reveal the homepage. |
-| Page transition "doors" | Continuity between pages | **Veil**: a native cross-document View Transition. Content fades and lifts 12px. No JavaScript, so it can never block navigation. |
+| Page transition "doors" | Continuity between pages | **Doors**: two black panels close with a red seam and the destination's name ("Opening — About Us"), then slide open on the next page. Skips new-tab clicks, anchors, cart actions and dialogs; off for reduced motion. |
 | Hero: word-by-word headline reveal, "In this room — 04 pieces" index | Editorial voice plus shoppable index | Headline reveal of the brand tagline. An **"In this edit — 04 scents"** index that is a live product list from WooCommerce, with prices always current. |
 | Numbered product rail ("01 —") | Catalogue rhythm | Numbered new-arrivals rail with volume badges (from the Size attribute). |
 | Zoom: inset image scales to full-bleed on scroll | Cinematic pause | "The Oud Room": the luxury showcase. |
@@ -83,7 +83,7 @@ Type scale (fluid, 360 → 1440px):
 3. **Durations**: micro 160–240ms; reveals 700–900ms; preloader total ≤ 2.6s on a fast connection and hard-capped at 4.5s.
 4. **Non-blocking**: content is in the HTML and visible without JavaScript. Animations only enhance (`.js` class gating).
 5. **Reduced motion**: with `prefers-reduced-motion: reduce`, the preloader is skipped, reveals become instant, parallax and zoom are disabled, and the page transition becomes a simple fade.
-6. **Lightweight**: no animation library. The motion system uses IntersectionObserver, CSS transitions, CSS scroll-driven animations with a requestAnimationFrame fallback, and native View Transitions, about 12 KB of JS in total. GSAP was considered and rejected: its features were not needed, and avoiding it saves around 70 KB.
+6. **Lightweight**: no animation library. The motion system uses IntersectionObserver, CSS transitions, CSS scroll-driven animations with a requestAnimationFrame fallback, and CSS-driven page-transition doors, about 12 KB of JS in total. GSAP was considered and rejected: its features were not needed, and avoiding it saves around 70 KB.
 
 ### Animation inventory
 | # | Animation | Technique |
@@ -92,7 +92,7 @@ Type scale (fluid, 360 → 1440px):
 | 2 | Logo entrance | Header emblem stroke draw after preloader |
 | 3 | Hero image reveal | `clip-path: inset()` wipe plus 1.08 → 1 scale |
 | 4 | Text reveal | Line/word masks (`overflow:hidden` spans) |
-| 5 | Page transitions | Cross-document View Transitions |
+| 5 | Page transitions | Door panels (CSS transforms + a small click handler) |
 | 6 | Section entrances | IntersectionObserver `[data-reveal]` |
 | 7 | Product image hover | Crossfade to second gallery image plus 1.04 scale |
 | 8 | Product cards | Staggered rise |

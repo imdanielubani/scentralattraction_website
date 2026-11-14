@@ -127,7 +127,7 @@ function scentral_head_gate_script() {
 	(function(d){var h=d.documentElement;h.classList.remove('no-js');h.classList.add('js');
 	try{if(sessionStorage.getItem('sa-pt')){sessionStorage.removeItem('sa-pt');if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){h.classList.add('pt-entering');}}}catch(e){}
 	<?php if ( $show ) : ?>
-	try{var r=window.matchMedia('(prefers-reduced-motion: reduce)').matches;var s=<?php echo $once ? 'sessionStorage.getItem("sa-loaded")' : 'null'; ?>;if(!r&&!s){h.classList.add('sa-loading');}}catch(e){}
+	try{var r=window.matchMedia('(prefers-reduced-motion: reduce)').matches;var s=<?php echo $once ? '/(^|\s)sa-tab(\s|$)/.test(window.name||"")' : 'false'; ?>;if(!r&&!s){h.classList.add('sa-loading');}}catch(e){}
 	<?php endif; ?>
 	})(document);
 	</script>
