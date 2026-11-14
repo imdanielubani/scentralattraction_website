@@ -75,6 +75,7 @@ Everything below was actually run. Items not tested are listed in section 6.
 - Lighthouse / Core Web Vitals scores on real hosting (the local server is single-threaded and not representative).
 - Screen-reader walkthrough (keyboard access and focus were checked; a full NVDA/VoiceOver pass was not).
 - TI WooCommerce Wishlist, Mailchimp for WP and Yoast with live data: the theme detects them, but those plugins were not installed on the test site.
+- Contact Form 7 email delivery (Mail and Mail (2)): the local test site has no mail server. Configure both and send a test message on the live site, following the steps in INSTALLATION_GUIDE.md.
 
 ## 7. How to re-run
 

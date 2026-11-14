@@ -58,6 +58,43 @@ Edit a page → **Template** (in the sidebar):
 | Shipping & Delivery, Returns & Refunds, Privacy Policy, Terms & Conditions | Policy |
 | Wishlist | Wishlist (only if the TI Wishlist plugin is removed) |
 
+### Contact form emails (Contact Form 7: Mail and Mail (2))
+The Contact page shows your **Contact Form 7** form. The theme only styles it. Who receives the messages, and what the customer gets back, is set inside the plugin and the theme never changes it.
+
+Go to **Contact → Contact Forms**, open the form used on the Contact page (by default "Contact form 1"), then open the **Mail** tab. The form fields are `[your-name]`, `[your-email]`, `[your-subject]` and `[your-message]`; use them as mail-tags.
+
+**Mail (the message to the store)**
+
+| Field | Recommended value |
+|---|---|
+| To | `hello@scentralattraction.com` (or the inbox that should receive enquiries) |
+| From | `[_site_title] <wordpress@scentralattraction.com>`: an address on **your own domain**, never the customer's address, or the email is often marked as spam |
+| Subject | `[_site_title] — [your-subject]` |
+| Additional headers | `Reply-To: [your-name] <[your-email]>`, so pressing **Reply** in your inbox answers the customer directly |
+| Message body | `From: [your-name] <[your-email]>`<br>`Subject: [your-subject]`<br><br>`[your-message]` |
+
+**Mail (2) (automatic reply to the customer)**
+
+Tick **Use Mail (2)**, then:
+
+| Field | Recommended value |
+|---|---|
+| To | `[your-email]` |
+| From | The same own-domain address as Mail, e.g. `[_site_title] <wordpress@scentralattraction.com>` |
+| Subject | `Thank you for contacting [_site_title]` |
+| Additional headers | `Reply-To: hello@scentralattraction.com` |
+| Message body | `Hello [your-name],`<br><br>`Thank you for getting in touch with Scentral Attraction. We have received your message and will get back to you as soon as we can.`<br><br>`Your message:`<br>`[your-message]`<br><br>`Scentral Attraction — Perfume & More`<br>`Beautiful Plaza, Dawaki, Abuja · +234 807 234 4444` |
+
+Click **Save**. Contact Form 7 shows a warning on the Mail tab if a field is invalid (for example a From address on another domain). Fix any warnings before testing.
+
+**Make sure the emails arrive**
+1. WordPress's built-in mail is often blocked or sent to spam. Install an SMTP plugin (for example **WP Mail SMTP**) and connect it to your email provider (your host's mailbox, Google Workspace, Zoho, Brevo and so on). Use the same address as the **From** field above.
+2. Send a test message from the Contact page using an email address you can check.
+3. Confirm **both** emails arrive: the enquiry in the store inbox (Mail) and the thank-you in the test inbox (Mail (2)). Check the spam folders too.
+4. Reply to the enquiry from the store inbox and confirm the reply goes to the customer's address.
+
+If the theme's built-in form is ever used instead (only when no form plugin is on the page), it sends to the **Contact email** set in **Customize → Contact & Social** and has no automatic reply.
+
 ### Fragrance notes (optional)
 Each product has a **Fragrance Profile** box: top, heart and base notes, scent family, longevity, sillage and occasion. These fields appear on the product page only when filled in.
 
