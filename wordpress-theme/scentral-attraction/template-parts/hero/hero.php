@@ -29,7 +29,7 @@ if ( ! $products && 'newest' !== scentral_option( 'hero_index_source' ) ) {
 <section class="hero<?php echo empty( $image['src'] ) ? ' hero--no-image' : ''; ?>" data-hero aria-labelledby="hero-title">
 	<div class="hero__media" data-hero-image>
 		<?php if ( ! empty( $image['src'] ) ) : ?>
-			<?php scentral_picture( $image, __( 'An amber perfume bottle on dark stone with oud wood and a curl of smoke', 'scentral' ), array( 'class' => 'hero__picture', 'eager' => true ) ); ?>
+			<?php scentral_picture( $image, __( 'A clear perfume bottle with a black cap on black stone, outlined in red light', 'scentral' ), array( 'class' => 'hero__picture', 'eager' => true ) ); ?>
 		<?php else : ?>
 			<?php scentral_emblem( array( 'class' => 'hero__emblem emblem', 'draw' => true ) ); ?>
 		<?php endif; ?>

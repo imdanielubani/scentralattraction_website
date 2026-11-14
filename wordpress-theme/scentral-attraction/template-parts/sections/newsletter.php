@@ -13,7 +13,7 @@ $image = scentral_resolve_image( 'newsletter_image', 'newsletter-mist', 'scentra
 	<div class="newsletter__grid">
 		<?php if ( ! empty( $image['src'] ) ) : ?>
 			<div class="newsletter__media" data-reveal="clip">
-				<?php scentral_picture( $image, __( 'A fine mist of perfume caught in warm backlight', 'scentral' ), array( 'sizes' => '(min-width: 900px) 50vw, 100vw' ) ); ?>
+				<?php scentral_picture( $image, __( 'A fine mist of perfume caught in red backlight', 'scentral' ), array( 'sizes' => '(min-width: 900px) 50vw, 100vw' ) ); ?>
 			</div>
 		<?php endif; ?>
 		<div class="newsletter__content" data-reveal>

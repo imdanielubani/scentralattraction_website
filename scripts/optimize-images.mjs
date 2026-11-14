@@ -23,13 +23,13 @@ const bannerDir = path.join(root, 'design-assets', 'banners');
 
 /** Horizontal focus (0-1) of the subject in each landscape source, for mobile crops. */
 const FOCUS = {
-	'hero-noir-oud': 0.74,
-	'showcase-luxury': 0.56,
-	'campaign-bestsellers': 0.7,
-	'campaign-new-arrivals': 0.68,
-	'collection-men': 0.64,
+	'hero-noir-oud': 0.68,
+	'showcase-luxury': 0.6,
+	'campaign-bestsellers': 0.68,
+	'campaign-new-arrivals': 0.74,
+	'collection-men': 0.7,
 	'collection-women': 0.68,
-	'collection-unisex': 0.66,
+	'collection-unisex': 0.7,
 	'promo-gifting': 0.5,
 };
 const QUALITY = 80;

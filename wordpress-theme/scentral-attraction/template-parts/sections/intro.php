@@ -17,7 +17,7 @@ $image = scentral_resolve_image( 'home_intro_image', 'editorial-story', 'scentra
 		</div>
 		<?php if ( ! empty( $image['src'] ) ) : ?>
 			<figure class="intro__media" data-reveal="clip">
-				<div data-parallax="0.08"><?php scentral_picture( $image, __( 'Fragrance ingredients — oud wood, dried rose and amber resin — arranged around a perfume bottle', 'scentral' ), array( 'sizes' => '(min-width: 900px) 40vw, 100vw' ) ); ?></div>
+				<div data-parallax="0.08"><?php scentral_picture( $image, __( 'A perfume bottle surrounded by red roses, white flowers and black stones', 'scentral' ), array( 'sizes' => '(min-width: 900px) 40vw, 100vw' ) ); ?></div>
 			</figure>
 		<?php endif; ?>
 		<div class="intro__text" data-reveal>

@@ -81,7 +81,7 @@ $values      = apply_filters(
 
 		<?php if ( $wide_image ) : ?>
 			<figure class="about-wide" data-reveal="clip">
-				<div data-parallax="0.1"><?php scentral_picture( $wide_image, __( 'A perfume bottle resting on silk with dried rose petals', 'scentral' ) ); ?></div>
+				<div data-parallax="0.1"><?php scentral_picture( $wide_image, __( 'A perfume bottle resting on white silk with red rose petals', 'scentral' ) ); ?></div>
 			</figure>
 		<?php endif; ?>
 

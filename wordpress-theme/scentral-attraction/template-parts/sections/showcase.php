@@ -27,7 +27,7 @@ $link = $category ? get_term_link( $category ) : scentral_shop_url();
 		<div class="showcase__stage" data-zoom>
 			<div class="showcase__sticky">
 				<div class="showcase__frame">
-					<?php scentral_picture( $image, __( 'A faceted black and gold perfume bottle with amber resin and gold leaf in deep shadow', 'scentral' ), array( 'class' => 'showcase__picture' ) ); ?>
+					<?php scentral_picture( $image, __( 'A faceted black perfume bottle on black marble among red rose petals', 'scentral' ), array( 'class' => 'showcase__picture' ) ); ?>
 				</div>
 				<div class="showcase__caption container">
 					<p class="eyebrow"><?php echo esc_html( $category ? $category->name : __( 'The collection', 'scentral' ) ); ?></p>
