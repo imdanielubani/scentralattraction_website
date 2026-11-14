@@ -7,6 +7,7 @@
  *   {name}.webp          full size (max 1920 wide)
  *   {name}-960.webp      half size for srcset
  *   {name}-mobile.webp   4:5 portrait crop centred on the subject (landscape sources only)
+ * plus an .avif twin of each (served first to browsers that support AVIF).
  * Copies of the desktop and mobile crops also go to design-assets/banners/.
  * Finally it renders the theme screenshot.png (1200 x 900).
  */
@@ -33,6 +34,12 @@ const FOCUS = {
 	'promo-gifting': 0.5,
 };
 const QUALITY = 80;
+const AVIF_QUALITY = 55;
+
+/** Write the AVIF twin of a WebP output (same pixels, smaller file). */
+async function avifTwin(webpPath) {
+	await sharp(webpPath).avif({ quality: AVIF_QUALITY, effort: 6 }).toFile(webpPath.replace(/\.webp$/, '.avif'));
+}
 
 mkdirSync(outDir, { recursive: true });
 mkdirSync(bannerDir, { recursive: true });
@@ -49,6 +56,7 @@ async function mobileCrop(file, name, meta) {
 		.webp({ quality: QUALITY, effort: 6 })
 		.toFile(out);
 	copyFileSync(out, path.join(bannerDir, `${name}-mobile.webp`));
+	await avifTwin(out);
 }
 
 async function processImage(fileName) {
@@ -59,6 +67,8 @@ async function processImage(fileName) {
 	const full = path.join(outDir, `${name}.webp`);
 	await sharp(file).resize({ width: 1920, withoutEnlargement: true }).webp({ quality: QUALITY, effort: 6 }).toFile(full);
 	await sharp(file).resize({ width: 960 }).webp({ quality: QUALITY, effort: 6 }).toFile(path.join(outDir, `${name}-960.webp`));
+	await avifTwin(full);
+	await avifTwin(path.join(outDir, `${name}-960.webp`));
 	copyFileSync(full, path.join(bannerDir, `${name}-desktop.webp`));
 
 	if (meta.width > meta.height) {

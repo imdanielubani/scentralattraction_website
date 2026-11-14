@@ -35,11 +35,23 @@ function scentral_preload_hero() {
 	if ( empty( $hero['src'] ) ) {
 		return;
 	}
+	// Art-directed and format-aware, so the preloaded file is exactly the one the <picture> uses.
+	$has_mobile = ! empty( $hero['mobile'] );
+	$avif       = ! empty( $hero['avif'] );
 	printf(
-		'<link rel="preload" as="image" href="%1$s"%2$s fetchpriority="high">' . "\n",
-		esc_url( $hero['src'] ),
-		! empty( $hero['srcset'] ) ? ' imagesrcset="' . esc_attr( $hero['srcset'] ) . '" imagesizes="100vw"' : ''
+		'<link rel="preload" as="image" type="%1$s" imagesrcset="%2$s" imagesizes="100vw"%3$s fetchpriority="high">' . "\n",
+		esc_attr( $avif ? 'image/avif' : 'image/webp' ),
+		esc_attr( $avif ? $hero['avif'] : ( $hero['srcset'] ? $hero['srcset'] : $hero['src'] ) ),
+		$has_mobile ? ' media="(min-width: 768px)"' : ''
 	);
+	if ( $has_mobile ) {
+		$mobile_avif = ! empty( $hero['avif_mobile'] );
+		printf(
+			'<link rel="preload" as="image" type="%1$s" href="%2$s" media="(max-width: 767px)" fetchpriority="high">' . "\n",
+			esc_attr( $mobile_avif ? 'image/avif' : 'image/webp' ),
+			esc_url( $mobile_avif ? $hero['avif_mobile'] : $hero['mobile'] )
+		);
+	}
 }
 add_action( 'wp_head', 'scentral_preload_hero', 2 );
 

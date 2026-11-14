@@ -156,9 +156,18 @@ function scentral_campaign_image( $name ) {
 	}
 	$mobile = file_exists( SCENTRAL_DIR . $dir . $name . '-mobile.webp' ) ? SCENTRAL_URI . $dir . $name . '-mobile.webp' : '';
 
+	// AVIF twins (smaller): browsers that support AVIF pick these first, others fall back to WebP.
+	$avif = '';
+	if ( file_exists( SCENTRAL_DIR . $dir . $name . '.avif' ) ) {
+		$avif = $srcset ? str_replace( '.webp ', '.avif ', implode( ', ', $srcset ) ) : SCENTRAL_URI . $dir . $name . '.avif';
+	}
+	$avif_mobile = ( $mobile && file_exists( SCENTRAL_DIR . $dir . $name . '-mobile.avif' ) ) ? SCENTRAL_URI . $dir . $name . '-mobile.avif' : '';
+
 	return array(
-		'src'    => SCENTRAL_URI . $dir . $name . '.webp',
-		'srcset' => implode( ', ', $srcset ),
+		'src'         => SCENTRAL_URI . $dir . $name . '.webp',
+		'srcset'      => implode( ', ', $srcset ),
+		'avif'        => $avif,
+		'avif_mobile' => $avif_mobile,
 		'mobile' => $mobile,
 		'width'  => $size ? (int) $size[0] : 0,
 		'height' => $size ? (int) $size[1] : 0,
@@ -230,8 +239,14 @@ function scentral_picture( $image, $alt, $args = array() ) {
 	);
 	?>
 	<picture class="<?php echo esc_attr( $args['class'] ); ?>">
+		<?php if ( ! empty( $image['avif_mobile'] ) ) : ?>
+			<source media="(max-width: 767px)" type="image/avif" srcset="<?php echo esc_url( $image['avif_mobile'] ); ?>">
+		<?php endif; ?>
 		<?php if ( ! empty( $image['mobile'] ) ) : ?>
-			<source media="(max-width: 767px)" srcset="<?php echo esc_url( $image['mobile'] ); ?>">
+			<source media="(max-width: 767px)" type="image/webp" srcset="<?php echo esc_url( $image['mobile'] ); ?>">
+		<?php endif; ?>
+		<?php if ( ! empty( $image['avif'] ) ) : ?>
+			<source type="image/avif" srcset="<?php echo esc_attr( $image['avif'] ); ?>" sizes="<?php echo esc_attr( $args['sizes'] ); ?>">
 		<?php endif; ?>
 		<img src="<?php echo esc_url( $image['src'] ); ?>"
 			<?php if ( ! empty( $image['srcset'] ) ) : ?>
