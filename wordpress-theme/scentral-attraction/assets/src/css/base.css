@@ -1,21 +1,20 @@
 /* ==========================================================================
-   Tokens — "Noir & Rouge"
+   Tokens — the logo's colours: white, red and black.
+   Contrast (WCAG): red on white 4.78:1 · white on red 4.78:1 · red-light on black 6.49:1
+   · grey on white 6.69:1.
    ========================================================================== */
 :root {
-	--sa-noir: #0e0c0b;
-	--sa-ink: #1c1816;
-	--sa-ivory: #f6f1e9;
-	--sa-parchment: #ece4d6;
-	--sa-champagne: #d9c4a1;
-	--sa-gold: #a88552;
-	--sa-gold-deep: #7a5e33;
-	--sa-rouge: #9e1b22;
-	--sa-rouge-bright: #e3151c;
-	--sa-smoke: #6b625a;
-	--sa-mist: rgba(28, 24, 22, 0.12);
-	--sa-mist-strong: rgba(28, 24, 22, 0.22);
-	--sa-on-dark: #efe6d8;
-	--sa-on-dark-muted: rgba(239, 230, 216, 0.66);
+	--sa-black: #0a0a0a;
+	--sa-ink: #111111;
+	--sa-white: #ffffff;
+	--sa-surface: #f5f5f5;
+	--sa-red: #e3151c;
+	--sa-red-light: #ff5a5f;
+	--sa-grey: #5c5c5c;
+	--sa-mist: rgba(0, 0, 0, 0.1);
+	--sa-mist-strong: rgba(0, 0, 0, 0.2);
+	--sa-on-dark: #ffffff;
+	--sa-on-dark-muted: rgba(255, 255, 255, 0.7);
 
 	--font-display: "Cormorant Garamond", "Cormorant Fallback", Georgia, "Times New Roman", serif;
 	--font-body: "Manrope", "Manrope Fallback", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
@@ -50,7 +49,7 @@
 	--dur-slow: 800ms;
 
 	--radius-input: 2px;
-	--shadow-float: 0 24px 60px -24px rgba(14, 12, 11, 0.35);
+	--shadow-float: 0 24px 60px -24px rgba(10, 10, 10, 0.35);
 	color-scheme: light;
 }
 
@@ -71,7 +70,7 @@ html {
 body {
 	margin: 0;
 	min-height: 100vh;
-	background: var(--sa-ivory);
+	background: var(--sa-white);
 	color: var(--sa-ink);
 	font-family: var(--font-body);
 	font-size: var(--fs-body);
@@ -91,7 +90,7 @@ p, h1, h2, h3, h4, h5, h6, figure, blockquote, dl, dd { margin: 0; }
 ul[class], ol[class] { list-style: none; margin: 0; padding: 0; }
 table { border-collapse: collapse; width: 100%; }
 hr { border: 0; border-top: 1px solid var(--sa-mist); margin: var(--space-7) 0; }
-::selection { background: var(--sa-rouge); color: var(--sa-ivory); }
+::selection { background: var(--sa-red); color: var(--sa-white); }
 
 h1, h2, h3, h4 {
 	font-family: var(--font-display);
@@ -105,7 +104,7 @@ h2 { font-size: var(--fs-h2); }
 h3 { font-size: var(--fs-h3); }
 h4 { font-size: 1.25rem; }
 em { font-style: italic; }
-h1 em, h2 em, h3 em, .rich em { font-family: var(--font-display); font-style: italic; color: var(--sa-rouge); }
+h1 em, h2 em, h3 em, .rich em { font-family: var(--font-display); font-style: italic; color: var(--sa-red); }
 p { text-wrap: pretty; }
 
 /* ==========================================================================
@@ -113,7 +112,7 @@ p { text-wrap: pretty; }
    ========================================================================== */
 :focus { outline: none; }
 :focus-visible {
-	outline: 2px solid var(--sa-rouge);
+	outline: 2px solid var(--sa-red);
 	outline-offset: 3px;
 }
 .screen-reader-text {
@@ -130,8 +129,8 @@ p { text-wrap: pretty; }
 	top: 0.5rem; left: 0.5rem;
 	z-index: 10000;
 	padding: 0.75rem 1.25rem;
-	background: var(--sa-noir);
-	color: var(--sa-ivory);
+	background: var(--sa-black);
+	color: var(--sa-white);
 	font-weight: 600;
 	transform: translateY(-200%);
 	transition: transform var(--dur) var(--ease-out);
@@ -150,13 +149,13 @@ p { text-wrap: pretty; }
 .section { padding-block: var(--space-section); }
 .section--tight { padding-block: calc(var(--space-section) * 0.6); }
 .section--dark {
-	background: var(--sa-noir);
+	background: var(--sa-black);
 	color: var(--sa-on-dark);
 }
 .section--dark h2, .section--dark h3 { color: var(--sa-on-dark); }
-.section--dark h2 em, .section--dark h3 em { color: var(--sa-champagne); }
-.section--surface { background: var(--sa-parchment); }
-.page-shell { position: relative; z-index: 1; background: var(--sa-ivory); }
+.section--dark h2 em, .section--dark h3 em { color: var(--sa-red-light); }
+.section--surface { background: var(--sa-surface); }
+.page-shell { position: relative; z-index: 1; background: var(--sa-white); }
 .hide-sm { display: none; }
 @media (min-width: 768px) { .hide-sm { display: inline-flex; } }
 
@@ -171,11 +170,11 @@ p { text-wrap: pretty; }
 	text-transform: uppercase;
 	line-height: 1.3;
 }
-.eyebrow { color: var(--sa-gold-deep); margin-bottom: var(--space-4); }
-.section--dark .eyebrow { color: var(--sa-champagne); }
-.lead { font-size: var(--fs-lead); line-height: 1.65; color: var(--sa-smoke); max-width: 38rem; }
+.eyebrow { color: var(--sa-red); margin-bottom: var(--space-4); }
+.section--dark .eyebrow { color: var(--sa-red-light); }
+.lead { font-size: var(--fs-lead); line-height: 1.65; color: var(--sa-grey); max-width: 38rem; }
 .section--dark .lead { color: var(--sa-on-dark-muted); }
-.muted { color: var(--sa-smoke); }
+.muted { color: var(--sa-grey); }
 .price, .amount { font-variant-numeric: tabular-nums; }
 
 /* ==========================================================================
@@ -186,8 +185,8 @@ button.button,
 a.button,
 input[type="submit"],
 .wp-element-button {
-	--btn-bg: var(--sa-noir);
-	--btn-fg: var(--sa-ivory);
+	--btn-bg: var(--sa-black);
+	--btn-fg: var(--sa-white);
 	position: relative;
 	display: inline-flex;
 	align-items: center;
@@ -218,7 +217,7 @@ button.button::before {
 	position: absolute;
 	inset: 0;
 	z-index: -1;
-	background: var(--sa-rouge);
+	background: var(--sa-red);
 	transform: scaleY(0);
 	transform-origin: 50% 100%;
 	transition: transform 420ms var(--ease-out);
@@ -226,10 +225,10 @@ button.button::before {
 .button:hover::before,
 a.button:hover::before,
 button.button:hover::before { transform: scaleY(1); }
-.button:hover, a.button:hover, button.button:hover { border-color: var(--sa-rouge); color: var(--sa-ivory); }
+.button:hover, a.button:hover, button.button:hover { border-color: var(--sa-red); color: var(--sa-white); }
 .button--outline { --btn-bg: transparent; --btn-fg: var(--sa-ink); border-color: var(--sa-ink); }
-.button--light { --btn-bg: var(--sa-ivory); --btn-fg: var(--sa-noir); border-color: var(--sa-ivory); }
-.button--ghost-light { --btn-bg: transparent; --btn-fg: var(--sa-ivory); border-color: rgba(246, 241, 233, 0.6); }
+.button--light { --btn-bg: var(--sa-white); --btn-fg: var(--sa-black); border-color: var(--sa-white); }
+.button--ghost-light { --btn-bg: transparent; --btn-fg: var(--sa-white); border-color: rgba(255, 255, 255, 0.6); }
 .button[disabled], .button.disabled { opacity: 0.45; pointer-events: none; }
 .button .icon { width: 1.1rem; height: 1.1rem; }
 
@@ -247,7 +246,7 @@ button.button:hover::before { transform: scaleY(1); }
 	transition: background-size var(--dur) var(--ease-out), color var(--dur);
 }
 .link-arrow .icon { width: 1.1rem; height: 1.1rem; transition: transform var(--dur) var(--ease-out); }
-.link-arrow:hover { color: var(--sa-rouge); }
+.link-arrow:hover { color: var(--sa-red); }
 .link-arrow:hover .icon { transform: translateX(4px); }
 
 .link-draw {
@@ -268,7 +267,7 @@ button.button:hover::before { transform: scaleY(1); }
 	text-decoration: none;
 	transition: color var(--dur-fast);
 }
-.icon-button:hover { color: var(--sa-rouge); }
+.icon-button:hover { color: var(--sa-red); }
 
 /* ==========================================================================
    Forms
@@ -281,7 +280,7 @@ select, textarea {
 	padding: 0.8rem 1rem;
 	border: 1px solid var(--sa-mist-strong);
 	border-radius: var(--radius-input);
-	background: #fffdf9;
+	background: #ffffff;
 	color: var(--sa-ink);
 	font-size: 1rem;
 	transition: border-color var(--dur-fast), box-shadow var(--dur-fast);
@@ -290,17 +289,17 @@ select, textarea {
 textarea { min-height: 9rem; resize: vertical; }
 select {
 	padding-right: 2.5rem;
-	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%231c1816' stroke-width='1.5' d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%23111111' stroke-width='1.5' d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
 	background-repeat: no-repeat;
 	background-position: right 0.9rem center;
 	background-size: 1rem;
 }
 input:focus, select:focus, textarea:focus {
 	border-color: var(--sa-ink);
-	box-shadow: 0 0 0 3px rgba(158, 27, 34, 0.15);
+	box-shadow: 0 0 0 3px rgba(227, 21, 28, 0.15);
 	outline: none;
 }
-input[type="checkbox"], input[type="radio"] { accent-color: var(--sa-rouge); width: 1.1rem; height: 1.1rem; }
+input[type="checkbox"], input[type="radio"] { accent-color: var(--sa-red); width: 1.1rem; height: 1.1rem; }
 label { font-size: var(--fs-small); font-weight: 500; }
 ::placeholder { color: #8d847b; opacity: 1; }
 

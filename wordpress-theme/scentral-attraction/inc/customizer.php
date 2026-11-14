@@ -42,11 +42,10 @@ function scentral_option_registry() {
 		// Brand & colours.
 		'brand_tagline'        => array( 'scentral_brand', 'text', __( 'Perfume & More', 'scentral' ), __( 'Wordmark tagline', 'scentral' ) ),
 		'brand_logo_layout'    => array( 'scentral_brand', 'select', 'emblem_wordmark', __( 'Header logo layout (when no custom logo is uploaded)', 'scentral' ), array( 'emblem_wordmark' => __( 'Emblem + wordmark', 'scentral' ), 'wordmark' => __( 'Wordmark only', 'scentral' ), 'emblem' => __( 'Emblem only', 'scentral' ) ) ),
-		'color_accent'         => array( 'scentral_brand', 'color', '#9E1B22', __( 'Accent (rouge)', 'scentral' ) ),
-		'color_dark'           => array( 'scentral_brand', 'color', '#0E0C0B', __( 'Dark (noir)', 'scentral' ) ),
-		'color_background'     => array( 'scentral_brand', 'color', '#F6F1E9', __( 'Page background (ivory)', 'scentral' ) ),
-		'color_surface'        => array( 'scentral_brand', 'color', '#ECE4D6', __( 'Surface (parchment)', 'scentral' ) ),
-		'color_gold'           => array( 'scentral_brand', 'color', '#A88552', __( 'Gold accent', 'scentral' ) ),
+		'color_accent'         => array( 'scentral_brand', 'color', '#E3151C', __( 'Accent (logo red)', 'scentral' ) ),
+		'color_dark'           => array( 'scentral_brand', 'color', '#0A0A0A', __( 'Dark (black)', 'scentral' ) ),
+		'color_background'     => array( 'scentral_brand', 'color', '#FFFFFF', __( 'Page background (white)', 'scentral' ) ),
+		'color_surface'        => array( 'scentral_brand', 'color', '#F5F5F5', __( 'Surface (light grey behind product photos)', 'scentral' ) ),
 		'font_pairing'         => array( 'scentral_brand', 'select', 'editorial', __( 'Typography', 'scentral' ), array( 'editorial' => __( 'Editorial — Cormorant Garamond + Manrope', 'scentral' ), 'system' => __( 'System fonts (fastest)', 'scentral' ) ) ),
 
 		// Announcement bar.
@@ -274,11 +273,10 @@ add_action( 'customize_register', 'scentral_customize_register' );
  */
 function scentral_customizer_css() {
 	$vars = array(
-		'--sa-rouge'     => scentral_option( 'color_accent' ),
-		'--sa-noir'      => scentral_option( 'color_dark' ),
-		'--sa-ivory'     => scentral_option( 'color_background' ),
-		'--sa-parchment' => scentral_option( 'color_surface' ),
-		'--sa-gold'      => scentral_option( 'color_gold' ),
+		'--sa-red'     => scentral_option( 'color_accent' ),
+		'--sa-black'      => scentral_option( 'color_dark' ),
+		'--sa-white'     => scentral_option( 'color_background' ),
+		'--sa-surface' => scentral_option( 'color_surface' ),
 	);
 
 	$css = ':root{';

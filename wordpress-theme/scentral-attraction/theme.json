@@ -8,14 +8,12 @@
 			"defaultPalette": false,
 			"defaultGradients": false,
 			"palette": [
-				{ "slug": "noir", "name": "Noir", "color": "#0E0C0B" },
-				{ "slug": "ink", "name": "Ink", "color": "#1C1816" },
-				{ "slug": "ivory", "name": "Ivory", "color": "#F6F1E9" },
-				{ "slug": "parchment", "name": "Parchment", "color": "#ECE4D6" },
-				{ "slug": "champagne", "name": "Champagne", "color": "#D9C4A1" },
-				{ "slug": "gold", "name": "Muted Gold", "color": "#A88552" },
-				{ "slug": "rouge", "name": "Rouge", "color": "#9E1B22" },
-				{ "slug": "smoke", "name": "Smoke", "color": "#6B625A" }
+				{ "slug": "black", "name": "Black", "color": "#0A0A0A" },
+				{ "slug": "ink", "name": "Ink", "color": "#111111" },
+				{ "slug": "white", "name": "White", "color": "#FFFFFF" },
+				{ "slug": "surface", "name": "Light grey", "color": "#F5F5F5" },
+				{ "slug": "red", "name": "Logo red", "color": "#E3151C" },
+				{ "slug": "grey", "name": "Grey", "color": "#5C5C5C" }
 			]
 		}
 	}

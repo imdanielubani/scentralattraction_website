@@ -26,7 +26,7 @@ html.sa-loading .preloader {
 	right: 0;
 	height: 50%;
 	overflow: hidden;
-	background: var(--sa-noir);
+	background: var(--sa-black);
 	transition: transform 1.1s var(--ease-inout);
 	will-change: transform;
 }
@@ -61,7 +61,7 @@ html.sa-loading .preloader {
 	width: 0.28em;
 	height: 0.28em;
 	border-radius: 50%;
-	background: var(--sa-rouge-bright);
+	background: var(--sa-red);
 }
 .preloader__line { font-size: 0.6875rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--sa-on-dark-muted); }
 
@@ -75,8 +75,8 @@ html.sa-loading .preloader {
 	transform: translateX(-50%);
 }
 .preloader__emblem, .preloader__fill { position: absolute; inset: 0; width: 100%; height: 100%; }
-.preloader__emblem .emblem__line { color: var(--sa-rouge-bright); }
-.preloader__emblem .emblem__monogram { color: var(--sa-ivory); }
+.preloader__emblem .emblem__line { color: var(--sa-red); }
+.preloader__emblem .emblem__monogram { color: var(--sa-white); }
 .preloader__emblem .emblem__line path {
 	stroke-dasharray: 1;
 	stroke-dashoffset: calc(1 - var(--p));
@@ -86,7 +86,7 @@ html.sa-loading .preloader {
 	stroke-dashoffset: calc(1 - clamp(0, (var(--p) - 0.45) * 1.9, 1));
 }
 .preloader__juice {
-	fill: var(--sa-rouge-bright);
+	fill: var(--sa-red);
 	fill-opacity: 0.2;
 	transform-box: fill-box;
 	transform-origin: 50% 100%;
@@ -156,7 +156,7 @@ html.sa-loading .preloader {
 	letter-spacing: -0.04em;
 	font-variant-numeric: tabular-nums;
 }
-.preloader__count small { font-size: 0.28em; letter-spacing: 0; margin-left: 0.08em; color: var(--sa-rouge-bright); }
+.preloader__count small { font-size: 0.28em; letter-spacing: 0; margin-left: 0.08em; color: var(--sa-red); }
 
 /* Climax: the seam at the neck, then the mist. */
 .preloader__seam {
@@ -166,7 +166,7 @@ html.sa-loading .preloader {
 	right: 0;
 	height: 1px;
 	margin-top: -0.5px;
-	background: var(--sa-rouge-bright);
+	background: var(--sa-red);
 	transform: scaleX(0);
 	transition: transform 0.55s var(--ease-inout), opacity 0.4s ease 0.55s;
 }
@@ -178,7 +178,7 @@ html.sa-loading .preloader {
 	width: 6px;
 	height: 6px;
 	border-radius: 50%;
-	background: var(--sa-champagne);
+	background: var(--sa-red-light);
 	filter: blur(1.5px);
 	opacity: 0;
 }

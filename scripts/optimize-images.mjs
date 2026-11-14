@@ -71,12 +71,12 @@ async function screenshot() {
 	const hero = path.join(sourceDir, 'hero-noir-oud.png');
 	const overlay = Buffer.from(`
 		<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900">
-			<defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#0E0C0B" stop-opacity=".9"/><stop offset=".65" stop-color="#0E0C0B" stop-opacity="0"/></linearGradient></defs>
+			<defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="#0A0A0A" stop-opacity=".9"/><stop offset=".65" stop-color="#0A0A0A" stop-opacity="0"/></linearGradient></defs>
 			<rect width="1200" height="900" fill="url(#g)"/>
-			<text x="80" y="120" font-family="Georgia, serif" font-size="26" letter-spacing="7" fill="#EFE6D8">SCENTRAL ATTRACTION</text>
-			<text x="80" y="150" font-family="Arial, sans-serif" font-size="13" letter-spacing="5" fill="#D9C4A1">PERFUME &amp; MORE</text>
-			<text x="80" y="560" font-family="Georgia, serif" font-size="92" font-weight="300" fill="#F6F1E9">Where elegance</text>
-			<text x="80" y="660" font-family="Georgia, serif" font-size="92" font-style="italic" fill="#D9C4A1">meets scent.</text>
+			<text x="80" y="120" font-family="Georgia, serif" font-size="26" letter-spacing="7" fill="#FFFFFF">SCENTRAL ATTRACTION</text>
+			<text x="80" y="150" font-family="Arial, sans-serif" font-size="13" letter-spacing="5" fill="#E3151C">PERFUME &amp; MORE</text>
+			<text x="80" y="560" font-family="Georgia, serif" font-size="92" font-weight="300" fill="#FFFFFF">Where elegance</text>
+			<text x="80" y="660" font-family="Georgia, serif" font-size="92" font-style="italic" fill="#E3151C">meets scent.</text>
 			<rect x="80" y="730" width="120" height="2" fill="#E3151C"/>
 		</svg>`);
 	await sharp(hero)

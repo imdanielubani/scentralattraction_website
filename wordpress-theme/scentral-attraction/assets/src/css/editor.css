@@ -2,7 +2,7 @@
 @import "./base.css";
 
 .editor-styles-wrapper {
-	background: var(--sa-ivory);
+	background: var(--sa-white);
 	color: var(--sa-ink);
 	font-family: var(--font-body);
 	font-size: 1.0625rem;
@@ -10,6 +10,6 @@
 }
 .editor-styles-wrapper h1, .editor-styles-wrapper h2, .editor-styles-wrapper h3, .editor-styles-wrapper h4 { font-family: var(--font-display); font-weight: 400; }
 .editor-styles-wrapper .wp-block-post-title { font-size: var(--fs-display); font-weight: 300; }
-.editor-styles-wrapper a { color: var(--sa-rouge); }
+.editor-styles-wrapper a { color: var(--sa-red); }
 .editor-styles-wrapper .wp-block-details { border-top: 1px solid var(--sa-mist); padding-block: 1rem; }
 .editor-styles-wrapper .wp-block-details summary { font-family: var(--font-display); font-size: 1.35rem; }
