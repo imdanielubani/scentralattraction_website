@@ -21,6 +21,7 @@ $scentral_modules = array(
 	'queries',
 	'wishlist',
 	'newsletter',
+	'contact',
 	'product-meta',
 	'seo',
 	'ajax',
