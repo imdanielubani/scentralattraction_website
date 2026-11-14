@@ -9,6 +9,11 @@ defined( 'ABSPATH' ) || exit;
 
 get_header();
 
+if ( scentral_render_builder_page() ) {
+	get_footer();
+	return;
+}
+
 $is_wc_page = function_exists( 'is_cart' ) && ( is_cart() || is_checkout() || is_account_page() );
 ?>
 <main id="main" class="site-main site-main--page<?php echo $is_wc_page ? ' site-main--commerce' : ''; ?>">

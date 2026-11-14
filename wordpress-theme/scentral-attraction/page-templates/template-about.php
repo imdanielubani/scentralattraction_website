@@ -12,6 +12,11 @@ defined( 'ABSPATH' ) || exit;
 
 get_header();
 
+if ( scentral_render_builder_page() ) {
+	get_footer();
+	return;
+}
+
 $story_image = scentral_campaign_image( 'editorial-story' );
 $wide_image  = scentral_campaign_image( 'campaign-bestsellers' );
 $values      = apply_filters(

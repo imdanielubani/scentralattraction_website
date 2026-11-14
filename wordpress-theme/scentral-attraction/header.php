@@ -25,5 +25,7 @@ if ( scentral_should_show_preloader() ) {
 <div class="page-shell">
 	<?php
 	do_action( 'scentral_before_header' );
-	get_template_part( 'template-parts/header/site-header' );
+	if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'header' ) ) {
+		get_template_part( 'template-parts/header/site-header' );
+	}
 	?>

@@ -87,7 +87,8 @@ add_action( 'widgets_init', 'scentral_widgets_init' );
  * @return string[]
  */
 function scentral_body_classes( $classes ) {
-	if ( is_front_page() && scentral_option( 'header_transparent' ) ) {
+	$theme_homepage = is_front_page() && ( 'page' !== scentral_option( 'home_layout' ) || ! is_page() ) && ! scentral_is_elementor_preview();
+	if ( $theme_homepage && scentral_option( 'header_transparent' ) ) {
 		$classes[] = 'has-transparent-header';
 	}
 	if ( ! scentral_option( 'motion_enabled' ) ) {

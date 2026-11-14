@@ -139,7 +139,7 @@ add_action( 'wp_head', 'scentral_head_gate_script', 0 );
  * @return bool
  */
 function scentral_should_show_preloader() {
-	if ( ! scentral_option( 'preloader_enabled' ) || is_customize_preview() || is_admin() ) {
+	if ( ! scentral_option( 'preloader_enabled' ) || is_customize_preview() || is_admin() || scentral_is_elementor_preview() ) {
 		return false;
 	}
 	if ( 'home' === scentral_option( 'preloader_scope' ) && ! is_front_page() ) {

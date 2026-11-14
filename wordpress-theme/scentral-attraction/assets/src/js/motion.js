@@ -98,6 +98,32 @@ export function initParallax() {
 	update();
 }
 
+/**
+ * Elementor compatibility: in the editor everything is shown immediately, and widgets that
+ * Elementor (re)renders are revealed and re-initialised.
+ */
+export function initBuilderCompat() {
+	const inEditor = document.body.classList.contains('elementor-editor-active')
+		|| document.documentElement.classList.contains('elementor-html')
+		|| window.location.search.includes('elementor-preview');
+	const revealIn = (root) => {
+		root.querySelectorAll('[data-reveal], .split').forEach((n) => n.classList.add('is-visible'));
+		root.querySelectorAll('[data-hero]').forEach((n) => n.classList.add('is-in'));
+	};
+	if (inEditor) revealIn(document);
+
+	const hook = () => {
+		const ef = window.elementorFrontend;
+		if (!ef || !ef.hooks) return;
+		ef.hooks.addAction('frontend/element_ready/scentral-section.default', ($scope) => {
+			const el = $scope && $scope[0];
+			if (el) revealIn(el);
+		});
+	};
+	if (window.elementorFrontend && window.elementorFrontend.hooks) hook();
+	else window.addEventListener('elementor/frontend/init', hook);
+}
+
 export function initCounters() {
 	const nodes = document.querySelectorAll('[data-count-to]');
 	if (!nodes.length) return;

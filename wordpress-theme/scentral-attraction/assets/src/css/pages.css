@@ -134,3 +134,22 @@ a.contact__value:hover { color: var(--sa-red); }
 .sticky .post-card__title::before { content: "★ "; color: var(--sa-red); }
 .bypostauthor > article .fn { color: var(--sa-red); }
 .gallery-caption { font-size: 0.8rem; }
+
+/* ==========================================================================
+   Elementor compatibility
+   Pages built with Elementor render full width (.site-main--builder). The theme's
+   global resets are softened inside Elementor content so widgets look as designed.
+   ========================================================================== */
+.site-main--builder { overflow-x: clip; }
+.elementor-widget-text-editor p + p,
+.elementor-widget-theme-post-content p + p,
+.elementor-widget-text-editor p + ul,
+.elementor-widget-text-editor ul + p { margin-top: 1em; }
+.elementor-widget-text-editor ul,
+.elementor-widget-text-editor ol { padding-left: 1.25rem; }
+.elementor-widget-image img { display: inline-block; }
+.elementor-button { border-radius: 0; font-family: var(--font-body); letter-spacing: 0.14em; text-transform: uppercase; }
+.elementor-location-header, .elementor-location-footer { position: relative; z-index: 50; }
+.scentral-widget { width: 100%; }
+.scentral-widget--hero .hero { min-height: 92vh; }
+body.elementor-editor-active .preloader { display: none !important; }

@@ -11,7 +11,9 @@ do_action( 'scentral_before_footer' );
 ?>
 </div><!-- .page-shell -->
 <?php
-get_template_part( 'template-parts/footer/site-footer' );
+if ( ! function_exists( 'elementor_theme_do_location' ) || ! elementor_theme_do_location( 'footer' ) ) {
+	get_template_part( 'template-parts/footer/site-footer' );
+}
 get_template_part( 'template-parts/header/mobile-menu' );
 get_template_part( 'template-parts/header/search-overlay' );
 if ( class_exists( 'WooCommerce' ) ) {

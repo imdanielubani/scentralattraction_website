@@ -13,6 +13,11 @@ defined( 'ABSPATH' ) || exit;
 
 get_header();
 
+if ( scentral_render_builder_page() ) {
+	get_footer();
+	return;
+}
+
 $address  = scentral_option( 'contact_address' );
 $phone    = scentral_option( 'contact_phone' );
 $email    = scentral_option( 'contact_email' );

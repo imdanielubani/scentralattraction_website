@@ -13,6 +13,11 @@
 defined( 'ABSPATH' ) || exit;
 
 get_header();
+
+if ( scentral_render_builder_page() ) {
+	get_footer();
+	return;
+}
 ?>
 <main id="main" class="site-main site-main--policy">
 	<?php

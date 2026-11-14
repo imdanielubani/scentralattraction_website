@@ -73,6 +73,7 @@ function scentral_option_registry() {
 		'hero_index_ids'       => array( 'scentral_hero', 'text', '', __( 'Product IDs (when source = chosen products), comma separated', 'scentral' ) ),
 
 		// Homepage sections.
+		'home_layout'          => array( 'scentral_home', 'select', 'theme', __( 'Homepage layout', 'scentral' ), array( 'theme' => __( 'Theme homepage (sections below)', 'scentral' ), 'page' => __( 'My Home page content (Elementor / editor)', 'scentral' ) ), __( 'Choose "My Home page content" to show the Home page exactly as built in Elementor or the block editor.', 'scentral' ) ),
 		'home_sections'        => array( 'scentral_home', 'text', 'notes,categories,new_arrivals,showcase,bestsellers,collections,intro,numbers,promo,testimonials,social,newsletter', __( 'Section order (comma separated; remove an id to hide it)', 'scentral' ), null, __( 'Available: notes, categories, new_arrivals, showcase, bestsellers, collections, intro, numbers, promo, testimonials, social, newsletter, on_sale, featured', 'scentral' ) ),
 		'home_notes'           => array( 'scentral_home', 'text', 'Oud, Rose, Lavender, Amber, Musk, Saffron, Leather, Jasmine', __( 'Notes ribbon (comma separated)', 'scentral' ) ),
 		'home_categories'      => array( 'scentral_home', 'text', '', __( 'Categories to feature (slugs, comma separated; blank = all with products)', 'scentral' ) ),
