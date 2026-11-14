@@ -334,3 +334,38 @@ export function initQuantities() {
 	const $ = window.jQuery;
 	if ($) $(document.body).on('updated_cart_totals updated_wc_div', () => enhanceQuantities());
 }
+
+/* -------------------------------------------------------------------------
+ * Bag drawer: − / + quantity pill (0 removes the item)
+ * ---------------------------------------------------------------------- */
+export function initBagQuantity() {
+	const $ = window.jQuery;
+	document.addEventListener('click', async (event) => {
+		const btn = event.target.closest('[data-bag-qty] button[data-step]');
+		if (!btn || btn.disabled || !cfg.ajaxUrl) return;
+		const wrap = btn.closest('[data-bag-qty]');
+		const list = wrap.closest('[data-bag-nonce]');
+		const qty = Math.max(0, (parseInt(wrap.dataset.qty, 10) || 0) + parseInt(btn.dataset.step, 10));
+		wrap.classList.add('is-busy');
+		const body = new URLSearchParams({
+			action: 'scentral_update_cart_item',
+			key: wrap.dataset.key,
+			qty: String(qty),
+			nonce: list ? list.dataset.bagNonce : '',
+		});
+		try {
+			const res = await fetch(cfg.ajaxUrl, { method: 'POST', body, credentials: 'same-origin' });
+			const json = await res.json();
+			if (!json || !json.fragments) throw new Error('cart update failed');
+			if ($) {
+				$.each(json.fragments, (selector, html) => { $(selector).replaceWith(html); });
+				// Let WooCommerce re-sync its stored fragments for the next page view.
+				$(document.body).trigger('wc_fragment_refresh');
+			}
+			bumpCount();
+		} catch (err) {
+			wrap.classList.remove('is-busy');
+			window.location.href = cfg.cartUrl;
+		}
+	});
+}

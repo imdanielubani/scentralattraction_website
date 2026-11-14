@@ -35,6 +35,33 @@ add_action( 'wp_ajax_scentral_quick_view', 'scentral_ajax_quick_view' );
 add_action( 'wp_ajax_nopriv_scentral_quick_view', 'scentral_ajax_quick_view' );
 
 /**
+ * Change a bag item's quantity from the drawer's − / + pill (0 removes it).
+ * Responds with WooCommerce's refreshed cart fragments.
+ */
+function scentral_ajax_update_cart_item() {
+	check_ajax_referer( 'scentral_cart', 'nonce' );
+
+	$key = isset( $_POST['key'] ) ? sanitize_text_field( wp_unslash( $_POST['key'] ) ) : '';
+	$qty = isset( $_POST['qty'] ) ? absint( $_POST['qty'] ) : 0;
+
+	if ( ! WC()->cart || '' === $key || ! WC()->cart->get_cart_item( $key ) ) {
+		wp_send_json_error( array( 'message' => __( 'This item is no longer in your bag.', 'scentral' ) ), 404 );
+	}
+
+	$item    = WC()->cart->get_cart_item( $key );
+	$product = $item['data'];
+	$max     = $product ? $product->get_max_purchase_quantity() : -1;
+	if ( $max > 0 ) {
+		$qty = min( $qty, $max );
+	}
+
+	WC()->cart->set_quantity( $key, $qty, true );
+	WC_AJAX::get_refreshed_fragments(); // Sends JSON and exits.
+}
+add_action( 'wp_ajax_scentral_update_cart_item', 'scentral_ajax_update_cart_item' );
+add_action( 'wp_ajax_nopriv_scentral_update_cart_item', 'scentral_ajax_update_cart_item' );
+
+/**
  * Render quick-view content.
  *
  * @param WC_Product $product Product.

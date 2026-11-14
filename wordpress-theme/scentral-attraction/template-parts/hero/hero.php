@@ -14,17 +14,25 @@ $products = scentral_get_products(
 	array(
 		'source' => scentral_option( 'hero_index_source' ),
 		'ids'    => scentral_option( 'hero_index_ids' ),
-		'limit'  => 4,
+		'limit'  => 12,
 	)
 );
 if ( ! $products && 'newest' !== scentral_option( 'hero_index_source' ) ) {
 	$products = scentral_get_products(
 		array(
 			'source' => 'newest',
-			'limit'  => 4,
+			'limit'  => 12,
 		)
 	);
 }
+// Feature fragrances that can be bought now; sold-out bottles only fill remaining places.
+$in_stock = array_filter(
+	$products,
+	static function ( $item ) {
+		return $item->is_in_stock();
+	}
+);
+$products = array_slice( array_merge( $in_stock, array_diff_key( $products, $in_stock ) ), 0, 4 );
 ?>
 <section class="hero<?php echo empty( $image['src'] ) ? ' hero--no-image' : ''; ?>" data-hero aria-labelledby="hero-title">
 	<div class="hero__media" data-hero-image>

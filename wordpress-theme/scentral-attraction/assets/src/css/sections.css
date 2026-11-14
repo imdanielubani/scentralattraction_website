@@ -331,11 +331,11 @@ ul.products.products--rail {
 /* ==========================================================================
    Newsletter
    ========================================================================== */
-.newsletter { background: var(--sa-black); }
+.newsletter { background: var(--sa-white); color: var(--sa-ink); }
 .newsletter__grid { display: grid; }
 @media (min-width: 900px) { .newsletter__grid { grid-template-columns: 1fr 1fr; min-height: 38rem; } }
 .newsletter__media { position: relative; min-height: 22rem; overflow: hidden; }
 .newsletter__media picture, .newsletter__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.newsletter__content { display: grid; align-content: center; gap: var(--space-5); padding: var(--space-section) var(--gutter); max-width: 44rem; }
-.newsletter__title { font-size: var(--fs-display); font-weight: 300; color: var(--sa-white); }
-.newsletter__title em { color: var(--sa-red-light); }
+.newsletter__content { display: grid; align-content: center; gap: var(--space-5); padding: clamp(3rem, 2rem + 4vw, 6rem) var(--gutter); max-width: 44rem; }
+.newsletter__title { font-size: var(--fs-display); font-weight: 300; color: var(--sa-ink); }
+.newsletter__title em { color: var(--sa-red); }

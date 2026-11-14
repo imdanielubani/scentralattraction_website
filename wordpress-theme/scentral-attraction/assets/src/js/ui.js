@@ -127,13 +127,13 @@ function normalise(url) {
 export function initMegaMenu() {
 	const mega = document.querySelector('[data-mega]');
 	const header = document.querySelector('[data-header]');
-	if (!mega || !header || !cfg.shopUrl) return;
+	if (!mega || !header) return;
 
 	const shop = normalise(cfg.shopUrl);
-	const link = Array.from(document.querySelectorAll('.nav-links .menu > li > a')).find((a) => normalise(a.href) === shop);
-	if (!link) return;
-
-	const item = link.parentElement;
+	const item = document.querySelector('.nav-links .menu > li.has-mega')
+		|| (Array.from(document.querySelectorAll('.nav-links .menu > li > a')).find((a) => normalise(a.href) === shop) || {}).parentElement;
+	if (!item) return;
+	const link = item.querySelector(':scope > a');
 	item.classList.add('has-mega');
 	const toggle = document.createElement('button');
 	toggle.type = 'button';

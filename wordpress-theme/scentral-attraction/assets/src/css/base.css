@@ -83,7 +83,7 @@ input, button, textarea, select { font: inherit; color: inherit; }
 button { cursor: pointer; background: none; border: 0; padding: 0; }
 a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
 p, h1, h2, h3, h4, h5, h6, figure, blockquote, dl, dd { margin: 0; }
-ul[class], ol[class] { list-style: none; margin: 0; padding: 0; }
+:where(ul[class], ol[class]) { list-style: none; margin: 0; padding: 0; }
 table { border-collapse: collapse; width: 100%; }
 hr { border: 0; border-top: 1px solid var(--sa-mist); margin: var(--space-7) 0; }
 ::selection { background: var(--sa-red); color: var(--sa-white); }
@@ -310,13 +310,13 @@ label { font-size: var(--fs-small); font-weight: 500; }
 }
 .js [data-reveal].is-visible { opacity: 1; transform: none; }
 .js [data-reveal="fade"] { transform: none; }
-.js [data-reveal="clip"] {
-	opacity: 1;
-	transform: none;
+/* Clip reveals clip the CHILD: a target clipped to zero area is never reported as intersecting. */
+.js [data-reveal="clip"] { opacity: 1; transform: none; }
+.js [data-reveal="clip"] > * {
 	clip-path: inset(100% 0 0 0);
 	transition: clip-path 1.2s var(--ease-inout);
 }
-.js [data-reveal="clip"].is-visible { clip-path: inset(0 0 0 0); }
+.js [data-reveal="clip"].is-visible > * { clip-path: inset(0 0 0 0); }
 .js [data-reveal="clip"] img { transform: scale(1.12); transition: transform 1.6s var(--ease-out); }
 .js [data-reveal="clip"].is-visible img { transform: scale(1); }
 
@@ -329,7 +329,7 @@ label { font-size: var(--fs-small); font-weight: 500; }
 }
 .js .split.is-visible .w__i { transform: none; }
 
-.motion-off [data-reveal], .motion-off .split .w__i { opacity: 1 !important; transform: none !important; clip-path: none !important; }
+.motion-off [data-reveal], .motion-off [data-reveal="clip"] > *, .motion-off .split .w__i { opacity: 1 !important; transform: none !important; clip-path: none !important; }
 
 @media (prefers-reduced-motion: reduce) {
 	*, *::before, *::after {
@@ -338,7 +338,7 @@ label { font-size: var(--fs-small); font-weight: 500; }
 		transition-duration: 0.01ms !important;
 		scroll-behavior: auto !important;
 	}
-	.js [data-reveal], .js .split .w__i { opacity: 1; transform: none; clip-path: none; }
+	.js [data-reveal], .js [data-reveal="clip"] > *, .js .split .w__i { opacity: 1; transform: none; clip-path: none; }
 	.js [data-reveal="clip"] img { transform: none; }
 }
 

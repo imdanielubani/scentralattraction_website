@@ -94,9 +94,7 @@ $payments = scentral_option( 'footer_payments_note' );
 	</div>
 
 	<div class="site-footer__mark" aria-hidden="true">
-		<span><?php esc_html_e( 'Scentral', 'scentral' ); ?></span>
-		<?php scentral_emblem( array( 'class' => 'site-footer__emblem emblem' ) ); ?>
-		<span><?php esc_html_e( 'Attraction', 'scentral' ); ?></span>
+		<span><?php esc_html_e( 'Scentral Attraction', 'scentral' ); ?></span>
 	</div>
 
 	<div class="site-footer__legal container">

@@ -450,7 +450,8 @@ function scentral_primary_menu_fallback() {
 	);
 	echo '<ul class="menu">';
 	foreach ( $items as $url => $label ) {
-		printf( '<li class="menu-item"><a href="%1$s">%2$s</a></li>', esc_url( $url ), esc_html( $label ) );
+		$classes = 'menu-item' . ( scentral_shop_url() === $url ? ' has-mega' : '' );
+		printf( '<li class="%1$s"><a href="%2$s">%3$s</a></li>', esc_attr( $classes ), esc_url( $url ), esc_html( $label ) );
 	}
 	echo '</ul>';
 }

@@ -13,6 +13,7 @@ import {
 	initRecentlyViewed,
 	initLoadMore,
 	initQuantities,
+	initBagQuantity,
 } from './shop.js';
 
 function safely(fn) {
@@ -44,6 +45,7 @@ function boot() {
 		initRecentlyViewed,
 		initLoadMore,
 		initQuantities,
+		initBagQuantity,
 	].forEach(safely);
 }
 

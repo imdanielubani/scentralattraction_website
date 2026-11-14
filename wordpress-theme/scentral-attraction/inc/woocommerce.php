@@ -41,10 +41,9 @@ add_action( 'after_setup_theme', 'scentral_woocommerce_setup' );
  * Enqueue the cart fragments script so the header bag stays in sync on every page.
  */
 function scentral_wc_scripts() {
+	// The bag drawer is on every page: fragments + add/remove handlers load sitewide.
 	wp_enqueue_script( 'wc-cart-fragments' );
-	if ( is_product() || is_shop() || is_product_taxonomy() || is_front_page() || is_search() ) {
-		wp_enqueue_script( 'wc-add-to-cart' );
-	}
+	wp_enqueue_script( 'wc-add-to-cart' );
 	if ( scentral_option( 'shop_quick_view' ) && ( is_front_page() || is_shop() || is_product_taxonomy() || is_search() || is_product() ) ) {
 		// Quick view renders the single-product add-to-cart form (variations need this script).
 		wp_enqueue_script( 'wc-add-to-cart-variation' );
@@ -261,10 +260,51 @@ function scentral_free_shipping_html() {
  * @return array
  */
 function scentral_cart_fragments( $fragments ) {
-	$fragments['span.cart-count']      = scentral_cart_count_html();
-	$fragments['div.ship-progress']    = scentral_free_shipping_html();
+	$fragments['span.cart-count']   = scentral_cart_count_html();
+	$fragments['span.bag-count']    = scentral_bag_count_html();
+	$fragments['div.ship-progress'] = scentral_free_shipping_html();
 	return $fragments;
 }
+
+/**
+ * "(n)" count shown next to the bag drawer title.
+ *
+ * @return string
+ */
+function scentral_bag_count_html() {
+	$count = WC()->cart ? WC()->cart->get_cart_contents_count() : 0;
+	return '<span class="bag-count">(' . (int) $count . ')</span>';
+}
+
+/**
+ * Mark the primary-menu item that leads to the Shop page so the mega panel can attach to it,
+ * however the link is stored (page item, ?page_id=, http/https, trailing slash).
+ *
+ * @param string[] $classes Item classes.
+ * @param WP_Post  $item    Menu item.
+ * @param stdClass $args    wp_nav_menu() args.
+ * @return string[]
+ */
+function scentral_mark_shop_menu_item( $classes, $item, $args ) {
+	if ( empty( $args->theme_location ) || 'primary' !== $args->theme_location || (int) $item->menu_item_parent ) {
+		return $classes;
+	}
+	$shop_id = (int) wc_get_page_id( 'shop' );
+	$is_shop = ( 'page' === $item->object && (int) $item->object_id === $shop_id )
+		|| ( 'post_type_archive' === $item->type && 'product' === $item->object );
+	if ( ! $is_shop && $shop_id > 0 && ! empty( $item->url ) ) {
+		$normalise = static function ( $url ) {
+			return untrailingslashit( preg_replace( '#^https?://#', '', strtolower( (string) $url ) ) );
+		};
+		$is_shop = $normalise( $item->url ) === $normalise( get_permalink( $shop_id ) )
+			|| (int) url_to_postid( $item->url ) === $shop_id;
+	}
+	if ( $is_shop ) {
+		$classes[] = 'has-mega';
+	}
+	return $classes;
+}
+add_filter( 'nav_menu_css_class', 'scentral_mark_shop_menu_item', 10, 3 );
 add_filter( 'woocommerce_add_to_cart_fragments', 'scentral_cart_fragments' );
 
 /* -------------------------------------------------------------------------

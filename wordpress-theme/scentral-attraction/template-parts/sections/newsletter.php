@@ -9,7 +9,7 @@ defined( 'ABSPATH' ) || exit;
 
 $image = scentral_resolve_image( 'newsletter_image', 'newsletter-mist', 'scentral-portrait' );
 ?>
-<section class="newsletter section--dark" id="newsletter" aria-labelledby="newsletter-title">
+<section class="newsletter" id="newsletter" aria-labelledby="newsletter-title">
 	<div class="newsletter__grid">
 		<?php if ( ! empty( $image['src'] ) ) : ?>
 			<div class="newsletter__media" data-reveal="clip">
