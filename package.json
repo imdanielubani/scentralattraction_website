@@ -1,0 +1,16 @@
+{
+  "name": "scentral-attraction-theme",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Build tooling for the Scentral Attraction WordPress theme. Not required at runtime.",
+  "license": "GPL-2.0-or-later",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "watch": "node scripts/build.mjs --watch",
+    "images": "node scripts/optimize-images.mjs",
+    "lint:php": "node scripts/lint-php.mjs",
+    "package": "npm run build && python scripts/package_theme.py",
+    "release": "npm run lint:php && npm run package"
+  },
+  "devDependencies": {}
+}

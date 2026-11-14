@@ -1,0 +1,19 @@
+/*
+Theme Name: Scentral Attraction
+Theme URI: https://scentralattraction.com/
+Author: Scentral Attraction
+Author URI: https://scentralattraction.com/
+Description: A bespoke luxury fragrance theme for Scentral Attraction, Perfume & More. Built natively for WooCommerce with an editorial design system, a branded preloader, refined motion and full Customizer control.
+Version: 1.0.0
+Requires at least: 6.4
+Tested up to: 6.8
+Requires PHP: 7.4
+WC requires at least: 8.0
+WC tested up to: 9.8
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: scentral
+Tags: e-commerce, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready, full-width-template, editor-style
+*/
+
+/* Styles are compiled to assets/dist/. This file only carries the theme header. */
