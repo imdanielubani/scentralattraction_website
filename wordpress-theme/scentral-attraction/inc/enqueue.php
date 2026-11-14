@@ -84,6 +84,7 @@ function scentral_script_config() {
 		'motion'          => (bool) scentral_option( 'motion_enabled' ),
 		'parallax'        => (bool) scentral_option( 'motion_parallax' ),
 		'hideHeader'      => (bool) scentral_option( 'header_hide_on_scroll' ),
+		'pageTransitions' => (bool) scentral_option( 'motion_page_transitions' ),
 		'quickView'       => (bool) scentral_option( 'shop_quick_view' ),
 		'recentlyViewed'  => (bool) scentral_option( 'shop_recently_viewed' ),
 		'nativeWishlist'  => ! scentral_has_wishlist_plugin(),
@@ -124,6 +125,7 @@ function scentral_head_gate_script() {
 	?>
 	<script>
 	(function(d){var h=d.documentElement;h.classList.remove('no-js');h.classList.add('js');
+	try{if(sessionStorage.getItem('sa-pt')){sessionStorage.removeItem('sa-pt');if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){h.classList.add('pt-entering');}}}catch(e){}
 	<?php if ( $show ) : ?>
 	try{var r=window.matchMedia('(prefers-reduced-motion: reduce)').matches;var s=<?php echo $once ? 'sessionStorage.getItem("sa-loaded")' : 'null'; ?>;if(!r&&!s){h.classList.add('sa-loading');}}catch(e){}
 	<?php endif; ?>
@@ -184,14 +186,3 @@ function scentral_font_faces() {
 	printf( '<style id="scentral-fonts">%s</style>' . "\n", $css ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- values escaped above.
 }
 add_action( 'wp_head', 'scentral_font_faces', 3 );
-
-/**
- * Enable cross-document view transitions (progressive enhancement, no JS).
- */
-function scentral_view_transition_style() {
-	if ( ! scentral_option( 'motion_page_transitions' ) ) {
-		return;
-	}
-	echo '<style id="scentral-vt">@media (prefers-reduced-motion:no-preference){@view-transition{navigation:auto}}</style>' . "\n";
-}
-add_action( 'wp_head', 'scentral_view_transition_style', 4 );

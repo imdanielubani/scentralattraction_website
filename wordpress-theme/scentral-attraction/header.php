@@ -17,6 +17,9 @@ defined( 'ABSPATH' ) || exit;
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <a class="skip-link" href="#main"><?php esc_html_e( 'Skip to content', 'scentral' ); ?></a>
+<?php if ( scentral_option( 'motion_page_transitions' ) && ! scentral_is_elementor_preview() ) : ?>
+<div class="pt" data-page-transition aria-hidden="true"><div class="pt__door pt__door--l"></div><div class="pt__door pt__door--r"></div><i class="pt__seam"></i><div class="pt__mid"><span class="pt__k"><?php esc_html_e( 'Opening', 'scentral' ); ?></span><span class="pt__n"><b data-pt-label></b></span></div></div>
+<?php endif; ?>
 <?php
 if ( scentral_should_show_preloader() ) {
 	get_template_part( 'template-parts/components/preloader' );

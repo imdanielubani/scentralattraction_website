@@ -359,3 +359,53 @@ export function initNewsletter() {
 		});
 	});
 }
+
+/* -------------------------------------------------------------------------
+ * Page transition "doors" (reference): close on internal navigation, open on arrival
+ * ---------------------------------------------------------------------- */
+function transitionLabel(link) {
+	const raw = (link.getAttribute('data-pt-label') || link.getAttribute('aria-label') || link.textContent || '').replace(/\s+/g, ' ').trim();
+	if (raw && raw.length <= 40) return raw;
+	try {
+		const seg = new URL(link.href).pathname.split('/').filter(Boolean).pop();
+		if (seg) return decodeURIComponent(seg).replace(/[-_]+/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
+	} catch (e) { /* ignore */ }
+	return document.title.split(/[–|-]/)[0].trim();
+}
+
+export function initPageTransitions() {
+	const pt = document.querySelector('[data-page-transition]');
+	if (!pt || cfg.pageTransitions === false || !motionEnabled) return;
+	const label = pt.querySelector('[data-pt-label]');
+	const root = document.documentElement;
+	window.setTimeout(() => root.classList.remove('pt-entering'), 1200);
+
+	document.addEventListener('click', (event) => {
+		if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+		const link = event.target.closest('a[href]');
+		if (!link || link.target && link.target !== '_self' || link.hasAttribute('download') || link.dataset.open !== undefined) return;
+		if (link.closest('.wp-admin, #wpadminbar, .woocommerce-mini-cart, .bag-empty, .card__actions, [data-no-transition]')) return;
+		if (/(^|\s)(ajax_add_to_cart|add_to_cart_button|remove_from_cart_button|remove|wc-forward)(\s|$)/.test(link.className)) return;
+		let url;
+		try { url = new URL(link.href, window.location.href); } catch (e) { return; }
+		if (url.origin !== window.location.origin || /^(mailto|tel):/.test(link.href)) return;
+		if (/\/wp-(admin|login)|[?&](add-to-cart|remove_item|wc-ajax|customize_changeset_uuid)=/.test(url.href)) return;
+		if (url.pathname === window.location.pathname && url.search === window.location.search) return; // same page / anchors
+
+		event.preventDefault();
+		label.textContent = transitionLabel(link);
+		pt.classList.add('is-leave');
+		void pt.offsetWidth;
+		pt.classList.add('is-on');
+		try { sessionStorage.setItem('sa-pt', '1'); } catch (e) { /* storage blocked: next page simply loads */ }
+		window.setTimeout(() => { window.location.href = url.href; }, 1150);
+	});
+
+	// Coming back via the back/forward cache: reset the doors.
+	window.addEventListener('pageshow', (event) => {
+		if (event.persisted) {
+			pt.classList.remove('is-leave', 'is-on');
+			try { sessionStorage.removeItem('sa-pt'); } catch (e) { /* ignore */ }
+		}
+	});
+}

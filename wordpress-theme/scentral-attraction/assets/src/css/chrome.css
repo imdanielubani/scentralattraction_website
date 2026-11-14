@@ -278,3 +278,30 @@ a.bag-item__name:hover { color: var(--sa-red); }
 .bag-empty .added_to_cart { display: none; }
 .bag-empty__shop.button { justify-self: start; border-radius: 999px; }
 @media (max-width: 519px) { dialog.dialog--bag { padding: 18px 16px; border-radius: 0; } }
+
+/* ==========================================================================
+   Page transition — "doors" (modelled on the reference): two black panels close
+   with a red seam and the destination's name, then open on the next page.
+   ========================================================================== */
+.pt { position: fixed; inset: 0; z-index: 9998; pointer-events: none; --pt-d: 0.75s; --pt-e: cubic-bezier(0.76, 0, 0.24, 1); }
+.pt__door { position: absolute; top: 0; bottom: 0; width: calc(50% + 1px); background: var(--sa-black); will-change: transform; }
+.pt__door--l { left: 0; transform: translateX(-102%); box-shadow: inset -2px 0 0 var(--sa-red); }
+.pt__door--r { right: 0; transform: translateX(102%); box-shadow: inset 2px 0 0 var(--sa-red); }
+.pt__seam { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; margin-left: -1px; background: var(--sa-red); opacity: 0; }
+.pt__mid { position: absolute; z-index: 1; left: 0; right: 0; top: 50%; display: grid; justify-items: center; gap: 14px; padding: 0 20px; text-align: center; color: var(--sa-white); opacity: 0; transform: translateY(-50%); }
+.pt__k { font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; opacity: 0.7; }
+.pt__n { display: block; overflow: hidden; padding: 0.06em 0; font-family: var(--font-display); font-size: clamp(2.5rem, 6.4vw, 6.5rem); font-weight: 300; line-height: 1; }
+.pt__n b { display: block; font-weight: inherit; transform: translateY(105%); }
+.pt.is-leave { pointer-events: auto; }
+.pt.is-leave .pt__door { transition: transform var(--pt-d) var(--pt-e); }
+.pt.is-leave.is-on .pt__door { transform: none; }
+.pt.is-leave.is-on .pt__seam { animation: pt-seam 0.7s ease var(--pt-d) both; }
+.pt.is-leave.is-on .pt__mid { opacity: 1; transition: opacity 0.2s ease calc(var(--pt-d) * 0.55); }
+.pt.is-leave.is-on .pt__n b { animation: pt-word 0.7s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--pt-d) * 0.6) both; }
+html.pt-entering .pt__door--l { animation: pt-open-l var(--pt-d) var(--pt-e) 0.05s both; box-shadow: none; }
+html.pt-entering .pt__door--r { animation: pt-open-r var(--pt-d) var(--pt-e) 0.05s both; box-shadow: none; }
+@keyframes pt-open-l { from { transform: none; } to { transform: translateX(-102%); } }
+@keyframes pt-open-r { from { transform: none; } to { transform: translateX(102%); } }
+@keyframes pt-seam { 0% { opacity: 1; transform: scaleY(1); } 100% { opacity: 0; transform: scaleY(0); } }
+@keyframes pt-word { from { transform: translateY(105%); } to { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .pt { display: none; } }

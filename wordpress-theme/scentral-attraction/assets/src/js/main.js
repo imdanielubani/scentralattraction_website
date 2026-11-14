@@ -4,7 +4,7 @@
 
 import { initPreloader } from './preloader.js';
 import { initReveals, playHero, initParallax, initCounters, initBuilderCompat } from './motion.js';
-import { initDialogs, initHeader, initMegaMenu, initRotator, initLiveSearch, initNewsletter, initContactForm } from './ui.js';
+import { initDialogs, initHeader, initMegaMenu, initRotator, initLiveSearch, initNewsletter, initContactForm, initPageTransitions } from './ui.js';
 import {
 	initCartFeedback,
 	initSingleAddToCart,
@@ -34,6 +34,7 @@ function boot() {
 		initLiveSearch,
 		initNewsletter,
 		initContactForm,
+		initPageTransitions,
 		initReveals,
 		initParallax,
 		initCounters,

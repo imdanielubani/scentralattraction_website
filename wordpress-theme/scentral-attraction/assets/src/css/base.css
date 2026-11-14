@@ -341,9 +341,3 @@ label { font-size: var(--fs-small); font-weight: 500; }
 	.js [data-reveal], .js [data-reveal="clip"] > *, .js .split .w__i { opacity: 1; transform: none; clip-path: none; }
 	.js [data-reveal="clip"] img { transform: none; }
 }
-
-/* Cross-document view transition: a quiet veil. */
-::view-transition-old(root) { animation: sa-vt-out 360ms var(--ease-inout) both; }
-::view-transition-new(root) { animation: sa-vt-in 520ms var(--ease-out) both; }
-@keyframes sa-vt-out { to { opacity: 0; transform: translateY(-12px); } }
-@keyframes sa-vt-in { from { opacity: 0; transform: translateY(12px); } }
