@@ -1,61 +1,83 @@
-# Testing Report — v1.1.0
+# Testing Report — v1.2.0
 
 Date: 14 November 2026
 
-This report separates what **has been verified** from what **still needs verifying in a running WordPress site**. Nothing below claims more than was actually run.
+Everything below was actually run. Items not tested are listed in section 6.
 
-## 1. Verified (automated, repeatable)
+## 1. Test environment
 
-Run with `npm run lint:php`, `npm test`, `npm run build` and `npm run package`.
-
-| # | Check | Result |
-|---|---|---|
-| 1 | PHP syntax (`php -l`, PHP 8.3) on all 62 theme PHP files | ✅ 62/62 |
-| 2 | Every `scentral_*` function called or hooked is defined | ✅ |
-| 3 | Every `get_template_part()` / `wc_get_template_part()` target exists (incl. dynamic homepage sections) | ✅ |
-| 4 | Every `scentral_option()` key is registered in the Customizer registry (88 used / 92 registered) | ✅ |
-| 5 | Every referenced campaign image exists (9 + mobile crops) | ✅ |
-| 6 | Required theme files and compiled assets exist; `style.css` header complete; `theme.json` valid | ✅ |
-| 7 | Front-end bundle parses; no `console.log` in sources | ✅ |
-| 8 | No forbidden tool/vendor mentions in theme files | ✅ |
-| 9 | WooCommerce-only helpers are guarded in templates that render without WooCommerce | ✅ |
-| 10 | Release ZIP: single `scentral-attraction/` root, forward-slash paths, no dev sources, CRC check clean (see release section) | ✅ |
-| 11 | Asset budget: CSS 61 KB + 26 KB (shop pages) minified; JS 18 KB minified; hero image 57 KB WebP | ✅ within targets |
-
-## 2. Code review
-
-An independent review of all PHP and JavaScript checked fatal-error risks, PHP 7.4 compatibility, escaping and sanitisation, nonces, AJAX flows and cart fragments.
-
-- No undefined functions, no PHP 8-only syntax, no unescaped output or unsanitised input. Nonces are present on every state-changing handler.
-- 3 bugs found and **fixed**: invisible cards after "Load more", the add-to-cart fallback losing the product, and the quick-view variation script missing on product pages.
-- 1 caching risk **fixed**: forms now fetch a fresh nonce before submitting, so they keep working behind full-page caches.
-- Noted, not changed: rate limiting keys on `REMOTE_ADDR`. Behind a CDN/proxy, configure the server to pass the real client IP.
-
-## 3. Not yet verified: requires a running WordPress + WooCommerce
-
-The plan was a disposable local WordPress (XAMPP MariaDB/PHP + WP-CLI) seeded with the real 18-product catalogue from the public Store API. Downloading and running WP-CLI was **not permitted in this session**, so the following have **not** been exercised in a browser yet:
-
-| Area | To verify |
+| Component | Version |
 |---|---|
-| Install & activation | Upload ZIP, activate, no PHP notices with `WP_DEBUG` on |
-| Homepage | Preloader timing and exit, hero reveal, every section with real data, sections hiding when empty |
-| Navigation | New reference-style navbar: announcement collapse, hide on scroll, Shop panel (hover, keyboard, Esc), burger menu, Search and Bag pills, admin-bar offset |
-| Elementor | Edit with Elementor on each page, full-width rendering, Scentral Section widget in the editor, Theme Builder header/footer (Pro), homepage layout switch |
-| Page setup | Draft pages created on activation, Scentral Setup screen, existing pages untouched |
-| Archives | Grid, chips, sorting, price and on-sale filters, load more, pagination without JS |
-| Product page | Gallery/zoom/lightbox, simple and variable add to cart via AJAX, notices on stock errors, fragrance profile, tabs, reviews, related, recently viewed |
-| Cart / checkout | Drawer and fragments, cart page updates and coupons, checkout with **Paystack test mode** |
-| Account | Login, registration, orders, addresses, account details, password change |
-| Forms | Contact Form 7 page, native contact fallback, newsletter (native and MC4WP shortcode) |
-| Wishlist | TI Wishlist button and page; native wishlist when the plugin is off |
-| Responsive | 320, 375, 768, 1024, 1440, 1920 px; no horizontal overflow |
-| Accessibility | Keyboard-only pass, focus visibility, dialogs, reduced-motion, axe scan |
-| Performance | Lighthouse on home, shop and product pages |
-| Browsers | Chrome, Safari (iOS), Firefox |
+| WordPress | 7.1.4 (local install, `WP_DEBUG` + `WP_DEBUG_LOG` on) |
+| WooCommerce | 11.3.0 (Cart and Checkout **blocks**, NGN currency) |
+| Elementor | 4.4.0 |
+| Contact Form 7 | 6.2.5 |
+| PHP / database | PHP 8.3 with OPcache, MariaDB 10.4 (XAMPP) |
+| Browser | Google Chrome (headless) driven by playwright-core |
 
-## 4. How to run the runtime tests
+**Data:** the store's real catalogue snapshot (18 products, prices, stock status, Size attribute, descriptions, 3 categories, product photos) imported from the public Store API, plus the live About and Contact copy, a CF7 form, a test customer and one test order. The live site was never modified.
 
-1. Create a staging copy of the live site (host control panel), or allow the local test environment.
-2. Install `releases/scentral-attraction-theme.zip` and activate it.
-3. Set `define( 'WP_DEBUG', true ); define( 'WP_DEBUG_LOG', true );` on staging, then work through the table above.
-4. Put Paystack in **test mode** before any checkout test. Never place real orders on production.
+## 2. Automated checks (repeatable)
+
+| Command | Result |
+|---|---|
+| `npm run lint:php` | ✅ 63/63 PHP files |
+| `npm test` (12 static checks: functions, template parts, options, images, assets, bundle, forbidden mentions, WooCommerce guards) | ✅ 12/12 |
+| `npm run test:e2e` (4 browser suites, see §4) | ✅ passing |
+| Release ZIP: single `scentral-attraction/` root, forward-slash paths, no dev sources, CRC clean | ✅ |
+
+## 3. Server-side results
+
+- Theme activation: ✅ no errors. The page setup created the five draft pages and assigned templates to existing pages.
+- **20 URL types**, each serving the right template with **zero PHP warnings or notices** from the theme: home, shop, 3 categories, product (in stock / sold out), About, Contact, FAQ, Shipping, Privacy, Terms, cart, checkout, My account, wishlist, order tracking, product search, general search, price filter, on-sale filter, sorting, pagination, 404.
+- Price filter returns exactly the ₦50,000–₦80,000 products. On-sale shows the empty state.
+- AJAX add-to-cart returns the theme's cart fragments (bag count, bag drawer, delivery bar).
+
+## 4. Browser results
+
+| Area | Verified | Result |
+|---|---|---|
+| Preloader | Plays once per session, about 2–3s, never on second visit, never in the Elementor editor | ✅ |
+| Navbar | Announcement roll and collapse, hide on scroll, Shop mega panel by hover **and keyboard** on home and shop, burger and bag taps on phones | ✅ |
+| Bag drawer | Empty state with 3 suggestions, quick add, quantity +/−, "Bag (n)", subtotal, Checkout | ✅ |
+| Footer | Legal links beside ©, 4 payment logos, social gap, no emblem in wordmark, no stray drawers | ✅ |
+| Cart / Checkout (blocks) | Render with theme typography at 1440 and 390px, email field and Place order present | ✅ * |
+| My account | Login/register, dashboard, orders, order view, addresses, account details at 1440 and 390px | ✅ |
+| Inner pages | About, Contact, FAQ, Shipping, Privacy, Wishlist, Order tracking, search, category, 404 | ✅ |
+| Responsive | No horizontal overflow at 1440, 1024, 768, 390 and 360px on home, shop, product, About, Contact | ✅ |
+| Images | AVIF served (desktop `hero-noir-oud.avif`, phone `hero-noir-oud-mobile.avif`), one hero download per device | ✅ |
+| Elementor | Builder page renders full width; editor loads without JS errors; Scentral Section widget listed and previewed | ✅ |
+| JS errors | None on any tested page | ✅ |
+
+\* The checkout shows "no payment methods available" on the test site because no gateway is installed there. The live site's Paystack gateway renders in the same place unchanged.
+
+## 5. Defects found by testing and fixed
+
+| Defect | Impact | Fix |
+|---|---|---|
+| `search.php` reset the global `$posts` | Search results could vanish; 10 PHP warnings | Variables renamed |
+| Shop mega menu matched the menu link by exact URL | Dropdown missing when the link is stored as `?page_id=` or with http/https differences | Shop item marked server-side from the shop page ID |
+| Closed bag drawer forced to `display:flex` | White block after the footer, horizontal scroll | Drawer only displayed when open |
+| Clip reveals clipped the observed element | Newsletter, intro, About and journal images never appeared | Clip moved to the child element |
+| List reset out-ranked component margins | No gap before footer social icons | Zero-specificity reset |
+| Mini-cart styles only loaded on shop pages | Unstyled bag on other pages | Bag styles moved to the main stylesheet |
+| Account greeting took a grid cell | Orders table squeezed into the menu column | Explicit column placement |
+| Product rows on tablets | First cards collapsed to 0px wide | Row ignores the generic grid's explicit columns |
+| Hero list featured sold-out bottles | Weak merchandising | In-stock fragrances first |
+| Headline split before punctuation | "meets scent ." | Punctuation attached to the previous word |
+| Unescaped "&" in generated logo SVGs | Invalid XML in some apps | Escaped |
+
+## 6. Not tested
+
+- A real payment: Paystack test mode needs your Paystack test keys on a staging copy.
+- Safari (iOS/macOS) and Firefox: only Chrome was automated here.
+- Lighthouse / Core Web Vitals scores on real hosting (the local server is single-threaded and not representative).
+- Screen-reader walkthrough (keyboard access and focus were checked; a full NVDA/VoiceOver pass was not).
+- TI WooCommerce Wishlist, Mailchimp for WP and Yoast with live data: the theme detects them, but those plugins were not installed on the test site.
+
+## 7. How to re-run
+
+```bash
+npm run lint:php && npm test
+SA_BASE_URL=https://staging.example.test SA_CUSTOMER_PASS=... SA_ADMIN_PASS=... SA_ELEMENTOR_PAGE_ID=123 npm run test:e2e
+```
