@@ -1,0 +1,7 @@
+/* Scentral Attraction — main stylesheet entry (bundled by scripts/build.mjs). */
+@import "./base.css";
+@import "./chrome.css";
+@import "./preloader.css";
+@import "./components.css";
+@import "./sections.css";
+@import "./pages.css";
