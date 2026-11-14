@@ -295,6 +295,33 @@ export function initLiveSearch() {
 }
 
 /* -------------------------------------------------------------------------
+ * Fresh nonces for forms on (possibly) page-cached HTML
+ * ---------------------------------------------------------------------- */
+async function refreshNonce(form, action, field) {
+	const input = form.querySelector(`input[name="${field}"]`);
+	if (!input || !cfg.ajaxUrl) return;
+	try {
+		const res = await fetch(`${cfg.ajaxUrl}?action=scentral_fresh_nonce&for=${encodeURIComponent(action)}`, { credentials: 'same-origin', cache: 'no-store' });
+		const json = await res.json();
+		if (json.success && json.data && json.data.nonce) input.value = json.data.nonce;
+	} catch (err) {
+		/* Keep the embedded nonce; it is valid unless the page is a stale cache copy. */
+	}
+}
+
+export function initContactForm() {
+	document.querySelectorAll('form.contact-form').forEach((form) => {
+		form.addEventListener('submit', async (event) => {
+			if (form.dataset.refreshed) return;
+			event.preventDefault();
+			await refreshNonce(form, 'scentral_contact', 'scentral_contact_nonce');
+			form.dataset.refreshed = '1';
+			form.submit();
+		});
+	});
+}
+
+/* -------------------------------------------------------------------------
  * Newsletter (AJAX enhancement of the native form)
  * ---------------------------------------------------------------------- */
 export function initNewsletter() {
@@ -310,6 +337,7 @@ export function initNewsletter() {
 			}
 			form.classList.add('is-busy');
 			try {
+				await refreshNonce(form, 'scentral_subscribe', 'scentral_subscribe_nonce');
 				const res = await fetch(cfg.ajaxUrl, { method: 'POST', body: new FormData(form), credentials: 'same-origin' });
 				const json = await res.json();
 				const data = json.data || {};

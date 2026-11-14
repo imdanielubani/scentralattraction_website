@@ -148,6 +148,25 @@ add_action( 'wp_ajax_nopriv_scentral_subscribe', 'scentral_handle_subscribe_ajax
 add_action( 'wp_ajax_scentral_subscribe', 'scentral_handle_subscribe_ajax' );
 
 /**
+ * Fresh nonce for the anonymous newsletter / contact forms.
+ *
+ * Full-page caches can serve HTML whose embedded nonce has expired; the front end requests a
+ * fresh one (admin-ajax is never page-cached) just before submitting. Only these two actions
+ * are allowed, and the endpoint is rate-limited.
+ */
+function scentral_ajax_fresh_nonce() {
+	$allowed = array( 'scentral_subscribe', 'scentral_contact' );
+	$action  = isset( $_GET['for'] ) ? sanitize_key( wp_unslash( $_GET['for'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- issues a nonce; nothing is changed.
+	if ( ! in_array( $action, $allowed, true ) || ! scentral_rate_limit( 'fresh_nonce', 20, 60 ) ) {
+		wp_send_json_error( null, 400 );
+	}
+	nocache_headers();
+	wp_send_json_success( array( 'nonce' => wp_create_nonce( $action ) ) );
+}
+add_action( 'wp_ajax_nopriv_scentral_fresh_nonce', 'scentral_ajax_fresh_nonce' );
+add_action( 'wp_ajax_scentral_fresh_nonce', 'scentral_ajax_fresh_nonce' );
+
+/**
  * Admin page listing native subscribers (shop managers only).
  */
 function scentral_subscribers_admin_menu() {

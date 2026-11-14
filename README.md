@@ -37,6 +37,9 @@ Editorial luxury fragrance design ("Noir & Rouge"), a branded preloader ("The Fi
 | [Design direction](documentation/DESIGN_DIRECTION.md) | Concept, palette, typography, motion, art direction |
 | [Theme architecture](documentation/THEME_ARCHITECTURE.md) | Code structure and decisions |
 | [Installation guide](documentation/INSTALLATION_GUIDE.md) | Install, activate, configure, roll back |
+| [Customization guide](documentation/CUSTOMIZATION_GUIDE.md) | Every Customizer setting, menus, page templates |
+| [WooCommerce setup guide](documentation/WOOCOMMERCE_SETUP_GUIDE.md) | Store settings, product conventions, audit clean-up |
+| [Testing report](documentation/TESTING_REPORT.md) | What was tested, how, and what remains |
 
 ## Quick start (development)
 

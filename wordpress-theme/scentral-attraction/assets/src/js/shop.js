@@ -3,7 +3,7 @@
  * native wishlist, recently viewed, load more, quantity steppers.
  */
 
-import { openDialog, productTile } from './ui.js';
+import { openDialog, closeDialog, productTile } from './ui.js';
 
 const cfg = window.ScentralConfig || {};
 const i18n = cfg.i18n || {};
@@ -60,7 +60,7 @@ export function initCartFeedback() {
 			window.setTimeout(() => button.classList.remove('is-added'), 2200);
 		}
 		const quick = document.getElementById('quick-view');
-		if (quick && quick.open) quick.close();
+		if (quick && quick.open) closeDialog(quick, true);
 		openDialog('cart-drawer');
 	});
 }
@@ -72,6 +72,23 @@ export function initCartFeedback() {
 export function initSingleAddToCart() {
 	const $ = window.jQuery;
 	if (!$ || !cfg.ajaxUrl) return;
+
+	/** Native submit fallback that keeps the submit button's add-to-cart name/value. */
+	const nativeSubmit = (form, button) => {
+		form.dataset.noAjax = '1';
+		if (button && typeof form.requestSubmit === 'function') {
+			form.requestSubmit(button);
+			return;
+		}
+		if (button && button.name && !form.querySelector(`input[type="hidden"][name="${button.name}"]`)) {
+			const hidden = document.createElement('input');
+			hidden.type = 'hidden';
+			hidden.name = button.name;
+			hidden.value = button.value;
+			form.append(hidden);
+		}
+		form.submit();
+	};
 
 	document.addEventListener('submit', async (event) => {
 		const form = event.target.closest('form.cart');
@@ -104,15 +121,13 @@ export function initSingleAddToCart() {
 			const json = await res.json();
 			if (!json || json.error) {
 				// WooCommerce wants to show a notice (e.g. stock limit): submit normally.
-				form.dataset.noAjax = '1';
-				form.submit();
+				nativeSubmit(form, button);
 				return;
 			}
 			$(document.body).trigger('added_to_cart', [json.fragments, json.cart_hash, $(button)]);
 			$.each(json.fragments || {}, (selector, html) => { $(selector).replaceWith(html); });
 		} catch (err) {
-			form.dataset.noAjax = '1';
-			form.submit();
+			nativeSubmit(form, button);
 		} finally {
 			if (button) {
 				button.classList.remove('loading');
@@ -268,6 +283,7 @@ export function initLoadMore() {
 			const doc = new DOMParser().parseFromString(await res.text(), 'text/html');
 			const items = doc.querySelectorAll('ul.products[data-grid] > li');
 			items.forEach((li) => {
+				li.classList.add('is-visible');
 				li.querySelectorAll('[data-reveal]').forEach((n) => n.classList.add('is-visible'));
 				grid.append(document.importNode(li, true));
 			});

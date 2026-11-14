@@ -45,7 +45,7 @@ function scentral_wc_scripts() {
 	if ( is_product() || is_shop() || is_product_taxonomy() || is_front_page() || is_search() ) {
 		wp_enqueue_script( 'wc-add-to-cart' );
 	}
-	if ( is_front_page() || is_shop() || is_product_taxonomy() || is_search() ) {
+	if ( scentral_option( 'shop_quick_view' ) && ( is_front_page() || is_shop() || is_product_taxonomy() || is_search() || is_product() ) ) {
 		// Quick view renders the single-product add-to-cart form (variations need this script).
 		wp_enqueue_script( 'wc-add-to-cart-variation' );
 	}
