@@ -11,12 +11,14 @@
     "lint:php": "node scripts/lint-php.mjs",
     "test": "node tests/check-theme.mjs",
     "package": "npm run build && python scripts/package_theme.py",
-    "release": "npm run lint:php && npm run package"
+    "release": "npm run lint:php && npm run package",
+    "test:e2e": "node tests/e2e/run.mjs"
   },
   "devDependencies": {
     "@fontsource-variable/manrope": "^5.2.6",
     "@fontsource/cormorant-garamond": "^5.2.6",
     "esbuild": "^0.25.10",
+    "playwright-core": "^1.55.0",
     "sharp": "^0.34.4"
   }
 }

@@ -35,3 +35,6 @@ desktop.ini
 *.swp
 *.log
 npm-debug.log*
+
+# Browser test screenshots
+tests/e2e/shots/
