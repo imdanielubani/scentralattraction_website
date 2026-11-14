@@ -409,3 +409,18 @@ export function initPageTransitions() {
 		}
 	});
 }
+
+/* -------------------------------------------------------------------------
+ * Footer "Back to top": smooth scroll, then move focus to the top of the page
+ * ---------------------------------------------------------------------- */
+export function initBackToTop() {
+	document.addEventListener('click', (event) => {
+		const link = event.target.closest('[data-to-top]');
+		if (!link) return;
+		event.preventDefault();
+		window.scrollTo({ top: 0, behavior: motionEnabled ? 'smooth' : 'auto' });
+		const target = document.getElementById('main') || document.body;
+		if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+		target.focus({ preventScroll: true });
+	});
+}

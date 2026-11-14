@@ -122,6 +122,7 @@ $payments = scentral_option( 'footer_payments_note' );
 				}
 			}
 			?>
+			<a class="to-top" href="#main" data-to-top><?php esc_html_e( 'Back to top', 'scentral' ); ?> <span aria-hidden="true">&uarr;</span></a>
 		</div>
 		<?php if ( $payments || scentral_option( 'footer_payment_logos' ) ) : ?>
 			<div class="site-footer__payments">

@@ -1,6 +1,6 @@
 {
   "name": "scentral-attraction-theme",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "private": true,
   "description": "Build tooling for the Scentral Attraction WordPress theme. Not required at runtime.",
   "license": "GPL-2.0-or-later",

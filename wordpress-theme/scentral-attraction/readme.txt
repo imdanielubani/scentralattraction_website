@@ -3,7 +3,7 @@ Contributors: scentralattraction
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -30,6 +30,9 @@ Bundled resources:
 * Campaign photography (assets/images/campaign) — original works created for Scentral Attraction.
 
 == Changelog ==
+
+= 1.3.0 =
+* Contact page redesign with Google Map; page-transition doors; preloader on every new tab; footer "Back to top".
 
 = 1.2.0 =
 * Footer legal links and payment logos; wordmark files; AVIF images; browser-tested fixes (shop menu, bag drawer, account pages, tablet rows); e2e test suite.

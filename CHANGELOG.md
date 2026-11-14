@@ -3,6 +3,18 @@
 All notable changes to the Scentral Attraction theme are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
 
+## [1.3.0] — 2026-11-14
+
+### Added
+- Contact page redesigned after the reference: pill breadcrumb, large "Contact us." headline with intro, rounded form card (Contact Form 7 restyled, or the native form with topic pills and floating labels) and a dark "Other ways in" card.
+- Google Map of the store (Beautiful Plaza, Dawaki, Abuja) with a details card, "Get directions" and "Call us"; location editable in the Customizer.
+- Page-transition doors: black panels close with a red seam and the destination name, then open on the next page.
+- "Back to top ↑" link in the footer bottom row (smooth scroll, focus returns to the top of the page).
+
+### Changed
+- Preloader now shows on every page, once per browser tab, so it plays whenever a page is opened in a new tab.
+- The cross-document fade is replaced by the door transition.
+
 ## [1.2.0] — 2026-11-14
 
 ### Added
