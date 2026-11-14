@@ -3,6 +3,17 @@
 All notable changes to the Scentral Attraction theme are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
 
+## [1.1.0] — 2026-11-14
+
+### Changed
+- Palette switched to the logo's colours: white page, logo red #E3151C, black; all brown, beige, champagne and gold tones removed.
+- Navbar rebuilt to match the reference design: fixed header, collapsing black announcement strip, floating rounded white bar with pill links, Search and black Bag pill, floating Shop mega panel with category image tiles.
+- All ten campaign images regenerated in black, white and red.
+
+### Added
+- Elementor support: pages built with Elementor render full width; Elementor Pro Theme Builder header/footer locations; "Scentral Section" widget and `[scentral_section]` shortcode; homepage layout setting (theme homepage or Elementor-built Home page).
+- Missing pages (FAQ, Shipping & Delivery, Returns & Refunds, Terms & Conditions, Journal, Wishlist) created as drafts on activation; Appearance → Scentral Setup screen with Edit / Edit with Elementor links.
+
 ## [1.0.0] — 2026-11-14
 
 ### Added

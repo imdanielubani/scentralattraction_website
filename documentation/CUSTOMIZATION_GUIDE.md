@@ -7,7 +7,7 @@ Everything here is done in **WordPress Admin → Appearance → Customize → Sc
 |---|---|
 | Wordmark tagline | Text under "Scentral Attraction" in the logo lockup (default "Perfume & More"). |
 | Header logo layout | Emblem + wordmark, wordmark only, or emblem only (used when no custom logo is uploaded). |
-| Accent / Dark / Background / Surface / Gold | The five brand colours. The whole site follows them. Keep the accent deep enough for white text on buttons. |
+| Accent / Dark / Background / Surface | The logo colours: red #E3151C, black, white and a light grey behind product photos. The whole site follows them. |
 | Typography | Editorial (Cormorant Garamond + Manrope, self-hosted) or System fonts (fastest). |
 
 **Uploading your own logo:** Customize → **Site Identity → Logo**. A transparent PNG or SVG about 320px wide works best. The site icon (favicon) is set in the same panel.
@@ -18,6 +18,7 @@ Everything here is done in **WordPress Admin → Appearance → Customize → Sc
 - Optional link applied to every message.
 
 ## Header
+The header follows the reference design: a black announcement strip (rolling messages, utility links on the right) that collapses when you scroll, above a floating white bar with your logo, the Primary menu as pill links, **Search** and a black **Bag** button showing the item count. The menu item that links to the Shop page opens the Shop panel (category tiles with photos and counts, quick links and a "New" product).
 - Transparent header over the homepage hero.
 - Hide the header while scrolling down (it comes back when scrolling up).
 - **Shop mega menu**: opens from the menu item that links to your Shop page. It lists your categories and a featured product (set a product ID, or leave 0 to show the newest in-stock fragrance).
@@ -78,6 +79,15 @@ Brand text, copyright name and the payments note ("Secure payments by Paystack")
 
 ## Menus
 **Appearance → Menus → Manage Locations**: Primary, Utility (top bar), Footer — Shop, Footer — Help, Legal.
+
+## Using Elementor
+- **Every page is a normal WordPress page** (Pages in the dashboard). Click **Edit with Elementor** on any of them.
+- Pages built with Elementor are shown **full width exactly as designed**, with the theme header and footer. Elementor's own "Elementor Canvas" (no header/footer) and "Elementor Full Width" templates work too.
+- In the Elementor panel, the **Scentral Attraction** category has the **Scentral Section** widget: drop in the hero, any product rail, the collection collage, showcase, collection panels, brand intro, numbers, promo, reviews, Instagram or newsletter. Their texts and images are still edited in Customize → Scentral Theme; products always come live from WooCommerce.
+- The same sections work in any editor with the shortcode `[scentral_section name="new_arrivals"]`.
+- **Homepage**: Customize → Scentral Theme → Homepage — Sections → **Homepage layout** → "My Home page content" shows your Elementor-built Home page instead of the theme homepage.
+- **Elementor Pro**: Theme Builder header/footer templates replace the theme's header/footer automatically.
+- **Appearance → Scentral Setup** lists every page (Home, Shop, Cart, Checkout, My account, About, Contact, FAQ, policies, Journal, Wishlist) with Edit, Edit with Elementor and View links.
 
 ## Page templates
 Edit a page → **Template**: About (Editorial), Contact, FAQ, Policy, Wishlist, Full width.

@@ -24,6 +24,9 @@ No Node.js, build step or extra plugin is required on the server.
 
 ## 3. First-time setup (about 10 minutes)
 
+### Pages
+On activation the theme creates any missing pages as **drafts** (FAQ, Shipping & Delivery, Returns & Refunds, Terms & Conditions, Journal, Wishlist) with the right template. Existing pages are never changed or deleted. Open **Appearance → Scentral Setup** to see every page, then add your text (block editor or Elementor) and click **Publish**.
+
 ### Homepage
 **Settings → Reading → "Your homepage displays" → A static page.** Keep the existing "Home" page selected. The theme's homepage design replaces the old builder layout on the front end. The old layout stays saved in the page and returns if you switch back.
 

@@ -2,7 +2,7 @@
 
 A bespoke, WooCommerce-native WordPress theme for **[Scentral Attraction](https://scentralattraction.com/)**, Perfume & More, Abuja.
 
-Editorial luxury fragrance design ("Noir & Rouge"), a branded preloader ("The First Spray"), lightweight motion, and full Customizer control. All product data comes from WooCommerce.
+Editorial luxury fragrance design in the logo colours (white, red, black), a branded preloader ("The First Spray"), lightweight motion, and full Customizer control. All product data comes from WooCommerce.
 
 > **Status:** in active development. See [CHANGELOG.md](CHANGELOG.md).
 

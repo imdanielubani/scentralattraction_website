@@ -1,4 +1,4 @@
-# Testing Report — v1.0.0
+# Testing Report — v1.1.0
 
 Date: 14 November 2026
 
@@ -10,7 +10,7 @@ Run with `npm run lint:php`, `npm test`, `npm run build` and `npm run package`.
 
 | # | Check | Result |
 |---|---|---|
-| 1 | PHP syntax (`php -l`, PHP 8.3) on all 58 theme PHP files | ✅ 58/58 |
+| 1 | PHP syntax (`php -l`, PHP 8.3) on all 62 theme PHP files | ✅ 62/62 |
 | 2 | Every `scentral_*` function called or hooked is defined | ✅ |
 | 3 | Every `get_template_part()` / `wc_get_template_part()` target exists (incl. dynamic homepage sections) | ✅ |
 | 4 | Every `scentral_option()` key is registered in the Customizer registry (88 used / 92 registered) | ✅ |
@@ -19,7 +19,7 @@ Run with `npm run lint:php`, `npm test`, `npm run build` and `npm run package`.
 | 7 | Front-end bundle parses; no `console.log` in sources | ✅ |
 | 8 | No forbidden tool/vendor mentions in theme files | ✅ |
 | 9 | WooCommerce-only helpers are guarded in templates that render without WooCommerce | ✅ |
-| 10 | Release ZIP: single `scentral-attraction/` root, forward-slash paths, no dev sources, CRC check clean (103 files, 3.6 MB) | ✅ |
+| 10 | Release ZIP: single `scentral-attraction/` root, forward-slash paths, no dev sources, CRC check clean (see release section) | ✅ |
 | 11 | Asset budget: CSS 61 KB + 26 KB (shop pages) minified; JS 18 KB minified; hero image 57 KB WebP | ✅ within targets |
 
 ## 2. Code review
@@ -39,7 +39,9 @@ The plan was a disposable local WordPress (XAMPP MariaDB/PHP + WP-CLI) seeded wi
 |---|---|
 | Install & activation | Upload ZIP, activate, no PHP notices with `WP_DEBUG` on |
 | Homepage | Preloader timing and exit, hero reveal, every section with real data, sections hiding when empty |
-| Navigation | Mega menu (hover, keyboard, Esc), mobile menu, search dialog with live results |
+| Navigation | New reference-style navbar: announcement collapse, hide on scroll, Shop panel (hover, keyboard, Esc), burger menu, Search and Bag pills, admin-bar offset |
+| Elementor | Edit with Elementor on each page, full-width rendering, Scentral Section widget in the editor, Theme Builder header/footer (Pro), homepage layout switch |
+| Page setup | Draft pages created on activation, Scentral Setup screen, existing pages untouched |
 | Archives | Grid, chips, sorting, price and on-sale filters, load more, pagination without JS |
 | Product page | Gallery/zoom/lightbox, simple and variable add to cart via AJAX, notices on stock errors, fragrance profile, tabs, reviews, related, recently viewed |
 | Cart / checkout | Drawer and fragments, cart page updates and coupons, checkout with **Paystack test mode** |

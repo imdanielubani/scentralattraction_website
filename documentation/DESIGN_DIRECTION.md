@@ -1,4 +1,4 @@
-# Design Direction — "Noir & Rouge"
+# Design Direction — White, Red & Black
 
 ## 1. Concept
 
@@ -30,27 +30,21 @@ The reference is a furniture-store site template. It was studied for **philosoph
 
 Not taken: the reference's grid dimensions, copy, imagery, iconography, brand naming and colour tokens.
 
-## 3. Colour
+## 3. Colour — the logo's colours only
 
-| Token | Hex | Use | Contrast |
+The palette is taken directly from the emblem: **red line art, black monogram, white ground**. No brown, beige, champagne or gold.
+
+| Token | Hex | Use | Contrast (measured) |
 |---|---|---|---|
-| `--sa-noir` | `#0E0C0B` | Dark sections, text on light | 18.6:1 on ivory |
-| `--sa-ink` | `#1C1816` | Body text | 15.9:1 on ivory |
-| `--sa-ivory` | `#F6F1E9` | Page background | — |
-| `--sa-parchment` | `#ECE4D6` | Soft beige surfaces, product card background | — |
-| `--sa-champagne` | `#D9C4A1` | Decorative fills, text on noir | 10.9:1 on noir |
-| `--sa-gold` | `#A88552` | Muted gold accents (icons, rules) | 3.1:1 on ivory; large text and UI only |
-| `--sa-gold-deep` | `#7A5E33` | Gold text on light | 5.6:1 on ivory |
-| `--sa-rouge` | `#9E1B22` | Brand red, deepened: CTAs, sale badges, hairlines, focus | 7.4:1 on ivory |
-| `--sa-rouge-bright` | `#E3151C` | Original emblem red: the logo and preloader line only | — |
-| `--sa-smoke` | `#6B625A` | Muted text | 5.5:1 on ivory |
-| `--sa-mist` | `rgba(28,24,22,.12)` | Hairline rules | — |
+| `--sa-white` | `#FFFFFF` | Page background, header bar | — |
+| `--sa-surface` | `#F5F5F5` | Light grey behind product pack shots | — |
+| `--sa-black` | `#0A0A0A` | Dark sections, footer, Bag button, announcement strip | — |
+| `--sa-ink` | `#111111` | Body text | 18.9:1 on white |
+| `--sa-red` | `#E3151C` | Logo red: emblem, buttons on hover, active dots, eyebrows, sale badges, focus rings | 4.78:1 on white · white on red 4.78:1 |
+| `--sa-red-light` | `#FF5A5F` | Small red text on black only | 6.49:1 on black |
+| `--sa-grey` | `#5C5C5C` | Muted text | 6.69:1 on white |
 
-Rules:
-- Rouge is precious. It is used once or twice per viewport, never as a large fill.
-- No gradients except the natural tonal gradients inside photography and the subtle "juice" in the preloader bottle.
-- No glassmorphism. The sticky header uses a solid ivory surface with a hairline.
-- Corners are square (radius 0), with 2px on inputs. No pill cards.
+Rules: red is the single accent; large surfaces are white or black; campaign photography is shot in the same black/white/red palette.
 
 ## 4. Typography
 
