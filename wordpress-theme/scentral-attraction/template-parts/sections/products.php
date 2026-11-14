@@ -54,7 +54,7 @@ $title_id  = 'rail-' . sanitize_html_class( $args['id'] );
 		);
 		?>
 		<div class="rail__viewport" data-rail>
-			<ul class="products products--rail columns-4" data-stagger>
+			<ul class="products products--rail" data-stagger>
 				<?php
 				foreach ( $products as $index => $rail_product ) {
 					$GLOBALS['product'] = $rail_product; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- WooCommerce loop convention.

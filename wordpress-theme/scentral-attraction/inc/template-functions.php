@@ -26,17 +26,25 @@ function scentral_rich_title( $text ) {
  */
 function scentral_split_words( $text ) {
 	$parts = preg_split( '/(\*.+?\*)/u', (string) $text, -1, PREG_SPLIT_DELIM_CAPTURE | PREG_SPLIT_NO_EMPTY );
-	$html  = '';
-	$index = 0;
+	$words = array();
 
 	foreach ( $parts as $part ) {
-		$is_em = '*' === mb_substr( $part, 0, 1 ) && '*' === mb_substr( $part, -1 );
-		$words = preg_split( '/\s+/u', trim( $is_em ? mb_substr( $part, 1, -1 ) : $part ), -1, PREG_SPLIT_NO_EMPTY );
-		foreach ( $words as $word ) {
-			$inner = $is_em ? '<em>' . esc_html( $word ) . '</em>' : esc_html( $word );
-			$html .= sprintf( '<span class="w"><span class="w__i" style="--i:%d">%s</span></span> ', $index, $inner );
-			++$index;
+		$is_em  = '*' === mb_substr( $part, 0, 1 ) && '*' === mb_substr( $part, -1 );
+		$tokens = preg_split( '/\s+/u', trim( $is_em ? mb_substr( $part, 1, -1 ) : $part ), -1, PREG_SPLIT_NO_EMPTY );
+		foreach ( $tokens as $token ) {
+			$inner = $is_em ? '<em>' . esc_html( $token ) . '</em>' : esc_html( $token );
+			// Punctuation right after a word ("*scent*.") belongs to that word: no stray space before it.
+			if ( $words && ! $is_em && ! preg_match( '/^\s/u', $part ) && preg_match( '/^[.,!?;:\x{2026})]+$/u', $token ) ) {
+				$words[ count( $words ) - 1 ] .= $inner;
+				continue;
+			}
+			$words[] = $inner;
 		}
+	}
+
+	$html = '';
+	foreach ( $words as $index => $inner ) {
+		$html .= sprintf( '<span class="w"><span class="w__i" style="--i:%d">%s</span></span> ', $index, $inner );
 	}
 	return trim( $html );
 }

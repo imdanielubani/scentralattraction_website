@@ -178,6 +178,7 @@
 .rail__viewport::-webkit-scrollbar { display: none; }
 ul.products.products--rail {
 	display: grid;
+	grid-template-columns: none; /* the general product grid's 2 explicit columns would collapse the first cards to 0px */
 	grid-auto-flow: column;
 	grid-auto-columns: minmax(15rem, 72%);
 	gap: var(--space-5);
