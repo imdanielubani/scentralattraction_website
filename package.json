@@ -9,6 +9,7 @@
     "watch": "node scripts/build.mjs --watch",
     "images": "node scripts/optimize-images.mjs",
     "lint:php": "node scripts/lint-php.mjs",
+    "test": "node tests/check-theme.mjs",
     "package": "npm run build && python scripts/package_theme.py",
     "release": "npm run lint:php && npm run package"
   },

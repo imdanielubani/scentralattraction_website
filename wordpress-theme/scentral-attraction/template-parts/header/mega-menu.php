@@ -1,7 +1,7 @@
 <?php
 /**
  * Shop mega menu panel. Opened by the primary-menu item that links to the Shop page
- * (a toggle is injected next to it by scentral_mega_menu_toggle()).
+ * (assets/src/js/ui.js injects an accessible toggle button next to that item).
  *
  * @package Scentral
  */
