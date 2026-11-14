@@ -460,6 +460,76 @@ function scentral_price_bounds() {
 	return $bounds;
 }
 
+/* Result count and ordering are rendered in the theme toolbar instead. */
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
+
+/**
+ * Mark archive grids for staggered reveals and "load more".
+ *
+ * @param string $html Loop start markup.
+ * @return string
+ */
+function scentral_loop_start( $html ) {
+	if ( is_shop() || is_product_taxonomy() || is_search() ) {
+		$html = str_replace( '<ul class="products', '<ul data-grid data-stagger class="products', $html );
+	}
+	return $html;
+}
+add_filter( 'woocommerce_product_loop_start', 'scentral_loop_start' );
+
+/**
+ * Support ?on_sale=1 on the shop and category archives.
+ *
+ * @param WP_Query $query Query.
+ */
+function scentral_on_sale_query( $query ) {
+	if ( is_admin() || ! $query->is_main_query() || empty( $_GET['on_sale'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- read-only filter.
+		return;
+	}
+	if ( ! ( $query->is_post_type_archive( 'product' ) || $query->is_tax( get_object_taxonomies( 'product' ) ) ) ) {
+		return;
+	}
+	$ids = wc_get_product_ids_on_sale();
+	$query->set( 'post__in', $ids ? $ids : array( 0 ) );
+}
+add_action( 'pre_get_posts', 'scentral_on_sale_query' );
+
+/**
+ * Active archive filters with "remove" URLs.
+ *
+ * @return array<int,array{label:string,remove:string}>
+ */
+function scentral_active_filters() {
+	// phpcs:disable WordPress.Security.NonceVerification.Recommended -- read-only display of query args.
+	$filters = array();
+	$min     = isset( $_GET['min_price'] ) ? absint( $_GET['min_price'] ) : 0;
+	$max     = isset( $_GET['max_price'] ) ? absint( $_GET['max_price'] ) : 0;
+	if ( $min || $max ) {
+		$filters[] = array(
+			'label'  => trim( ( $min ? wp_strip_all_tags( wc_price( $min, array( 'decimals' => 0 ) ) ) : '' ) . ' – ' . ( $max ? wp_strip_all_tags( wc_price( $max, array( 'decimals' => 0 ) ) ) : '' ) ),
+			'remove' => remove_query_arg( array( 'min_price', 'max_price', 'paged' ) ),
+		);
+	}
+	if ( ! empty( $_GET['on_sale'] ) ) {
+		$filters[] = array(
+			'label'  => __( 'On sale', 'scentral' ),
+			'remove' => remove_query_arg( array( 'on_sale', 'paged' ) ),
+		);
+	}
+	foreach ( wc_get_attribute_taxonomies() as $tax ) {
+		$key = 'filter_' . $tax->attribute_name;
+		if ( ! empty( $_GET[ $key ] ) ) {
+			$filters[] = array(
+				'label'  => $tax->attribute_label . ': ' . sanitize_text_field( wp_unslash( $_GET[ $key ] ) ),
+				'remove' => remove_query_arg( array( $key, 'paged' ) ),
+			);
+		}
+	}
+	// phpcs:enable
+	return $filters;
+}
+
 /* -------------------------------------------------------------------------
  * Account.
  * ---------------------------------------------------------------------- */
