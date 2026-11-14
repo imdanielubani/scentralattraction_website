@@ -23,21 +23,21 @@ get_header();
 	<div class="container journal">
 		<?php if ( have_posts() ) : ?>
 			<?php
-			$products = array();
-			$posts    = array();
+			$result_products = array();
+			$result_posts    = array();
 			while ( have_posts() ) {
 				the_post();
 				if ( 'product' === get_post_type() ) {
-					$products[] = get_the_ID();
+					$result_products[] = get_the_ID();
 				} else {
-					$posts[] = get_the_ID();
+					$result_posts[] = get_the_ID();
 				}
 			}
 			?>
-			<?php if ( $products && function_exists( 'wc_get_product' ) ) : ?>
+			<?php if ( $result_products && function_exists( 'wc_get_product' ) ) : ?>
 				<ul class="products columns-4" data-stagger>
 					<?php
-					foreach ( $products as $product_id ) {
+					foreach ( $result_products as $product_id ) {
 						$GLOBALS['post']    = get_post( $product_id ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 						$GLOBALS['product'] = wc_get_product( $product_id ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 						setup_postdata( $GLOBALS['post'] );
@@ -47,10 +47,10 @@ get_header();
 					?>
 				</ul>
 			<?php endif; ?>
-			<?php if ( $posts ) : ?>
+			<?php if ( $result_posts ) : ?>
 				<div class="post-grid search-page__posts" data-stagger>
 					<?php
-					foreach ( $posts as $post_id ) {
+					foreach ( $result_posts as $post_id ) {
 						$GLOBALS['post'] = get_post( $post_id ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
 						setup_postdata( $GLOBALS['post'] );
 						get_template_part( 'template-parts/components/post-card' );

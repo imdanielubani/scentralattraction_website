@@ -29,7 +29,7 @@ if ( ! $reviews ) {
 			<?php foreach ( $reviews as $review ) : ?>
 				<?php
 				$rating  = (int) get_comment_meta( $review->comment_ID, 'rating', true );
-				$product = wc_get_product( $review->comment_post_ID );
+				$review_product = wc_get_product( $review->comment_post_ID );
 				?>
 				<li class="voice" data-reveal>
 					<figure>
@@ -37,8 +37,8 @@ if ( ! $reviews ) {
 						<blockquote class="voice__text"><?php echo esc_html( wp_trim_words( wp_strip_all_tags( $review->comment_content ), 48 ) ); ?></blockquote>
 						<figcaption class="voice__by">
 							<span class="voice__name"><?php echo esc_html( $review->comment_author ); ?></span>
-							<?php if ( $product ) : ?>
-								<a class="voice__product" href="<?php echo esc_url( $product->get_permalink() ); ?>"><?php echo esc_html( $product->get_name() ); ?></a>
+							<?php if ( $review_product ) : ?>
+								<a class="voice__product" href="<?php echo esc_url( $review_product->get_permalink() ); ?>"><?php echo esc_html( $review_product->get_name() ); ?></a>
 							<?php endif; ?>
 						</figcaption>
 					</figure>
