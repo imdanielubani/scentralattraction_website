@@ -125,6 +125,7 @@ function scentral_option_registry() {
 		'contact_phone'        => array( 'scentral_contact', 'text', '+234 807 234 4444', __( 'Phone', 'scentral' ) ),
 		'contact_email'        => array( 'scentral_contact', 'email', 'hello@scentralattraction.com', __( 'Email', 'scentral' ) ),
 		'contact_hours'        => array( 'scentral_contact', 'text', __( 'Working 8:00am – 6:00pm', 'scentral' ), __( 'Opening hours', 'scentral' ) ),
+		'contact_map_query'    => array( 'scentral_contact', 'text', 'Beautiful Plaza, Dawaki, Abuja', __( 'Google Map location on the Contact page (address or place name; blank = hide map)', 'scentral' ) ),
 		'contact_map_url'      => array( 'scentral_contact', 'url', '', __( 'Map link (Google Maps URL, optional)', 'scentral' ) ),
 		'contact_whatsapp'     => array( 'scentral_contact', 'text', '', __( 'WhatsApp number (international format, optional)', 'scentral' ) ),
 		'social_instagram'     => array( 'scentral_contact', 'url', 'https://www.instagram.com/scentralattraction/', __( 'Instagram URL', 'scentral' ) ),

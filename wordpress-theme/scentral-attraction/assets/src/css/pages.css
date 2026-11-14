@@ -101,7 +101,7 @@
 .contact-form__status:empty { display: none; }
 
 /* Pill button with rotating arrow (reference "send") */
-.pill-btn, .cf__plugin .wpcf7-submit { display: inline-flex; align-items: center; gap: 16px; min-height: 58px; padding: 6px 6px 6px 26px; border: 0; border-radius: 999px; background: var(--sa-black); color: var(--sa-white); font-size: 0.9rem; font-weight: 600; letter-spacing: 0.02em; cursor: pointer; transition: background-color 350ms ease; }
+.pill-btn, .cf__plugin .wpcf7-submit { display: inline-flex; text-decoration: none; align-items: center; gap: 16px; min-height: 58px; padding: 6px 6px 6px 26px; border: 0; border-radius: 999px; background: var(--sa-black); color: var(--sa-white); font-size: 0.9rem; font-weight: 600; letter-spacing: 0.02em; cursor: pointer; transition: background-color 350ms ease; }
 .pill-btn:hover, .cf__plugin .wpcf7-submit:hover { background: var(--sa-red); }
 .pill-btn__arrow { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; background: var(--sa-white); color: var(--sa-ink); transform: rotate(-45deg); transition: transform 550ms cubic-bezier(0.2, 0.9, 0.2, 1); }
 .pill-btn:hover .pill-btn__arrow { transform: none; }
@@ -120,6 +120,27 @@
 .cf__plugin .wpcf7 form .wpcf7-response-output { margin: 0; padding: 0.9rem 1.1rem; border: 0; border-left: 2px solid var(--sa-ink); border-radius: 0; background: var(--sa-white); }
 .wpcf7-not-valid-tip { margin-top: 0.35rem; font-size: 0.8rem; letter-spacing: 0; text-transform: none; color: var(--sa-red); }
 .wpcf7-spinner { margin: 0 0 0 1rem; }
+
+/* Store location: map stage + details card (reference "showrooms" block) */
+.loc { display: grid; gap: clamp(14px, 1.6vw, 24px); align-items: stretch; padding-bottom: var(--space-section); }
+@media (min-width: 1000px) { .loc { grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.8fr); } }
+.loc__stage { position: relative; min-height: clamp(360px, 58vh, 620px); border-radius: 30px; overflow: hidden; background: var(--sa-surface); }
+.loc__map { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: grayscale(0.15); }
+.loc__badge { position: absolute; right: 18px; top: 18px; z-index: 2; display: inline-flex; align-items: center; gap: 9px; padding: 10px 14px; border-radius: 999px; background: var(--sa-white); font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12); }
+.loc__badge i { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--sa-red); }
+.loc__badge i::after { content: ""; position: absolute; inset: -5px; border-radius: 50%; border: 1px solid var(--sa-red); animation: sa-ping 2.2s ease-out infinite; }
+@keyframes sa-ping { from { transform: scale(0.6); opacity: 1; } to { transform: scale(1.8); opacity: 0; } }
+.loc__card { display: flex; flex-direction: column; gap: 16px; padding: clamp(22px, 2.2vw, 34px); border-radius: 30px; background: var(--sa-surface); }
+.loc__card .eyebrow { margin: 0; }
+.loc__city { font-size: clamp(2.4rem, 1.6rem + 3vw, 3.8rem); font-weight: 300; line-height: 1; }
+.loc__note { margin: 0; color: var(--sa-grey); line-height: 1.6; }
+.loc__list { display: grid; gap: 10px; margin: 0; }
+.loc__list div { display: grid; gap: 3px; padding-top: 12px; border-top: 1px solid var(--sa-mist); }
+.loc__list dt { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sa-grey); }
+.loc__list dd { margin: 0; font-size: 0.98rem; }
+.loc__list a { color: inherit; text-decoration: none; border-bottom: 1px solid var(--sa-mist-strong); }
+.loc__btns { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 24px; margin-top: auto; padding-top: 8px; }
+@media (prefers-reduced-motion: reduce) { .loc__badge i::after { animation: none; } }
 
 /* ==========================================================================
    FAQ & policies

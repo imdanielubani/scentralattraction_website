@@ -99,6 +99,7 @@ $whatsapp = preg_replace( '/[^0-9]/', '', (string) scentral_option( 'contact_wha
 			</aside>
 		</section>
 
+		<?php get_template_part( 'template-parts/components/location' ); ?>
 		<?php do_action( 'scentral_contact_after_form' ); ?>
 	<?php endwhile; ?>
 </main>
