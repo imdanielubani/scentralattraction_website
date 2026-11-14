@@ -18,6 +18,12 @@ $scentral_modules = array(
 	'enqueue',
 	'template-functions',
 	'customizer',
+	'queries',
+	'wishlist',
+	'newsletter',
+	'product-meta',
+	'seo',
+	'ajax',
 	'woocommerce',
 );
 

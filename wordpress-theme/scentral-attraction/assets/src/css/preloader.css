@@ -1,0 +1,208 @@
+/* ==========================================================================
+   Preloader — "The First Spray"
+   --p (0 → 1) is driven by preloader.js. The screen is two halves that each
+   mirror a full-viewport face; the split line sits exactly at the bottle neck,
+   so on exit the cap lifts with the top half and the body drops with the bottom.
+   ========================================================================== */
+.preloader { display: none; }
+html.sa-loading .preloader {
+	display: block;
+	animation: sa-pl-failsafe 0.6s ease 4.5s forwards;
+}
+@keyframes sa-pl-failsafe { to { opacity: 0; visibility: hidden; } }
+
+.preloader {
+	--p: 0;
+	--art-h: min(46vh, 74vw);
+	position: fixed;
+	inset: 0;
+	z-index: 9999;
+	color: var(--sa-on-dark);
+	pointer-events: auto;
+}
+.preloader__half {
+	position: absolute;
+	left: 0;
+	right: 0;
+	height: 50%;
+	overflow: hidden;
+	background: var(--sa-noir);
+	transition: transform 1.1s var(--ease-inout);
+	will-change: transform;
+}
+.preloader__half--top { top: 0; }
+.preloader__half--bottom { bottom: 0; }
+.preloader__face {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	height: 100dvh;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	padding: clamp(20px, 3.6vw, 52px);
+}
+.preloader__half--top .preloader__face { top: 0; }
+.preloader__half--bottom .preloader__face { bottom: 0; }
+
+.preloader__top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; transition: opacity 0.35s ease; }
+.preloader__brand {
+	position: relative;
+	font-family: var(--font-display);
+	font-size: clamp(1rem, 0.8rem + 0.9vw, 1.5rem);
+	font-weight: 500;
+	letter-spacing: 0.24em;
+	text-transform: uppercase;
+}
+.preloader__brand i {
+	position: absolute;
+	top: 0.1em;
+	right: -0.75em;
+	width: 0.28em;
+	height: 0.28em;
+	border-radius: 50%;
+	background: var(--sa-rouge-bright);
+}
+.preloader__line { font-size: 0.6875rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--sa-on-dark-muted); }
+
+/* Bottle art: positioned so the neck (17.5% from the top of the viewBox) is at 50vh. */
+.preloader__art {
+	position: absolute;
+	left: 50%;
+	top: calc(50% - var(--art-h) * 0.175);
+	height: var(--art-h);
+	width: calc(var(--art-h) * 392 / 320);
+	transform: translateX(-50%);
+}
+.preloader__emblem, .preloader__fill { position: absolute; inset: 0; width: 100%; height: 100%; }
+.preloader__emblem .emblem__line { color: var(--sa-rouge-bright); }
+.preloader__emblem .emblem__monogram { color: var(--sa-ivory); }
+.preloader__emblem .emblem__line path {
+	stroke-dasharray: 1;
+	stroke-dashoffset: calc(1 - var(--p));
+}
+.preloader__emblem .emblem__monogram path {
+	stroke-dasharray: 1;
+	stroke-dashoffset: calc(1 - clamp(0, (var(--p) - 0.45) * 1.9, 1));
+}
+.preloader__juice {
+	fill: var(--sa-rouge-bright);
+	fill-opacity: 0.2;
+	transform-box: fill-box;
+	transform-origin: 50% 100%;
+	transform: scaleY(var(--p));
+}
+
+.preloader__rule {
+	position: absolute;
+	left: 18%;
+	right: 18%;
+	top: 104%;
+	display: grid;
+	justify-items: center;
+	gap: 0.7rem;
+	font-size: 0.6875rem;
+	letter-spacing: 0.22em;
+	text-transform: uppercase;
+	color: var(--sa-on-dark-muted);
+	white-space: nowrap;
+	transition: opacity 0.35s ease;
+}
+.preloader__rule i {
+	display: block;
+	width: 100%;
+	height: 1px;
+	background: var(--sa-on-dark-muted);
+	transform: scaleX(var(--p));
+}
+.preloader__rule::before, .preloader__rule::after {
+	content: "";
+	position: absolute;
+	top: -5px;
+	width: 1px;
+	height: 11px;
+	background: var(--sa-on-dark-muted);
+}
+.preloader__rule::before { left: 0; }
+.preloader__rule::after { right: 0; }
+
+.preloader__bottom { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; grid-row: 3; transition: opacity 0.35s ease; }
+.preloader__words {
+	position: relative;
+	height: 1.15em;
+	width: min(12ch, 58vw);
+	overflow: hidden;
+	font-family: var(--font-display);
+	font-size: clamp(1.9rem, 1rem + 3.4vw, 4rem);
+	font-style: italic;
+	font-weight: 300;
+	line-height: 1.15;
+}
+.preloader__words span {
+	position: absolute;
+	left: 0;
+	top: 0;
+	white-space: nowrap;
+	transform: translateY(110%);
+	transition: transform 0.6s var(--ease-out);
+}
+.preloader__words span.is-on { transform: none; }
+.preloader__words span.is-past { transform: translateY(-110%); }
+.preloader__count {
+	font-family: var(--font-display);
+	font-size: clamp(4.5rem, 2rem + 11vw, 12.5rem);
+	font-weight: 300;
+	line-height: 0.8;
+	letter-spacing: -0.04em;
+	font-variant-numeric: tabular-nums;
+}
+.preloader__count small { font-size: 0.28em; letter-spacing: 0; margin-left: 0.08em; color: var(--sa-rouge-bright); }
+
+/* Climax: the seam at the neck, then the mist. */
+.preloader__seam {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	right: 0;
+	height: 1px;
+	margin-top: -0.5px;
+	background: var(--sa-rouge-bright);
+	transform: scaleX(0);
+	transition: transform 0.55s var(--ease-inout), opacity 0.4s ease 0.55s;
+}
+.preloader__mist { position: absolute; inset: 0; pointer-events: none; }
+.preloader__mist span {
+	position: absolute;
+	top: 50%;
+	left: calc(38% + var(--x) * 0.24%);
+	width: 6px;
+	height: 6px;
+	border-radius: 50%;
+	background: var(--sa-champagne);
+	filter: blur(1.5px);
+	opacity: 0;
+}
+.preloader.is-done .preloader__seam { transform: scaleX(1); }
+.preloader.is-done .preloader__top,
+.preloader.is-done .preloader__bottom,
+.preloader.is-done .preloader__rule { opacity: 0; }
+.preloader.is-done .preloader__mist span { animation: sa-mist 1.3s var(--ease-out) forwards; animation-delay: calc(var(--d) * 45ms + 120ms); }
+@keyframes sa-mist {
+	0% { opacity: 0; transform: translate3d(0, 0, 0) scale(0.6); }
+	25% { opacity: 0.9; }
+	100% { opacity: 0; transform: translate3d(calc((var(--x) - 50) * 1.6px), -32vh, 0) scale(2.2); }
+}
+.preloader.is-open .preloader__half--top { transform: translateY(-101%); }
+.preloader.is-open .preloader__half--bottom { transform: translateY(101%); }
+.preloader.is-open .preloader__seam { opacity: 0; }
+
+@media (max-width: 699px) {
+	.preloader__bottom { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+	.preloader__count { align-self: flex-end; }
+	.preloader__line { display: none; }
+	.preloader__rule { left: 8%; right: 8%; font-size: 0.625rem; letter-spacing: 0.16em; }
+}
+
+/* Header & hero choreography after the preloader. */
+html.sa-intro .site-header { animation: sa-header-in 1s var(--ease-out) both; }
+@keyframes sa-header-in { from { opacity: 0; transform: translateY(-24px); } }

@@ -12,5 +12,10 @@
     "package": "npm run build && python scripts/package_theme.py",
     "release": "npm run lint:php && npm run package"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@fontsource-variable/manrope": "^5.2.6",
+    "@fontsource/cormorant-garamond": "^5.2.6",
+    "esbuild": "^0.25.10",
+    "sharp": "^0.34.4"
+  }
 }
