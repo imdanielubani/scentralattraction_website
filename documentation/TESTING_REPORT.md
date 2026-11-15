@@ -50,6 +50,7 @@ Everything below was actually run. Items not tested are listed in section 6.
 | Yoast SEO | One title, canonical and og:title (theme adds none); Yoast breadcrumbs shown in the pill style | ✅ |
 | Theme Plugins page | Activation redirects to Appearance → Theme Plugins; "Install & activate all required" installed and activated Paystack; notice clears when all required are active | ✅ |
 | Account & checkout (desktop + mobile) | Checkout fields and Place order; login/register forms; customer login; orders list | ✅ |
+| Contact Form 7 settings from the guide | Applied to the local form and checked with CF7's own validator: Mail passes; Mail (2) to the customer is flagged until Turnstile or reCAPTCHA v3 is connected (now explained in the guide). Delivery itself not tested (no mail server locally) | ✅ / ⚠️ |
 | Navbar | Announcement roll and collapse, hide on scroll, Shop mega panel by hover **and keyboard** on home and shop, burger and bag taps on phones | ✅ |
 | Bag drawer | Empty state with 3 suggestions, quick add, quantity +/−, "Bag (n)", subtotal, Checkout | ✅ |
 | Footer | Legal links beside ©, 4 payment logos, social gap, no emblem in wordmark, no stray drawers | ✅ |

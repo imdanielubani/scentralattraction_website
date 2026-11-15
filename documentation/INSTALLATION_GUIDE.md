@@ -88,6 +88,8 @@ Go to **Contact → Contact Forms**, open the form used on the Contact page (by 
 
 **Mail (2) (automatic reply to the customer)**
 
+> **Turn on spam protection first.** Mail (2) sends an email to whatever address a visitor types, so without protection spammers can use your form to send mail to anyone. Contact Form 7 shows the warning *"Unsafe email config is used without sufficient protection"* on Mail (2) until **Cloudflare Turnstile** (free) or **Google reCAPTCHA v3** is connected under **Contact → Integration**. Set one up (create the site key and secret key in your Cloudflare or Google account, paste them there), then the warning disappears and the check is added to the form automatically.
+
 Tick **Use Mail (2)**, then:
 
 | Field | Recommended value |
