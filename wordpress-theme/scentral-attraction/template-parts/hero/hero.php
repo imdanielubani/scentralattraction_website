@@ -57,10 +57,10 @@ $products = array_slice( array_merge( $in_stock, array_diff_key( $products, $in_
 			<?php endif; ?>
 			<div class="hero__actions" data-reveal style="--stagger:5">
 				<?php if ( scentral_option( 'hero_cta_label' ) ) : ?>
-					<a class="button button--light" href="<?php echo esc_url( $cta_url ); ?>"><?php echo esc_html( scentral_option( 'hero_cta_label' ) ); ?></a>
+					<a class="pill-btn pill-btn--red" href="<?php echo esc_url( $cta_url ); ?>"><span><?php echo esc_html( scentral_option( 'hero_cta_label' ) ); ?></span><i class="pill-btn__arrow" aria-hidden="true"><?php echo scentral_icon( 'arrow' ); // phpcs:ignore ?></i></a>
 				<?php endif; ?>
 				<?php if ( scentral_option( 'hero_cta2_label' ) ) : ?>
-					<a class="link-arrow" href="<?php echo esc_url( $cta2_url ); ?>"><?php echo esc_html( scentral_option( 'hero_cta2_label' ) ); ?><?php echo scentral_icon( 'arrow' ); // phpcs:ignore ?></a>
+					<a class="pill-btn pill-btn--ghost-light" href="<?php echo esc_url( $cta2_url ); ?>"><span><?php echo esc_html( scentral_option( 'hero_cta2_label' ) ); ?></span><i class="pill-btn__arrow" aria-hidden="true"><?php echo scentral_icon( 'arrow' ); // phpcs:ignore ?></i></a>
 				<?php endif; ?>
 			</div>
 		</div>

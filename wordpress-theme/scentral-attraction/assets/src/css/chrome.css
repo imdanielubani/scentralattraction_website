@@ -120,6 +120,7 @@ body.has-dialog { overflow: hidden; }
 	min-height: 2.5rem;
 	padding: 0.5rem 1rem;
 	border: 1px solid var(--sa-mist-strong);
+	border-radius: 999px;
 	text-decoration: none;
 	font-size: 0.85rem;
 	transition: background var(--dur-fast), color var(--dur-fast), border-color var(--dur-fast);

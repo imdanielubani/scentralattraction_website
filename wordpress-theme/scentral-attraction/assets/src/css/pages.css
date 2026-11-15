@@ -114,6 +114,25 @@
 .pill-btn__arrow .icon { width: 1.1rem; height: 1.1rem; }
 .cf__plugin .wpcf7-submit { padding: 0 28px; }
 
+/* Pill button variants (used on the homepage, shop, product pages and quick view) */
+.pill-btn--light { background: var(--sa-white); color: var(--sa-ink); }
+.pill-btn--light .pill-btn__arrow { background: var(--sa-black); color: var(--sa-white); }
+.pill-btn--light:hover { background: var(--sa-black); color: var(--sa-white); }
+.pill-btn--light:hover .pill-btn__arrow { background: var(--sa-white); color: var(--sa-ink); }
+.pill-btn--ghost { background: transparent; color: var(--sa-ink); box-shadow: inset 0 0 0 1.5px var(--sa-mist-strong); }
+.pill-btn--ghost .pill-btn__arrow { background: var(--sa-black); color: var(--sa-white); }
+.pill-btn--ghost:hover { background: var(--sa-black); color: var(--sa-white); }
+.pill-btn--ghost:hover .pill-btn__arrow { background: var(--sa-white); color: var(--sa-ink); }
+.pill-btn--red { background: var(--sa-red); color: var(--sa-white); box-shadow: 0 16px 40px rgba(227, 21, 28, 0.28); }
+.pill-btn--red .pill-btn__arrow { background: var(--sa-white); color: var(--sa-ink); }
+.pill-btn--red:hover { background: var(--sa-white); color: var(--sa-ink); }
+.pill-btn--red:hover .pill-btn__arrow { background: var(--sa-red); color: var(--sa-white); }
+.pill-btn--ghost-light { background: rgba(255, 255, 255, 0.08); color: var(--sa-white); box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, 0.45); backdrop-filter: blur(6px); }
+.pill-btn--ghost-light .pill-btn__arrow { background: var(--sa-white); color: var(--sa-ink); }
+.pill-btn--ghost-light:hover { background: var(--sa-white); color: var(--sa-ink); }
+.pill-btn--ghost-light:hover .pill-btn__arrow { background: var(--sa-black); color: var(--sa-white); }
+
+
 /* Contact Form 7 inside the card: underline fields like the native form */
 .cf__plugin .wpcf7 form { display: grid; gap: 18px; }
 .cf__plugin .wpcf7 form p { margin: 0; }

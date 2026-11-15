@@ -111,16 +111,6 @@ ul.products::before, ul.products::after { display: none; }
 .shop-tile__text { margin: 0 0 6px; font-size: 0.95rem; line-height: 1.55; color: rgba(255, 255, 255, 0.88); }
 .shop-tile .pill-btn { align-self: flex-start; }
 
-/* Pill button variants used across shop and product pages */
-.pill-btn--light { background: var(--sa-white); color: var(--sa-ink); }
-.pill-btn--light .pill-btn__arrow { background: var(--sa-black); color: var(--sa-white); }
-.pill-btn--light:hover { background: var(--sa-black); color: var(--sa-white); }
-.pill-btn--light:hover .pill-btn__arrow { background: var(--sa-white); color: var(--sa-ink); }
-.pill-btn--ghost { background: transparent; color: var(--sa-ink); box-shadow: inset 0 0 0 1.5px var(--sa-mist-strong); }
-.pill-btn--ghost .pill-btn__arrow { background: var(--sa-black); color: var(--sa-white); }
-.pill-btn--ghost:hover { background: var(--sa-black); color: var(--sa-white); }
-.pill-btn--ghost:hover .pill-btn__arrow { background: var(--sa-white); color: var(--sa-ink); }
-
 /* -------------------------------------------------------------------------
    Archive — reference shop: headline + chips, sticky rounded toolbar
    ---------------------------------------------------------------------- */

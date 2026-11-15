@@ -6,6 +6,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 ## [Unreleased]
 
 ### Added
+- Homepage after the reference: pill hero buttons with arrows (red + light outline); collections as a rounded mosaic (number chip, round arrow, name and count, red "New arrivals" tile); rounded section photos; the numbers band as a rounded card.
 - Required plugins: after activation the theme opens Appearance → Theme Plugins (WooCommerce, Paystack, Elementor and Contact Form 7 required; TI Wishlist, MC4WP and Yoast recommended) with one-click install & activate, and shows an admin notice until the required ones are active.
 - Shop page after the reference: "All fragrances." headline with fact chips, sticky rounded toolbar (collection pills with counts, Filter, Sort pill, 3/4-per-row toggle), rounded product cards with round quick-view and expanding "+ Add to bag" buttons, and a red "Can't decide?" tile in the grid.
 - Product page after the reference: vertical thumbnails + large rounded image with arrow buttons and hover zoom, breadcrumb in the summary, red "Add to bag" pill with quantity pill, stock line and service chips, accordions instead of tabs, and a related-products rail with arrow buttons.
@@ -20,6 +21,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 - Sold-out product cards showed both card photos at once; repeated product images (the same file uploaded twice) are skipped in galleries and quick view.
 
 ### Changed
+- Buttons and chips are pill-shaped across the site, as in the reference.
 - WordPress block stylesheets (~140 KB) load only on pages whose content uses blocks (and on cart, checkout and account); homepage Lighthouse performance 49 → 76 locally.
 - Footer: "Back to top ↑" now comes first in the bottom row, before the © line; the large "Scentral Attraction" wordmark is bold, solid white and spans the footer.
 - All breadcrumbs (pages, shop, products, journal; WooCommerce, Yoast or Rank Math) use the Contact page's pill style.

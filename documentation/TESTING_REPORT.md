@@ -54,6 +54,7 @@ Everything below was actually run. Items not tested are listed in section 6.
 | Firefox 141 and WebKit 26 (Safari engine) | 11 pages at 1440px and 390px: no script errors, no sideways scroll, header/footer/h1 present; gallery arrows, AJAX Add to bag + bag drawer, quick view arrows (tests/e2e/cross-browser.mjs, run with SA_XBROWSER=1). Real Safari on iPhone/Mac not tested | ✅ |
 | Preloader backstop | WebKit never ran animation frames in the test and the preloader stayed on, leaving the hero black; a timer now always ends the preloader (also covers pages opened in background tabs) | ✅ fixed |
 | Lighthouse 13.6 (mobile, local dev server) | Accessibility 100 (home, shop, product, contact, order tracking); Best Practices 100; SEO 92 (only missing meta descriptions — add them in Yoast); Performance 63–76 on PHP's built-in single-threaded server (1.3–1.9 s server response), so expect better on real hosting | ✅ |
+| Homepage vs reference | Hero pill buttons, collections mosaic (desktop 4-column, phone 2-column), rounded photos and numbers card; no overflow at 1440/390px; all e2e suites pass in Chrome, Firefox and WebKit | ✅ |
 | Navbar | Announcement roll and collapse, hide on scroll, Shop mega panel by hover **and keyboard** on home and shop, burger and bag taps on phones | ✅ |
 | Bag drawer | Empty state with 3 suggestions, quick add, quantity +/−, "Bag (n)", subtotal, Checkout | ✅ |
 | Footer | Legal links beside ©, 4 payment logos, social gap, no emblem in wordmark, no stray drawers | ✅ |

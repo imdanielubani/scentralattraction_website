@@ -38,8 +38,9 @@ if ( ! $categories ) {
 								<?php scentral_emblem( array( 'class' => 'collage__emblem emblem' ) ); ?>
 							<?php endif; ?>
 						</span>
+						<span class="collage__chip" aria-hidden="true"><?php echo esc_html( sprintf( '%02d', $index + 1 ) ); ?></span>
+						<span class="collage__go" aria-hidden="true"><?php echo scentral_icon( 'arrow' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?></span>
 						<span class="collage__meta">
-							<span class="collage__num"><?php echo esc_html( sprintf( '%02d', $index + 1 ) ); ?></span>
 							<span class="collage__name"><?php echo esc_html( $term->name ); ?></span>
 							<span class="collage__count">
 								<?php
@@ -51,6 +52,14 @@ if ( ! $categories ) {
 					</a>
 				</li>
 			<?php endforeach; ?>
+			<li class="collage__item collage__item--new" data-reveal>
+				<a class="collage__new" href="<?php echo esc_url( add_query_arg( 'orderby', 'date', scentral_shop_url() ) ); ?>">
+					<span class="collage__new-kicker"><?php esc_html_e( 'Just arrived', 'scentral' ); ?></span>
+					<strong class="collage__new-title"><?php esc_html_e( 'New arrivals', 'scentral' ); ?></strong>
+					<span class="collage__new-text"><?php esc_html_e( 'The latest scents in the collection.', 'scentral' ); ?></span>
+					<span class="collage__go collage__go--light" aria-hidden="true"><?php echo scentral_icon( 'arrow' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG. ?></span>
+				</a>
+			</li>
 		</ul>
 	</div>
 </section>
