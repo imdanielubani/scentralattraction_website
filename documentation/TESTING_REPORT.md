@@ -45,6 +45,11 @@ Everything below was actually run. Items not tested are listed in section 6.
 | Product page | Arrow buttons + thumbnails (wraps around), AJAX Add to bag opens the bag (count 0 → 1), accordions, related rail arrows; no overflow at 1440/390px | ✅ |
 | Quick view | Arrow buttons cycle through 3 images (1/3 → 2/3 → 1/3); summary and Add to bag | ✅ |
 | Footer | Back to top before ©; bold wordmark fits at 1440 and 390px | ✅ |
+| TI WooCommerce Wishlist | Plugin hearts on all cards and the product page; add → themed pop-up; wishlist page lists items with pill buttons; Wishlist page falls back to the plugin list when its shortcode is missing | ✅ |
+| Mailchimp for WP | Form shortcode in Customize → Newsletter is used; with no Mailchimp API key the plugin prints nothing to visitors, so the theme falls back to its own form (section never empty) | ✅ (rendering with a real API key not tested) |
+| Yoast SEO | One title, canonical and og:title (theme adds none); Yoast breadcrumbs shown in the pill style | ✅ |
+| Theme Plugins page | Activation redirects to Appearance → Theme Plugins; "Install & activate all required" installed and activated Paystack; notice clears when all required are active | ✅ |
+| Account & checkout (desktop + mobile) | Checkout fields and Place order; login/register forms; customer login; orders list | ✅ |
 | Navbar | Announcement roll and collapse, hide on scroll, Shop mega panel by hover **and keyboard** on home and shop, burger and bag taps on phones | ✅ |
 | Bag drawer | Empty state with 3 suggestions, quick add, quantity +/−, "Bag (n)", subtotal, Checkout | ✅ |
 | Footer | Legal links beside ©, 4 payment logos, social gap, no emblem in wordmark, no stray drawers | ✅ |
@@ -80,7 +85,6 @@ Everything below was actually run. Items not tested are listed in section 6.
 - Safari (iOS/macOS) and Firefox: only Chrome was automated here.
 - Lighthouse / Core Web Vitals scores on real hosting (the local server is single-threaded and not representative).
 - Screen-reader walkthrough (keyboard access and focus were checked; a full NVDA/VoiceOver pass was not).
-- TI WooCommerce Wishlist, Mailchimp for WP and Yoast with live data: the theme detects them, but those plugins were not installed on the test site.
 - Contact Form 7 email delivery (Mail and Mail (2)): the local test site has no mail server. Configure both and send a test message on the live site, following the steps in INSTALLATION_GUIDE.md.
 
 ## 7. How to re-run

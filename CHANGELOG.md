@@ -13,6 +13,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 - Order Tracking page in the Contact page arrangement: pill breadcrumb, "Track your order." headline with intro, rounded card with the tracking form (floating-label fields, Track order pill) and a dark "Need a hand?" card. Applied automatically to the page holding the WooCommerce tracking shortcode; the found order shows its status pill and details in the same card.
 
 ### Fixed
+- Newsletter: when a form shortcode prints nothing (e.g. Mailchimp for WP without an API key, or a wrong form ID) the built-in form is shown instead of an empty section.
+- TI WooCommerce Wishlist: the wishlist link and page work before the plugin's wishlist page is chosen; plugin buttons keep their text; pop-up and wishlist table restyled to match the theme.
 - Sold-out product cards showed both card photos at once; repeated product images (the same file uploaded twice) are skipped in galleries and quick view.
 
 ### Changed

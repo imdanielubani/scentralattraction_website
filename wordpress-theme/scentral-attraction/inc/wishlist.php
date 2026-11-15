@@ -26,13 +26,14 @@ function scentral_has_wishlist_plugin() {
  * @return string
  */
 function scentral_wishlist_url() {
+	$url = '';
 	if ( function_exists( 'tinv_url_wishlist_default' ) ) {
-		return (string) tinv_url_wishlist_default();
+		$url = (string) tinv_url_wishlist_default();
+	} elseif ( defined( 'YITH_WCWL' ) && function_exists( 'YITH_WCWL' ) ) {
+		$url = (string) YITH_WCWL()->get_wishlist_url();
 	}
-	if ( defined( 'YITH_WCWL' ) && function_exists( 'YITH_WCWL' ) ) {
-		return (string) YITH_WCWL()->get_wishlist_url();
-	}
-	return scentral_page_url( 'wishlist' );
+	// Plugin installed but its wishlist page not chosen yet: use the theme's Wishlist page.
+	return '' !== $url ? $url : scentral_page_url( 'wishlist' );
 }
 
 /**

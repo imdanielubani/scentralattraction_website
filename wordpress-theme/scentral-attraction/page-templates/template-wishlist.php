@@ -27,7 +27,17 @@ if ( scentral_render_builder_page() ) {
 		</header>
 		<div class="container wishlist-page">
 			<?php if ( scentral_has_wishlist_plugin() ) : ?>
-				<div class="commerce-content"><?php the_content(); ?></div>
+				<div class="commerce-content">
+					<?php
+					$wishlist_content = (string) get_the_content();
+					if ( has_shortcode( $wishlist_content, 'ti_wishlistsview' ) || has_shortcode( $wishlist_content, 'yith_wcwl_wishlist' ) ) {
+						the_content();
+					} else {
+						// The page has no wishlist shortcode yet: show the active plugin's wishlist.
+						echo do_shortcode( defined( 'YITH_WCWL' ) ? '[yith_wcwl_wishlist]' : '[ti_wishlistsview]' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- plugin output.
+					}
+					?>
+				</div>
 			<?php else : ?>
 				<div data-wishlist-page>
 					<ul class="wish-grid" data-wishlist-list></ul>

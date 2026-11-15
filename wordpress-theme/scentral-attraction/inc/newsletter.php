@@ -21,8 +21,13 @@ function scentral_newsletter_form( $id_suffix = 'main' ) {
 	if ( $shortcode ) {
 		$tag = preg_match( '/^\[([a-zA-Z0-9_\-]+)/', $shortcode, $m ) ? $m[1] : '';
 		if ( $tag && shortcode_exists( $tag ) ) {
-			echo '<div class="newsletter-form newsletter-form--plugin">' . do_shortcode( $shortcode ) . '</div>';
-			return;
+			$html = do_shortcode( $shortcode );
+			// Plugins may print nothing to visitors (e.g. Mailchimp for WP without an API key, or a
+			// wrong form ID). Only use the plugin form when it actually renders one.
+			if ( false !== stripos( $html, '<form' ) || ( current_user_can( 'manage_options' ) && '' !== trim( $html ) ) ) {
+				echo '<div class="newsletter-form newsletter-form--plugin">' . $html . '</div>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- plugin output.
+				return;
+			}
 		}
 	}
 	$field_id = 'sa-newsletter-' . sanitize_html_class( $id_suffix );

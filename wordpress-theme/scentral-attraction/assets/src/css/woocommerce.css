@@ -67,13 +67,16 @@ ul.products::before, ul.products::after { display: none; }
 	box-shadow: 0 10px 26px rgba(0, 0, 0, 0.14);
 	transition: background-color 350ms ease, color 350ms ease;
 }
-.card__quick > i, .card-cta__ic { display: grid; place-items: center; width: 46px; height: 46px; flex: none; font-style: normal; font-size: 1.35rem; font-weight: 400; line-height: 1; }
-.card__quick .icon, .card-cta__ic .icon { width: 1.1rem; height: 1.1rem; }
+.card__quick > i, .card__actions .card-cta__ic { display: grid; place-items: center; width: 46px; height: 46px; flex: none; font-style: normal; font-size: 1.35rem; font-weight: 400; line-height: 1; }
+.card__quick .icon, .card__actions .card-cta__ic .icon { width: 1.1rem; height: 1.1rem; }
+/* Outside product cards (e.g. a wishlist plugin table) the button keeps its plain text. */
+.card-cta__ic { display: none; }
+.card__actions .card-cta__ic { display: grid; }
 .card-cta__ic--arrow .icon { transform: rotate(-45deg); }
-.card__quick > span, .card-cta__label { max-width: 0; overflow: hidden; opacity: 0; transition: max-width 500ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 300ms ease, padding 500ms cubic-bezier(0.2, 0.8, 0.2, 1); }
+.card__quick > span, .card__actions .card-cta__label { max-width: 0; overflow: hidden; opacity: 0; transition: max-width 500ms cubic-bezier(0.2, 0.8, 0.2, 1), opacity 300ms ease, padding 500ms cubic-bezier(0.2, 0.8, 0.2, 1); }
 .card__quick > span { order: 2; }
 .card__actions .card-cta { margin-left: auto; }
-.card:hover .card-cta__label, .card-cta:focus-visible .card-cta__label, .card-cta.added .card-cta__label { max-width: 140px; opacity: 1; padding-left: 18px; }
+.card:hover .card__actions .card-cta__label, .card__actions .card-cta:focus-visible .card-cta__label, .card__actions .card-cta.added .card-cta__label { max-width: 140px; opacity: 1; padding-left: 18px; }
 .card__quick:hover > span, .card__quick:focus-visible > span { max-width: 120px; opacity: 1; padding-right: 16px; }
 .card__actions .card-cta:hover, .card__actions .card-cta.added, .card__actions .card-cta.is-added { background: var(--sa-red); color: var(--sa-white); }
 .card__quick:hover { background: var(--sa-black); color: var(--sa-white); }
@@ -589,7 +592,36 @@ legend { padding: 0 0.5rem; font-weight: 600; }
 /* TI Wishlist / YITH plugin buttons inside cards */
 .wishlist-plugin .tinvwl_add_to_wishlist_button,
 .wishlist-plugin .yith-wcwl-add-button a { display: grid; place-items: center; width: 2.5rem; height: 2.5rem; margin: 0 !important; border-radius: 50%; background: rgba(255, 255, 255, 0.9); font-size: 0 !important; }
-.wishlist-plugin--single .tinvwl_add_to_wishlist_button { width: auto; border-radius: 0; padding: 0 1rem; font-size: 0.75rem !important; }
+.wishlist-plugin--single .tinvwl_add_to_wishlist_button { width: auto; height: 2.9rem; border: 1px solid var(--sa-mist-strong); border-radius: 999px; padding: 0 1.25rem; font-size: 0.75rem !important; }
+.card__wish .wishlist-plugin .tinvwl_add_to_wishlist_button { width: 40px; height: 40px; background: var(--sa-white); box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08); }
+
+/* TI Wishlist: pop-up and wishlist table in the theme's style */
+.tinv-modal .tinv-modal-inner { border-radius: 28px; padding: clamp(24px, 3vw, 40px) !important; box-shadow: 0 40px 120px rgba(0, 0, 0, 0.28); }
+.tinv-modal .tinv-overlay { background: rgba(10, 10, 10, 0.55) !important; backdrop-filter: blur(4px); }
+.tinv-modal .tinv-modal-inner .icon_big_heart_check, .tinv-modal .tinv-modal-inner .tinv-icon-heart-check { color: var(--sa-red); }
+.tinv-modal .tinv-modal-inner button, .tinv-modal .tinv-modal-inner .button,
+.tinv-wishlist .tinvwl-to-right button, .tinv-wishlist .tinvwl-to-left button, .tinv-wishlist .product-action .button {
+	min-height: 48px;
+	padding: 0 22px !important;
+	border: 0;
+	border-radius: 999px !important;
+	background: var(--sa-black) !important;
+	color: var(--sa-white) !important;
+	font-size: 0.78rem !important;
+	font-weight: 600;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	transition: background-color 300ms ease;
+}
+.tinv-modal .tinv-modal-inner button:hover, .tinv-modal .tinv-modal-inner .button:hover,
+.tinv-wishlist .tinvwl-to-right button:hover, .tinv-wishlist .tinvwl-to-left button:hover, .tinv-wishlist .product-action .button:hover { background: var(--sa-red) !important; }
+.tinv-modal .tinv-modal-inner .tinvwl_button_close { background: var(--sa-surface) !important; color: var(--sa-ink) !important; }
+.tinv-wishlist table.tinvwl-table-manage-list { border-collapse: separate; border-spacing: 0; border: 1px solid var(--sa-mist); border-radius: 24px; overflow: hidden; }
+.tinv-wishlist table.tinvwl-table-manage-list th, .tinv-wishlist table.tinvwl-table-manage-list td { padding: 18px 14px; border-bottom: 1px solid var(--sa-mist); }
+.tinv-wishlist table.tinvwl-table-manage-list .product-thumbnail img { width: 72px; border-radius: 14px; background: var(--sa-surface); mix-blend-mode: multiply; }
+.tinv-wishlist table.tinvwl-table-manage-list .product-name a { font-family: var(--font-display); font-size: 1.3rem; text-decoration: none; }
+.tinv-wishlist .tinvwl-input-group select, .tinv-wishlist select { min-height: 48px; border-radius: 999px; }
+.tinv-wishlist .social-buttons a { border-radius: 50%; }
 
 /* -------------------------------------------------------------------------
    Order view (My account → order, and the thank-you page)
