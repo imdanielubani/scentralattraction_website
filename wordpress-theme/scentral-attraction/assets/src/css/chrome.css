@@ -183,12 +183,13 @@ body.has-dialog { overflow: hidden; }
 	gap: clamp(0.75rem, 2vw, 2rem);
 	margin-top: var(--space-7);
 	padding-inline: var(--gutter);
-	font-family: var(--font-display);
-	font-size: clamp(2.6rem, 11vw, 11rem);
-	font-weight: 300;
-	line-height: 0.9;
-	letter-spacing: -0.02em;
-	color: rgba(255, 255, 255, 0.1);
+	font-family: var(--font-body);
+	font-size: clamp(2.1rem, 10.3vw, 11.5rem);
+	font-weight: 800;
+	line-height: 0.95;
+	letter-spacing: -0.045em;
+	white-space: nowrap;
+	color: var(--sa-white);
 	user-select: none;
 	overflow: hidden;
 }

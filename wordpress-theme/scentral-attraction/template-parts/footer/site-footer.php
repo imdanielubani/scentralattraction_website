@@ -99,8 +99,8 @@ $payments = scentral_option( 'footer_payments_note' );
 
 	<div class="site-footer__legal container">
 		<div class="site-footer__legal-start">
-			<p class="site-footer__copy">&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php echo esc_html( scentral_option( 'footer_copyright' ) ); ?></p>
 			<a class="to-top" href="#main" data-to-top><?php esc_html_e( 'Back to top', 'scentral' ); ?> <span aria-hidden="true">&uarr;</span></a>
+			<p class="site-footer__copy">&copy; <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php echo esc_html( scentral_option( 'footer_copyright' ) ); ?></p>
 			<?php
 			if ( has_nav_menu( 'legal' ) ) {
 				wp_nav_menu(
