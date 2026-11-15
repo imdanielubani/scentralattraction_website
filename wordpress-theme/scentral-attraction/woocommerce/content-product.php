@@ -39,7 +39,7 @@ $classes   = apply_filters( 'scentral_product_card_classes', array( 'card', $alt
 		<div class="card__actions">
 			<?php if ( scentral_option( 'shop_quick_view' ) ) : ?>
 				<button type="button" class="card__quick" data-quick-view="<?php echo esc_attr( $product->get_id() ); ?>" data-href="<?php echo esc_url( $link ); ?>" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: product name. */ __( 'Quick view: %s', 'scentral' ), $product->get_name() ) ); ?>">
-					<?php echo scentral_icon( 'eye' ); // phpcs:ignore ?><span><?php esc_html_e( 'Quick view', 'scentral' ); ?></span>
+					<i aria-hidden="true"><?php echo scentral_icon( 'eye' ); // phpcs:ignore ?></i><span><?php esc_html_e( 'Quick view', 'scentral' ); ?></span>
 				</button>
 			<?php endif; ?>
 			<?php woocommerce_template_loop_add_to_cart(); ?>
@@ -50,9 +50,11 @@ $classes   = apply_filters( 'scentral_product_card_classes', array( 'card', $alt
 			<p class="card__spec"><?php echo esc_html( $spec ); ?></p>
 		<?php endif; ?>
 		<h3 class="card__title woocommerce-loop-product__title"><a href="<?php echo esc_url( $link ); ?>"><?php echo esc_html( $product->get_name() ); ?></a></h3>
-		<?php if ( $product->get_review_count() && wc_review_ratings_enabled() ) : ?>
-			<?php echo wc_get_rating_html( $product->get_average_rating() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- core output. ?>
-		<?php endif; ?>
-		<div class="card__price"><?php echo wp_kses_post( $product->get_price_html() ); ?></div>
+		<div class="card__row">
+			<div class="card__price"><?php echo wp_kses_post( $product->get_price_html() ); ?></div>
+			<?php if ( $product->get_review_count() && wc_review_ratings_enabled() ) : ?>
+				<span class="card__rate"><?php echo wc_get_rating_html( $product->get_average_rating() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- core output. ?><i><?php echo esc_html( number_format_i18n( (float) $product->get_average_rating(), 1 ) . ' (' . $product->get_review_count() . ')' ); ?></i></span>
+			<?php endif; ?>
+		</div>
 	</div>
 </li>

@@ -12,6 +12,7 @@ import {
 	initWishlist,
 	initRecentlyViewed,
 	initLoadMore,
+	initShopDensity,
 	initQuantities,
 	initBagQuantity,
 } from './shop.js';
@@ -46,6 +47,7 @@ function boot() {
 		initWishlist,
 		initRecentlyViewed,
 		initLoadMore,
+		initShopDensity,
 		initQuantities,
 		initBagQuantity,
 	].forEach(safely);

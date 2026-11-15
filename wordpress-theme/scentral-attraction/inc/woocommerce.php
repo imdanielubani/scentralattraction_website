@@ -204,11 +204,39 @@ add_filter( 'woocommerce_sale_flash', 'scentral_sale_flash', 10, 3 );
  */
 function scentral_loop_add_to_cart_args( $args, $product ) {
 	$args['class'] = trim( $args['class'] . ' card-cta' );
-	/* translators: %s: product name. */
-	$args['attributes']['aria-label'] = sprintf( __( 'Add %s to your bag', 'scentral' ), $product->get_name() );
+	if ( $product->is_purchasable() && $product->is_in_stock() && $product->supports( 'ajax_add_to_cart' ) ) {
+		/* translators: %s: product name. */
+		$args['attributes']['aria-label'] = sprintf( __( 'Add %s to your bag', 'scentral' ), $product->get_name() );
+	} else {
+		/* translators: 1: button text, 2: product name. */
+		$args['attributes']['aria-label'] = sprintf( __( '%1$s: %2$s', 'scentral' ), $product->add_to_cart_text(), $product->get_name() );
+	}
 	return $args;
 }
 add_filter( 'woocommerce_loop_add_to_cart_args', 'scentral_loop_add_to_cart_args', 10, 2 );
+
+/**
+ * Card button as an expanding pill: the label slides out beside a round "+" (or arrow when the
+ * button leads to the product page). Markup only — WooCommerce's AJAX add-to-cart is untouched.
+ *
+ * @param string     $html    Button HTML.
+ * @param WC_Product $product Product.
+ * @return string
+ */
+function scentral_loop_add_to_cart_link( $html, $product ) {
+	if ( false === strpos( $html, 'card-cta' ) ) {
+		return $html;
+	}
+	$adds = $product->is_purchasable() && $product->is_in_stock() && $product->supports( 'ajax_add_to_cart' );
+	$icon = $adds ? '<i class="card-cta__ic" aria-hidden="true">+</i>' : '<i class="card-cta__ic card-cta__ic--arrow" aria-hidden="true">' . scentral_icon( 'arrow' ) . '</i>';
+	return preg_replace(
+		'#>([^<]*)</a>\s*$#',
+		'><span class="card-cta__label">' . esc_html( $adds ? __( 'Add to bag', 'scentral' ) : $product->add_to_cart_text() ) . '</span>' . $icon . '</a>',
+		trim( $html ),
+		1
+	);
+}
+add_filter( 'woocommerce_loop_add_to_cart_link', 'scentral_loop_add_to_cart_link', 20, 2 );
 
 /* -------------------------------------------------------------------------
  * Cart fragments: header bag count + drawer.

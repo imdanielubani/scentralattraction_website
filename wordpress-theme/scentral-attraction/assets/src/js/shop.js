@@ -369,3 +369,27 @@ export function initBagQuantity() {
 		}
 	});
 }
+
+/* -------------------------------------------------------------------------
+ * Shop grid density (3 or 4 per row), remembered per viewer
+ * ---------------------------------------------------------------------- */
+const DENSITY_KEY = 'sa-shop-density';
+
+function applyDensity(shop, value) {
+	shop.classList.toggle('is-dense', value === '4');
+	shop.querySelectorAll('[data-density]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.density === value)));
+}
+
+export function initShopDensity() {
+	const shop = document.querySelector('[data-shop]');
+	if (!shop) return;
+	let saved = '3';
+	try { saved = window.localStorage.getItem(DENSITY_KEY) || '3'; } catch (e) { /* storage blocked: default grid */ }
+	applyDensity(shop, saved);
+	shop.addEventListener('click', (event) => {
+		const button = event.target.closest('[data-density]');
+		if (!button) return;
+		applyDensity(shop, button.dataset.density);
+		try { window.localStorage.setItem(DENSITY_KEY, button.dataset.density); } catch (e) { /* not persisted */ }
+	});
+}
