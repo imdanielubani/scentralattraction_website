@@ -315,7 +315,7 @@ async function refreshNonce(form, action, field) {
 }
 
 export function initContactForm() {
-	document.querySelectorAll('form.contact-form').forEach((form) => {
+	document.querySelectorAll('form[data-contact-form]').forEach((form) => {
 		form.addEventListener('submit', async (event) => {
 			if (form.dataset.refreshed) return;
 			event.preventDefault();

@@ -250,3 +250,25 @@ function scentral_setup_row( $label, $page ) {
 	}
 	echo '</td></tr>';
 }
+
+/**
+ * Use the Order Tracking template for a page containing [woocommerce_order_tracking]
+ * when no template has been chosen for it (the default WooCommerce setup).
+ *
+ * @param string $template Resolved template path.
+ * @return string
+ */
+function scentral_tracking_template( $template ) {
+	if ( ! is_page() || get_page_template_slug() ) {
+		return $template;
+	}
+	$post = get_queried_object();
+	if ( $post instanceof WP_Post && has_shortcode( $post->post_content, 'woocommerce_order_tracking' ) ) {
+		$tracking = locate_template( 'page-templates/template-tracking.php' );
+		if ( $tracking ) {
+			return $tracking;
+		}
+	}
+	return $template;
+}
+add_filter( 'template_include', 'scentral_tracking_template', 20 );

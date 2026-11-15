@@ -27,12 +27,18 @@
 /* ==========================================================================
    Breadcrumbs
    ========================================================================== */
-.breadcrumbs { margin-bottom: var(--space-5); font-size: 0.75rem; letter-spacing: 0.08em; color: var(--sa-grey); }
-.breadcrumbs ol { display: flex; flex-wrap: wrap; gap: 0.25rem 0.6rem; list-style: none; margin: 0; padding: 0; }
-.breadcrumbs li:not(:last-child)::after { content: "/"; margin-left: 0.6rem; color: var(--sa-mist-strong); }
-.breadcrumbs a { text-decoration: none; }
-.breadcrumbs a:hover { color: var(--sa-red); }
-.breadcrumbs span[aria-current], .breadcrumbs li:last-child { color: var(--sa-ink); }
+/* Breadcrumbs — pill trail modelled on the reference: past steps in filled pills,
+   the current page in an outlined pill, a faint slash between. Covers the markup of
+   WooCommerce, Yoast and Rank Math breadcrumbs. */
+.breadcrumbs, .rank-math-breadcrumb { margin-bottom: clamp(1.4rem, 1rem + 2vw, 2.5rem); font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sa-grey); }
+.breadcrumbs ol, .rank-math-breadcrumb p, .breadcrumbs > span { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; list-style: none; margin: 0; padding: 0; }
+.breadcrumbs li { display: inline-flex; align-items: center; gap: 6px; }
+.breadcrumbs li:not(:last-child)::after { content: "/"; opacity: 0.4; }
+.breadcrumbs a, .rank-math-breadcrumb a { display: inline-block; padding: 7px 12px; border-radius: 999px; background: var(--sa-surface); color: var(--sa-ink); text-decoration: none; transition: background-color 300ms ease, color 300ms ease; }
+.breadcrumbs a:hover, .rank-math-breadcrumb a:hover { background: var(--sa-black); color: var(--sa-white); }
+.breadcrumbs li:last-child, .breadcrumbs .breadcrumb_last, .breadcrumbs [aria-current], .rank-math-breadcrumb .last { display: inline-block; padding: 7px 12px; border: 1px solid var(--sa-mist-strong); border-radius: 999px; color: var(--sa-ink); }
+.breadcrumbs li:last-child > a { padding: 0; background: none; }
+.rank-math-breadcrumb .separator { opacity: 0.4; }
 
 /* ==========================================================================
    Prose (page and post content)

@@ -39,6 +39,8 @@ Everything below was actually run. Items not tested are listed in section 6.
 |---|---|---|
 | Preloader | Plays once per browser tab on any page (fresh tab ✅, Ctrl+click new tab ✅), not again when navigating within the tab ✅, never in the Elementor editor | ✅ |
 | Page transition | Doors close with the destination name, next page opens; bag drawer and anchors unaffected (Chrome 1440px) | ✅ |
+| Order tracking | Form at 1440 and 390px; unknown order shows the error; order #97 + billing email shows "Processing" and order details | ✅ |
+| Breadcrumbs | Pill trail on Contact, Order Tracking, Shop, FAQ, About | ✅ |
 | Navbar | Announcement roll and collapse, hide on scroll, Shop mega panel by hover **and keyboard** on home and shop, burger and bag taps on phones | ✅ |
 | Bag drawer | Empty state with 3 suggestions, quick add, quantity +/−, "Bag (n)", subtotal, Checkout | ✅ |
 | Footer | Legal links beside ©, 4 payment logos, social gap, no emblem in wordmark, no stray drawers | ✅ |

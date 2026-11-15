@@ -40,11 +40,6 @@
    form card with topic pills and floating labels, a dark "Other ways in" card.
    ========================================================================== */
 .ph { padding: clamp(2rem, 1rem + 4vw, 5rem) 0 clamp(1.75rem, 1rem + 3vw, 4rem); }
-.ph__crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: clamp(1.4rem, 1rem + 2vw, 2.5rem); font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sa-grey); }
-.ph__crumbs a { padding: 7px 12px; border-radius: 999px; background: var(--sa-surface); color: var(--sa-ink); text-decoration: none; transition: background-color 300ms ease, color 300ms ease; }
-.ph__crumbs a:hover { background: var(--sa-black); color: var(--sa-white); }
-.ph__crumbs i { font-style: normal; opacity: 0.4; }
-.ph__crumbs span[aria-current] { padding: 7px 12px; border-radius: 999px; border: 1px solid var(--sa-mist-strong); }
 .ph__grid { display: grid; gap: clamp(1.5rem, 4vw, 5rem); align-items: end; }
 @media (min-width: 900px) { .ph__grid { grid-template-columns: minmax(0, 1.5fr) minmax(0, 0.62fr); } }
 .ph__title { font-size: var(--fs-display-xl); font-weight: 300; line-height: 0.92; }
@@ -70,6 +65,17 @@
 .cf__list a { color: var(--sa-white); text-decoration: none; }
 .cf__list a:hover { color: var(--sa-red-light); }
 .cf__social { margin-top: 0; }
+
+/* Order tracking: intro, result and order details inside the card */
+.track-form__intro { margin: 0; color: var(--sa-grey); line-height: 1.6; }
+.tracking-content > .woocommerce { display: grid; gap: 1.5rem; }
+.tracking-content .order-info { margin: 0; font-size: 1.05rem; line-height: 1.7; }
+.tracking-content mark { padding: 2px 10px; border-radius: 999px; background: var(--sa-white); color: var(--sa-ink); font-weight: 600; }
+.tracking-content mark.order-status { background: var(--sa-black); color: var(--sa-white); }
+.tracking-content h2 { margin: 0.5rem 0 0; font-size: clamp(1.4rem, 1.1rem + 1vw, 1.9rem); font-weight: 300; }
+.tracking-content .woocommerce-table { width: 100%; border-collapse: collapse; background: var(--sa-white); border-radius: 18px; overflow: hidden; }
+.tracking-content .woocommerce-table th, .tracking-content .woocommerce-table td { padding: 0.85rem 1rem; border-bottom: 1px solid var(--sa-mist); text-align: left; }
+.tracking-content .woocommerce-error, .tracking-content .woocommerce-info, .tracking-content .woocommerce-notices-wrapper:not(:empty) { margin: 0; padding: 0.9rem 1.1rem; border: 0; border-left: 2px solid var(--sa-red); border-radius: 0; background: var(--sa-white); list-style: none; }
 
 /* Topic pills */
 .topics { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; border: 0; }

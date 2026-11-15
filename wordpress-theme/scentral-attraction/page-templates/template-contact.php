@@ -20,11 +20,6 @@ if ( scentral_render_builder_page() ) {
 	return;
 }
 
-$phone    = scentral_option( 'contact_phone' );
-$email    = scentral_option( 'contact_email' );
-$hours    = scentral_option( 'contact_hours' );
-$address  = scentral_option( 'contact_address' );
-$whatsapp = preg_replace( '/[^0-9]/', '', (string) scentral_option( 'contact_whatsapp' ) );
 ?>
 <main id="main" class="site-main site-main--contact">
 	<?php
@@ -38,20 +33,17 @@ $whatsapp = preg_replace( '/[^0-9]/', '', (string) scentral_option( 'contact_wha
 			$intro = wp_strip_all_tags( $m[1] );
 		}
 		?>
-		<section class="ph" aria-labelledby="contact-title">
-			<div class="container">
-				<nav class="ph__crumbs" aria-label="<?php esc_attr_e( 'Breadcrumb', 'scentral' ); ?>">
-					<a href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php esc_html_e( 'Home', 'scentral' ); ?></a><i aria-hidden="true">/</i>
-					<span aria-current="page"><?php the_title(); ?></span>
-				</nav>
-				<div class="ph__grid">
-					<h1 class="ph__title split" id="contact-title"><?php echo scentral_split_words( __( 'Contact *us*.', 'scentral' ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></h1>
-					<?php if ( $intro ) : ?>
-						<p class="ph__intro" data-reveal><?php echo esc_html( $intro ); ?></p>
-					<?php endif; ?>
-				</div>
-			</div>
-		</section>
+		<?php
+		get_template_part(
+			'template-parts/components/page-head',
+			null,
+			array(
+				'id'    => 'contact-title',
+				'title' => __( 'Contact *us*.', 'scentral' ),
+				'intro' => $intro,
+			)
+		);
+		?>
 
 		<section class="cf container" id="contact-form" aria-labelledby="contact-form-title">
 			<div class="cf__card" data-reveal>
@@ -69,34 +61,26 @@ $whatsapp = preg_replace( '/[^0-9]/', '', (string) scentral_option( 'contact_wha
 				<?php endif; ?>
 			</div>
 
-			<aside class="cf__side" data-reveal aria-label="<?php esc_attr_e( 'Other ways to reach us', 'scentral' ); ?>">
-				<strong class="cf__side-title"><?php esc_html_e( 'Other ways in', 'scentral' ); ?></strong>
-				<ul class="cf__perks">
-					<li><?php echo scentral_icon( 'pin' ); // phpcs:ignore ?><?php esc_html_e( 'Visit our store in Dawaki, Abuja', 'scentral' ); ?></li>
-					<li><?php echo scentral_icon( 'drop' ); // phpcs:ignore ?><?php esc_html_e( 'Ask us to help you choose a signature scent', 'scentral' ); ?></li>
-					<?php if ( function_exists( 'wc_get_page_permalink' ) ) : ?>
-						<li><?php echo scentral_icon( 'truck' ); // phpcs:ignore ?><a href="<?php echo esc_url( scentral_page_url( 'order-tracking' ) ); ?>"><?php esc_html_e( 'Track your order online', 'scentral' ); ?></a></li>
-					<?php endif; ?>
-				</ul>
-				<dl class="cf__list">
-					<?php if ( $email ) : ?>
-						<div><dt><?php esc_html_e( 'Email', 'scentral' ); ?></dt><dd><a href="mailto:<?php echo esc_attr( antispambot( $email ) ); ?>"><?php echo esc_html( antispambot( $email ) ); ?></a></dd></div>
-					<?php endif; ?>
-					<?php if ( $phone ) : ?>
-						<div><dt><?php esc_html_e( 'Phone', 'scentral' ); ?></dt><dd><a href="<?php echo esc_attr( scentral_tel( $phone ) ); ?>"><?php echo esc_html( $phone ); ?></a></dd></div>
-					<?php endif; ?>
-					<?php if ( $whatsapp ) : ?>
-						<div><dt><?php esc_html_e( 'WhatsApp', 'scentral' ); ?></dt><dd><a href="<?php echo esc_url( 'https://wa.me/' . $whatsapp ); ?>" target="_blank" rel="noopener noreferrer"><?php esc_html_e( 'Message us', 'scentral' ); ?></a></dd></div>
-					<?php endif; ?>
-					<?php if ( $hours ) : ?>
-						<div><dt><?php esc_html_e( 'Hours', 'scentral' ); ?></dt><dd><?php echo esc_html( $hours ); ?></dd></div>
-					<?php endif; ?>
-					<?php if ( $address ) : ?>
-						<div><dt><?php esc_html_e( 'Store', 'scentral' ); ?></dt><dd><?php echo esc_html( $address ); ?></dd></div>
-					<?php endif; ?>
-				</dl>
-				<?php scentral_social_list( 'social-list cf__social' ); ?>
-			</aside>
+			<?php
+			$perks = array(
+				array(
+					'icon' => 'pin',
+					'text' => __( 'Visit our store in Dawaki, Abuja', 'scentral' ),
+				),
+				array(
+					'icon' => 'drop',
+					'text' => __( 'Ask us to help you choose a signature scent', 'scentral' ),
+				),
+			);
+			if ( function_exists( 'wc_get_page_permalink' ) ) {
+				$perks[] = array(
+					'icon' => 'truck',
+					'text' => __( 'Track your order online', 'scentral' ),
+					'url'  => scentral_page_url( 'order-tracking' ),
+				);
+			}
+			get_template_part( 'template-parts/components/help-card', null, array( 'perks' => $perks ) );
+			?>
 		</section>
 
 		<?php get_template_part( 'template-parts/components/location' ); ?>

@@ -3,6 +3,16 @@
 All notable changes to the Scentral Attraction theme are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Added
+- Order Tracking page in the Contact page arrangement: pill breadcrumb, "Track your order." headline with intro, rounded card with the tracking form (floating-label fields, Track order pill) and a dark "Need a hand?" card. Applied automatically to the page holding the WooCommerce tracking shortcode; the found order shows its status pill and details in the same card.
+
+### Changed
+- All breadcrumbs (pages, shop, products, journal; WooCommerce, Yoast or Rank Math) use the Contact page's pill style.
+- "Back to top ↑" now sits directly beside the © line in the footer.
+- Contact page hero and side card moved into shared template parts (page-head, help-card).
+
 ## [1.3.0] — 2026-11-14
 
 ### Added
