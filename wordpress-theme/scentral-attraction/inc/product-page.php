@@ -142,7 +142,6 @@ function scentral_single_actions() {
 		/* translators: %s: store address. */
 		echo '<li>' . esc_html( sprintf( __( 'Store: %s', 'scentral' ), $address ) ) . '</li>';
 	}
-	echo '<li>' . esc_html__( 'Original fragrances', 'scentral' ) . '</li>';
 	echo '</ul>';
 }
 add_action( 'woocommerce_single_product_summary', 'scentral_single_actions', 32 );
