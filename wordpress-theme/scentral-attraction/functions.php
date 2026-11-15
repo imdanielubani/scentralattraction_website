@@ -29,6 +29,7 @@ $scentral_modules = array(
 	'seo',
 	'ajax',
 	'woocommerce',
+	'product-page',
 );
 
 foreach ( $scentral_modules as $scentral_module ) {

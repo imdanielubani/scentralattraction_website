@@ -185,9 +185,9 @@
 .wish-toggle.is-pop { animation: sa-bump 500ms var(--ease-out); }
 .wish-toggle--single {
 	width: auto;
-	height: 3.25rem;
-	padding-inline: 1.1rem;
-	border-radius: 0;
+	height: 2.9rem;
+	padding-inline: 1.1rem 1.25rem;
+	border-radius: 999px;
 	border: 1px solid var(--sa-mist-strong);
 	background: transparent;
 	gap: 0.6rem;

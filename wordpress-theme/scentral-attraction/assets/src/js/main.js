@@ -16,6 +16,7 @@ import {
 	initQuantities,
 	initBagQuantity,
 } from './shop.js';
+import { initGalleries, initRails } from './gallery.js';
 
 function safely(fn) {
 	try {
@@ -48,6 +49,8 @@ function boot() {
 		initRecentlyViewed,
 		initLoadMore,
 		initShopDensity,
+		initGalleries,
+		initRails,
 		initQuantities,
 		initBagQuantity,
 	].forEach(safely);
