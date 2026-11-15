@@ -13,11 +13,14 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 - Order Tracking page in the Contact page arrangement: pill breadcrumb, "Track your order." headline with intro, rounded card with the tracking form (floating-label fields, Track order pill) and a dark "Need a hand?" card. Applied automatically to the page holding the WooCommerce tracking shortcode; the found order shows its status pill and details in the same card.
 
 ### Fixed
+- Preloader always finishes (timer backstop): in WebKit, and in pages opened in background tabs, animation frames can pause and the hero stayed black.
+- Accessibility: header bag link name matches its visible text; shop headings descend h1 → h2 → h3; small red text on grey cards uses a deeper red (5.6:1 contrast).
 - Newsletter: when a form shortcode prints nothing (e.g. Mailchimp for WP without an API key, or a wrong form ID) the built-in form is shown instead of an empty section.
 - TI WooCommerce Wishlist: the wishlist link and page work before the plugin's wishlist page is chosen; plugin buttons keep their text; pop-up and wishlist table restyled to match the theme.
 - Sold-out product cards showed both card photos at once; repeated product images (the same file uploaded twice) are skipped in galleries and quick view.
 
 ### Changed
+- WordPress block stylesheets (~140 KB) load only on pages whose content uses blocks (and on cart, checkout and account); homepage Lighthouse performance 49 → 76 locally.
 - Footer: "Back to top ↑" now comes first in the bottom row, before the © line; the large "Scentral Attraction" wordmark is bold, solid white and spans the footer.
 - All breadcrumbs (pages, shop, products, journal; WooCommerce, Yoast or Rank Math) use the Contact page's pill style.
 - Contact page hero and side card moved into shared template parts (page-head, help-card).

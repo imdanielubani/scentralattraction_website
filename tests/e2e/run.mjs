@@ -7,6 +7,7 @@ mkdirSync(process.env.SA_SHOTS || 'tests/e2e/shots', { recursive: true });
 const suites = ['header-bag-footer.mjs', 'inner-pages.mjs'];
 if (process.env.SA_CUSTOMER_PASS) suites.push('commerce-account.mjs');
 if (process.env.SA_ADMIN_PASS && process.env.SA_ELEMENTOR_PAGE_ID) suites.push('elementor.mjs');
+if (process.env.SA_XBROWSER) suites.push('cross-browser.mjs');
 for (const s of suites) {
   console.info(`
 === ${s}`);

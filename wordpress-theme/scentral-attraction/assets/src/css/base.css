@@ -10,6 +10,7 @@
 	--sa-surface: #f5f5f5;
 	--sa-red: #e3151c;
 	--sa-red-light: #ff5a5f;
+	--sa-red-deep: #c4111a; /* small red text on light-grey surfaces (5.6:1 on #f5f5f5) */
 	--sa-grey: #5c5c5c;
 	--sa-mist: rgba(0, 0, 0, 0.1);
 	--sa-mist-strong: rgba(0, 0, 0, 0.2);
@@ -168,6 +169,7 @@ p { text-wrap: pretty; }
 }
 .eyebrow { color: var(--sa-red); margin-bottom: var(--space-4); }
 .section--dark .eyebrow { color: var(--sa-red-light); }
+:where(.cf__card, .loc__card) .eyebrow { color: var(--sa-red-deep); }
 .lead { font-size: var(--fs-lead); line-height: 1.65; color: var(--sa-grey); max-width: 38rem; }
 .section--dark .lead { color: var(--sa-on-dark-muted); }
 .muted { color: var(--sa-grey); }

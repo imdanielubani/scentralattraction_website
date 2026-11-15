@@ -9,6 +9,7 @@
 const MIN_MS = 1400;
 const MAX_MS = 3800;
 const WORD_MS = 560;
+const HARD_STOP_MS = MAX_MS + 500; // keep below the 4.5s CSS failsafe in preloader.css
 // Per-tab marker. window.name survives navigation inside a tab but starts empty in every
 // new tab (unlike sessionStorage, which browsers copy into tabs opened from a link), so the
 // preloader shows once in each new tab and not again while browsing within it.
@@ -73,7 +74,12 @@ export function initPreloader() {
 	}, WORD_MS);
 
 	return new Promise((resolve) => {
+		let finished = false;
+		let hardStop = 0;
 		const finish = () => {
+			if (finished) return;
+			finished = true;
+			window.clearTimeout(hardStop);
 			window.clearInterval(wordTimer);
 			el.style.setProperty('--p', '1');
 			counters.forEach((c) => { c.textContent = '100'; });
@@ -89,7 +95,12 @@ export function initPreloader() {
 			window.setTimeout(() => el.remove(), 1900);
 		};
 
+		// Backstop: animation frames pause in background tabs (a page opened in a new tab) and
+		// in some engines, so a timer always ends the preloader just before the CSS failsafe.
+		hardStop = window.setTimeout(finish, HARD_STOP_MS);
+
 		const tick = (now) => {
+			if (finished) return;
 			const elapsed = now - start;
 			const timeCurve = Math.min(0.92, elapsed / 2600);
 			const goal = elapsed >= MAX_MS ? 1 : Math.max(Math.min(target, 0.97), timeCurve * target + timeCurve * 0.25);

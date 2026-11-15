@@ -46,9 +46,10 @@ $has_wc = class_exists( 'WooCommerce' );
 						<?php echo scentral_icon( 'heart' ); // phpcs:ignore ?>
 						<span class="wish-count is-empty" data-wish-count>0</span>
 					</a>
-					<a class="nav-bag cart-toggle" href="<?php echo esc_url( wc_get_cart_url() ); ?>" data-open="cart-drawer" aria-controls="cart-drawer" aria-label="<?php esc_attr_e( 'Shopping bag', 'scentral' ); ?>">
+					<a class="nav-bag cart-toggle" href="<?php echo esc_url( wc_get_cart_url() ); ?>" data-open="cart-drawer" aria-controls="cart-drawer">
 						<span class="nav-bag__label"><?php esc_html_e( 'Bag', 'scentral' ); ?></span>
 						<?php echo scentral_cart_count_html(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- escaped in helper. ?>
+						<span class="screen-reader-text"><?php esc_html_e( 'items', 'scentral' ); ?></span>
 					</a>
 				<?php endif; ?>
 				<button type="button" class="nav-burger" data-open="mobile-menu" aria-controls="mobile-menu" aria-expanded="false" aria-label="<?php esc_attr_e( 'Menu', 'scentral' ); ?>">

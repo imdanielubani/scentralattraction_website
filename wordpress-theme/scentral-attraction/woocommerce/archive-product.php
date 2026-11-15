@@ -75,6 +75,7 @@ $all_count    = (int) wp_count_posts( 'product' )->publish;
 	</div>
 
 	<?php if ( woocommerce_product_loop() ) : ?>
+		<h2 class="screen-reader-text"><?php esc_html_e( 'Fragrances', 'scentral' ); ?></h2>
 		<p class="shop-live"><?php echo esc_html( sprintf( /* translators: %d: number of products. */ _n( '%d fragrance', '%d fragrances', $total, 'scentral' ), $total ) ); ?></p>
 
 		<?php if ( $active ) : ?>

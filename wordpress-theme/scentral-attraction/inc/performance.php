@@ -108,3 +108,24 @@ add_action( 'woocommerce_product_set_stock', 'scentral_flush_product_cache' );
 add_action( 'woocommerce_variation_set_stock', 'scentral_flush_product_cache' );
 add_action( 'comment_post', 'scentral_flush_product_cache' );
 add_action( 'customize_save_after', 'scentral_flush_product_cache' );
+
+/**
+ * WordPress's block stylesheets (~140 KB) are only needed where block content is shown. Theme
+ * templates (homepage, shop, product pages) are built without blocks, so skip them there.
+ * Pages and posts whose content uses blocks, and the block-based cart/checkout, keep them.
+ */
+function scentral_trim_block_styles() {
+	if ( is_admin() || is_customize_preview() || scentral_is_elementor_preview() ) {
+		return;
+	}
+	if ( is_singular() && has_blocks( get_queried_object_id() ) ) {
+		return;
+	}
+	if ( function_exists( 'is_cart' ) && ( is_cart() || is_checkout() || is_account_page() ) ) {
+		return;
+	}
+	foreach ( array( 'wp-block-library', 'wp-block-library-theme', 'classic-theme-styles', 'global-styles', 'wc-blocks-style' ) as $handle ) {
+		wp_dequeue_style( $handle );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'scentral_trim_block_styles', 100 );

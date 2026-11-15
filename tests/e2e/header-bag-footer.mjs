@@ -20,9 +20,9 @@ await p.click('.nav-bag'); await p.waitForTimeout(900);
 await p.screenshot({ path: OUT + '/b-bag-empty.png' });
 log.push('bag open: ' + await p.evaluate(() => document.getElementById('cart-drawer').open) + ' | suggestions: ' + await p.locator('.bag-empty__list li').count());
 // Quick add from empty state
-await p.click('.bag-empty__add >> nth=0'); await p.waitForTimeout(3500);
+await p.click('.bag-empty__add >> nth=0'); await p.waitForSelector('#cart-drawer .bag-item', { timeout: 20000 }).catch(() => {}); await p.waitForTimeout(800);
 log.push('after quick add items: ' + await p.locator('#cart-drawer .bag-item').count() + ' | title: ' + (await p.locator('#cart-drawer .bag-head__title').innerText()).replace(/\s+/g, ' '));
-await p.click('#cart-drawer .bag-qty button[data-step="1"]'); await p.waitForTimeout(3500);
+await p.click('#cart-drawer .bag-qty button[data-step="1"]'); await p.waitForFunction(() => document.querySelector('#cart-drawer .bag-qty span')?.textContent.trim() === '2', null, { timeout: 20000 }).catch(() => {});
 log.push('after + qty: ' + await p.locator('#cart-drawer .bag-qty span').first().innerText() + ' | bag pill: ' + await p.locator('.nav-bag .cart-count').innerText());
 await p.screenshot({ path: OUT + '/c-bag-items.png' });
 await p.keyboard.press('Escape'); await p.waitForTimeout(700);
