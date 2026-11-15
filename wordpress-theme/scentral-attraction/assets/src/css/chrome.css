@@ -128,16 +128,22 @@ body.has-dialog { overflow: hidden; }
 
 /* Quick view */
 .dialog--quick-view {
-	width: min(1040px, 94vw);
+	width: min(1080px, 94vw);
 	max-height: 90dvh;
 	overflow-y: auto;
+	padding: 0;
+	border-radius: 30px;
+	background: var(--sa-white);
+	box-shadow: 0 40px 120px rgba(0, 0, 0, 0.28);
 	opacity: 0;
 	transform: translateY(24px) scale(0.98);
 	transition: opacity 400ms var(--ease-out), transform 500ms var(--ease-out);
 }
 .dialog--quick-view.is-open { opacity: 1; transform: none; }
 .dialog--quick-view.is-closing { opacity: 0; transform: translateY(16px); }
-.dialog--quick-view .dialog__close { position: absolute; top: 0.75rem; right: 1.35rem; z-index: 2; }
+.dialog--quick-view .dialog__close { position: absolute; top: 18px; right: 18px; z-index: 4; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--sa-surface); transition: background-color 300ms ease, color 300ms ease, transform 400ms ease; }
+.dialog--quick-view .dialog__close:hover { background: var(--sa-black); color: var(--sa-white); transform: rotate(90deg); }
+.dialog--quick-view::backdrop { background: rgba(10, 10, 10, 0.55); backdrop-filter: blur(4px); }
 .dialog--quick-view .dialog__body { min-height: 20rem; }
 .dialog__body.is-loading { display: grid; place-items: center; }
 

@@ -71,24 +71,41 @@ function scentral_render_quick_view( $product ) {
 	$post_object        = get_post( $product->get_id() );
 	setup_postdata( $GLOBALS['post'] = $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
 
-	$image_ids = array_filter( array_merge( array( $product->get_image_id() ), $product->get_gallery_image_ids() ) );
+	$spec = scentral_product_spec( $product );
 	?>
-	<div class="quick-view">
-		<div class="quick-view__media">
-			<?php foreach ( array_slice( $image_ids, 0, 3 ) as $index => $image_id ) : ?>
-				<?php echo wp_get_attachment_image( $image_id, 'woocommerce_single', false, array( 'loading' => 0 === $index ? 'eager' : 'lazy' ) ); ?>
-			<?php endforeach; ?>
-		</div>
-		<div class="quick-view__summary">
-			<?php $spec = scentral_product_spec( $product ); ?>
+	<div class="qv">
+		<?php
+		get_template_part(
+			'template-parts/components/product-gallery',
+			null,
+			array(
+				'product' => $product,
+				'context' => 'quick',
+			)
+		);
+		?>
+		<div class="qv__summary">
 			<?php if ( $spec ) : ?>
-				<p class="eyebrow"><?php echo esc_html( $spec ); ?></p>
+				<p class="eyebrow product-spec"><?php echo esc_html( $spec ); ?></p>
 			<?php endif; ?>
-			<h2 class="quick-view__title" id="quick-view-title"><?php echo esc_html( $product->get_name() ); ?></h2>
-			<div class="quick-view__price"><?php echo wp_kses_post( $product->get_price_html() ); ?></div>
-			<div class="quick-view__excerpt"><?php echo wp_kses_post( wpautop( wp_trim_words( $product->get_short_description() ? $product->get_short_description() : $product->get_description(), 40 ) ) ); ?></div>
-			<?php woocommerce_template_single_add_to_cart(); ?>
-			<a class="link-arrow" href="<?php echo esc_url( $product->get_permalink() ); ?>"><?php esc_html_e( 'View full details', 'scentral' ); ?><?php echo scentral_icon( 'arrow' ); // phpcs:ignore ?></a>
+			<h2 class="qv__title" id="quick-view-title"><?php echo esc_html( $product->get_name() ); ?></h2>
+			<div class="product-meta-row">
+				<p class="price"><?php echo wp_kses_post( $product->get_price_html() ); ?></p>
+				<?php if ( wc_review_ratings_enabled() && $product->get_review_count() ) : ?>
+					<span class="product-rate"><?php echo wc_get_rating_html( $product->get_average_rating() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- core output. ?></span>
+				<?php endif; ?>
+			</div>
+			<div class="qv__excerpt"><?php echo wp_kses_post( wpautop( wp_trim_words( $product->get_short_description() ? $product->get_short_description() : $product->get_description(), 34 ) ) ); ?></div>
+			<?php if ( $product->is_in_stock() ) : ?>
+				<p class="product-eta"><i aria-hidden="true"></i><?php esc_html_e( 'In stock', 'scentral' ); ?></p>
+			<?php else : ?>
+				<p class="product-eta product-eta--out"><i aria-hidden="true"></i><?php esc_html_e( 'Sold out', 'scentral' ); ?></p>
+			<?php endif; ?>
+			<div class="qv__buy summary"><?php woocommerce_template_single_add_to_cart(); ?></div>
+			<div class="qv__foot">
+				<?php scentral_wishlist_button( $product, 'single' ); ?>
+				<a class="pill-btn pill-btn--ghost qv__more" href="<?php echo esc_url( $product->get_permalink() ); ?>"><span><?php esc_html_e( 'View full details', 'scentral' ); ?></span><i class="pill-btn__arrow" aria-hidden="true"><?php echo scentral_icon( 'arrow' ); // phpcs:ignore ?></i></a>
+			</div>
 		</div>
 	</div>
 	<?php
