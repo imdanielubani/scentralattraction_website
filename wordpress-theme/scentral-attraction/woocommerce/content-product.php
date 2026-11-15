@@ -17,8 +17,8 @@ if ( ! is_a( $product, WC_Product::class ) || ! $product->is_visible() ) {
 	return;
 }
 
-$gallery   = $product->get_gallery_image_ids();
-$alt_image = $gallery ? (int) $gallery[0] : 0;
+$images    = scentral_product_image_ids( $product );
+$alt_image = isset( $images[1] ) ? (int) $images[1] : 0;
 $spec      = scentral_product_spec( $product );
 $badge     = scentral_product_badge( $product );
 $link      = apply_filters( 'woocommerce_loop_product_link', get_the_permalink( $product->get_id() ), $product );

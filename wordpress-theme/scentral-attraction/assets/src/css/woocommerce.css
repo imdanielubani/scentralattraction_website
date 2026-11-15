@@ -40,7 +40,9 @@ ul.products::before, ul.products::after { display: none; }
 .card:hover .card__img { transform: scale(1.05); }
 .card--has-alt:hover .card__img:not(.card__img--alt) { opacity: 0; }
 .card--has-alt:hover .card__img--alt { opacity: 1; transform: none; }
-.outofstock .card__img { filter: grayscale(0.35); opacity: 0.85; }
+.outofstock .card__img { filter: grayscale(0.35); }
+.outofstock .card__img:not(.card__img--alt) { opacity: 0.85; }
+.outofstock.card--has-alt:hover .card__img:not(.card__img--alt) { opacity: 0; }
 .card__badges { position: absolute; top: 14px; left: 14px; display: flex; gap: 0.35rem; z-index: 3; }
 .card__badges .badge { padding: 7px 11px; border-radius: 999px; background: var(--sa-white); color: var(--sa-ink); font-size: 0.68rem; letter-spacing: 0.12em; }
 .card__badges .badge--sale { background: var(--sa-red); color: var(--sa-white); }

@@ -18,7 +18,7 @@ if ( ! $product instanceof WC_Product ) {
 }
 
 $context = 'quick' === $args['context'] ? 'quick' : 'single';
-$ids     = array_values( array_unique( array_filter( array_merge( array( (int) $product->get_image_id() ), array_map( 'intval', $product->get_gallery_image_ids() ) ) ) ) );
+$ids     = scentral_product_image_ids( $product );
 $count   = count( $ids );
 $badge   = scentral_product_badge( $product );
 $name    = $product->get_name();

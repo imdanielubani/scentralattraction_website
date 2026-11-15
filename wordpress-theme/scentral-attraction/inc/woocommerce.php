@@ -334,6 +334,31 @@ function scentral_mark_shop_menu_item( $classes, $item, $args ) {
 add_filter( 'nav_menu_css_class', 'scentral_mark_shop_menu_item', 10, 3 );
 add_filter( 'woocommerce_add_to_cart_fragments', 'scentral_cart_fragments' );
 
+/**
+ * Product images (featured first, then gallery) with repeats removed: the same attachment
+ * twice, or the same file uploaded twice (identical file size and dimensions).
+ *
+ * @param WC_Product $product Product.
+ * @return int[]
+ */
+function scentral_product_image_ids( $product ) {
+	$ids  = array_merge( array( (int) $product->get_image_id() ), array_map( 'intval', $product->get_gallery_image_ids() ) );
+	$seen = array();
+	$out  = array();
+	foreach ( array_filter( $ids ) as $id ) {
+		$meta = wp_get_attachment_metadata( $id );
+		$key  = is_array( $meta ) && ! empty( $meta['filesize'] )
+			? $meta['filesize'] . 'x' . ( $meta['width'] ?? 0 ) . 'x' . ( $meta['height'] ?? 0 )
+			: 'id' . $id;
+		if ( isset( $seen[ $key ] ) || in_array( $id, $out, true ) ) {
+			continue;
+		}
+		$seen[ $key ] = true;
+		$out[]        = $id;
+	}
+	return $out;
+}
+
 /* Single product page: see inc/product-page.php. */
 
 /* -------------------------------------------------------------------------
