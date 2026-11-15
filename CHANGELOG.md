@@ -6,11 +6,14 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 ## [Unreleased]
 
 ### Added
+- Shop page after the reference: "All fragrances." headline with fact chips, sticky rounded toolbar (collection pills with counts, Filter, Sort pill, 3/4-per-row toggle), rounded product cards with round quick-view and expanding "+ Add to bag" buttons, and a red "Can't decide?" tile in the grid.
+- Product page after the reference: vertical thumbnails + large rounded image with arrow buttons and hover zoom, breadcrumb in the summary, red "Add to bag" pill with quantity pill, stock line and service chips, accordions instead of tabs, and a related-products rail with arrow buttons.
+- Quick view redesigned: arrow buttons (and thumbnails) to move between images instead of scrolling; summary matches the product page.
 - Order Tracking page in the Contact page arrangement: pill breadcrumb, "Track your order." headline with intro, rounded card with the tracking form (floating-label fields, Track order pill) and a dark "Need a hand?" card. Applied automatically to the page holding the WooCommerce tracking shortcode; the found order shows its status pill and details in the same card.
 
 ### Changed
+- Footer: "Back to top ↑" now comes first in the bottom row, before the © line; the large "Scentral Attraction" wordmark is bold, solid white and spans the footer.
 - All breadcrumbs (pages, shop, products, journal; WooCommerce, Yoast or Rank Math) use the Contact page's pill style.
-- "Back to top ↑" now sits directly beside the © line in the footer.
 - Contact page hero and side card moved into shared template parts (page-head, help-card).
 
 ## [1.3.0] — 2026-11-14

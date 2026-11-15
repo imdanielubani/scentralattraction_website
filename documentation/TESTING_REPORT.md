@@ -41,6 +41,10 @@ Everything below was actually run. Items not tested are listed in section 6.
 | Page transition | Doors close with the destination name, next page opens; bag drawer and anchors unaffected (Chrome 1440px) | ✅ |
 | Order tracking | Form at 1440 and 390px; unknown order shows the error; order #97 + billing email shows "Processing" and order details | ✅ |
 | Breadcrumbs | Pill trail on Contact, Order Tracking, Shop, FAQ, About | ✅ |
+| Shop | 3 per row (4 with toggle), 2 on phones; Can't decide tile; Load more appends page 2 (18 items); no overflow at 1440/390px | ✅ |
+| Product page | Arrow buttons + thumbnails (wraps around), AJAX Add to bag opens the bag (count 0 → 1), accordions, related rail arrows; no overflow at 1440/390px | ✅ |
+| Quick view | Arrow buttons cycle through 3 images (1/3 → 2/3 → 1/3); summary and Add to bag | ✅ |
+| Footer | Back to top before ©; bold wordmark fits at 1440 and 390px | ✅ |
 | Navbar | Announcement roll and collapse, hide on scroll, Shop mega panel by hover **and keyboard** on home and shop, burger and bag taps on phones | ✅ |
 | Bag drawer | Empty state with 3 suggestions, quick add, quantity +/−, "Bag (n)", subtotal, Checkout | ✅ |
 | Footer | Legal links beside ©, 4 payment logos, social gap, no emblem in wordmark, no stray drawers | ✅ |
