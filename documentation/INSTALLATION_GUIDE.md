@@ -21,6 +21,19 @@ No Node.js, build step or extra plugin is required on the server.
 1. Download `releases/scentral-attraction-theme.zip` from this repository.
 2. WordPress Admin → **Appearance → Themes → Add New Theme → Upload Theme**.
 3. Choose the ZIP → **Install Now** → **Activate**.
+4. WordPress then opens **Appearance → Theme Plugins**. Click **Install & activate all required plugins** (or use each row's button). Plugins are installed from WordPress.org:
+
+| Plugin | Type | Used for |
+|---|---|---|
+| WooCommerce | Required | Shop, product pages, bag, checkout, accounts |
+| Paystack WooCommerce Payment Gateway | Required | The store's payment method (add your Paystack keys in WooCommerce → Settings → Payments) |
+| Elementor | Required | Visual page editing; the theme's sections are Elementor widgets |
+| Contact Form 7 | Required | The Contact page form and its emails |
+| TI WooCommerce Wishlist | Recommended | Customer wishlists (a simple built-in wishlist is used otherwise) |
+| MC4WP: Mailchimp for WordPress | Recommended | Newsletter sign-ups to Mailchimp |
+| Yoast SEO | Recommended | Search titles, descriptions, sitemaps, breadcrumbs |
+
+Until every required plugin is active, a red notice with an **Install & activate required plugins** button shows on every admin screen. Plugins that are already installed and active (as on the current live site) are left as they are. If your host blocks installs from the dashboard, install the same plugins from **Plugins → Add New**.
 
 ## 3. First-time setup (about 10 minutes)
 
